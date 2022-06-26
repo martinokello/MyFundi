@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Development\\MyFundi\\PaymentGateway\\PaymentsGateway.csproj": {}
+    "D:\\Development\\MyFundi\\PaymentGateway\\PaymentsGateway.csproj": {}
   },
   "projects": {
-    "C:\\Development\\MyFundi\\PaymentGateway\\PaymentsGateway.csproj": {
+    "D:\\Development\\MyFundi\\PaymentGateway\\PaymentsGateway.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Development\\MyFundi\\PaymentGateway\\PaymentsGateway.csproj",
+        "projectUniqueName": "D:\\Development\\MyFundi\\PaymentGateway\\PaymentsGateway.csproj",
         "projectName": "PaymentsGateway",
-        "projectPath": "C:\\Development\\MyFundi\\PaymentGateway\\PaymentsGateway.csproj",
+        "projectPath": "D:\\Development\\MyFundi\\PaymentGateway\\PaymentsGateway.csproj",
         "packagesPath": "C:\\Users\\mart4\\.nuget\\packages\\",
-        "outputPath": "C:\\Development\\MyFundi\\PaymentGateway\\obj\\",
+        "outputPath": "D:\\Development\\MyFundi\\PaymentGateway\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages",
@@ -35,8 +35,8 @@
           "netcoreapp3.1": {
             "targetAlias": "netcoreapp3.1",
             "projectReferences": {
-              "C:\\Development\\MyFundi\\PaypalFacility\\PaypalFacility.csproj": {
-                "projectPath": "C:\\Development\\MyFundi\\PaypalFacility\\PaypalFacility.csproj"
+              "D:\\Development\\MyFundi\\PaypalFacility\\PaypalFacility.csproj": {
+                "projectPath": "D:\\Development\\MyFundi\\PaypalFacility\\PaypalFacility.csproj"
               }
             }
           }
@@ -67,21 +67,16 @@
           },
           "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.106\\RuntimeIdentifierGraph.json"
         }
-      },
-      "runtimes": {
-        "win-x64": {
-          "#import": []
-        }
       }
     },
-    "C:\\Development\\MyFundi\\PaypalFacility\\PaypalFacility.csproj": {
+    "D:\\Development\\MyFundi\\PaypalFacility\\PaypalFacility.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Development\\MyFundi\\PaypalFacility\\PaypalFacility.csproj",
+        "projectUniqueName": "D:\\Development\\MyFundi\\PaypalFacility\\PaypalFacility.csproj",
         "projectName": "PaypalFacility",
-        "projectPath": "C:\\Development\\MyFundi\\PaypalFacility\\PaypalFacility.csproj",
+        "projectPath": "D:\\Development\\MyFundi\\PaypalFacility\\PaypalFacility.csproj",
         "packagesPath": "C:\\Users\\mart4\\.nuget\\packages\\",
-        "outputPath": "C:\\Development\\MyFundi\\PaypalFacility\\obj\\",
+        "outputPath": "D:\\Development\\MyFundi\\PaypalFacility\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages",
@@ -146,11 +141,6 @@
             }
           },
           "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.106\\RuntimeIdentifierGraph.json"
-        }
-      },
-      "runtimes": {
-        "win-x64": {
-          "#import": []
         }
       }
     }

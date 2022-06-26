@@ -125,6 +125,7 @@ export class ClientFundiSearchComponent implements OnInit, AfterViewChecked {
     let review = jQuery(button).parent('form').find('textarea').val();
     let profileId: number = button.id;
     let rating: number = this.currentRating;
+    let workCategory: string = jQuery(button).parent('form').find('select').val();
 
     alert('rated ' + rating);
     let userIdObs: Observable<any> = this.myFundiService.GetUserGuidId(this.userDetails.username);
@@ -135,7 +136,8 @@ export class ClientFundiSearchComponent implements OnInit, AfterViewChecked {
         fundiProfileId: profileId,
         rating: rating,
         review: review,
-        userId: userId
+        userId: userId,
+        workCategoryType: workCategory
       };
 
       let fundiRatedObs: Observable<any> = this.myFundiService.RateFundiByProfileId(fundiRated);

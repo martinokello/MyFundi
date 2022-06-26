@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Development\\MyFundi\\MyFundi.Domain\\MyFundi.Domain.csproj": {}
+    "D:\\Development\\MyFundi\\MyFundi.Domain\\MyFundi.Domain.csproj": {}
   },
   "projects": {
-    "C:\\Development\\MyFundi\\MyFundi.Domain\\MyFundi.Domain.csproj": {
+    "D:\\Development\\MyFundi\\MyFundi.Domain\\MyFundi.Domain.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Development\\MyFundi\\MyFundi.Domain\\MyFundi.Domain.csproj",
+        "projectUniqueName": "D:\\Development\\MyFundi\\MyFundi.Domain\\MyFundi.Domain.csproj",
         "projectName": "MyFundi.Domain",
-        "projectPath": "C:\\Development\\MyFundi\\MyFundi.Domain\\MyFundi.Domain.csproj",
+        "projectPath": "D:\\Development\\MyFundi\\MyFundi.Domain\\MyFundi.Domain.csproj",
         "packagesPath": "C:\\Users\\mart4\\.nuget\\packages\\",
-        "outputPath": "C:\\Development\\MyFundi\\MyFundi.Domain\\obj\\",
+        "outputPath": "D:\\Development\\MyFundi\\MyFundi.Domain\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages",
@@ -68,11 +68,6 @@
             }
           },
           "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.106\\RuntimeIdentifierGraph.json"
-        }
-      },
-      "runtimes": {
-        "win-x64": {
-          "#import": []
         }
       }
     }

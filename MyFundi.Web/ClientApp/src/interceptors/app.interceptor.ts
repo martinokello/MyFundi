@@ -13,9 +13,9 @@ export class AppInterceptor implements HttpInterceptor {
   intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
     //You can mutate your request here
     return next
-      .handle(req.clone({ 
+      .handle(req.clone({
         withCredentials: true,
-        setHeaders: { 'authToken': localStorage.getItem('authToken') != null ? localStorage.getItem('authToken'):""}
+        setHeaders: { 'authToken': localStorage.getItem('authToken') != null ? localStorage.getItem('authToken') : "" }
       })).do((event: any) => {
         if (event instanceof HttpResponse) {
           //you can transform your response here

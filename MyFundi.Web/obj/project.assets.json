@@ -3746,6 +3746,7 @@
       "path": "runtime.native.system/4.3.0",
       "files": [
         ".nupkg.metadata",
+        ".signature.p7s",
         "ThirdPartyNotices.txt",
         "dotnet_library_license.txt",
         "lib/netstandard1.0/_._",
@@ -3849,6 +3850,7 @@
       "path": "system.collections/4.3.0",
       "files": [
         ".nupkg.metadata",
+        ".signature.p7s",
         "ThirdPartyNotices.txt",
         "dotnet_library_license.txt",
         "lib/MonoAndroid10/_._",
@@ -3916,6 +3918,7 @@
       "path": "system.collections.concurrent/4.3.0",
       "files": [
         ".nupkg.metadata",
+        ".signature.p7s",
         "ThirdPartyNotices.txt",
         "dotnet_library_license.txt",
         "lib/MonoAndroid10/_._",
@@ -4009,6 +4012,7 @@
       "path": "system.collections.nongeneric/4.3.0",
       "files": [
         ".nupkg.metadata",
+        ".signature.p7s",
         "ThirdPartyNotices.txt",
         "dotnet_library_license.txt",
         "lib/MonoAndroid10/_._",
@@ -4436,6 +4440,7 @@
       "path": "system.diagnostics.debug/4.3.0",
       "files": [
         ".nupkg.metadata",
+        ".signature.p7s",
         "ThirdPartyNotices.txt",
         "dotnet_library_license.txt",
         "lib/MonoAndroid10/_._",
@@ -4529,6 +4534,7 @@
       "path": "system.diagnostics.tools/4.3.0",
       "files": [
         ".nupkg.metadata",
+        ".signature.p7s",
         "ThirdPartyNotices.txt",
         "dotnet_library_license.txt",
         "lib/MonoAndroid10/_._",
@@ -4585,6 +4591,7 @@
       "path": "system.diagnostics.tracing/4.3.0",
       "files": [
         ".nupkg.metadata",
+        ".signature.p7s",
         "ThirdPartyNotices.txt",
         "dotnet_library_license.txt",
         "lib/MonoAndroid10/_._",
@@ -4716,6 +4723,7 @@
       "path": "system.globalization/4.3.0",
       "files": [
         ".nupkg.metadata",
+        ".signature.p7s",
         "ThirdPartyNotices.txt",
         "dotnet_library_license.txt",
         "lib/MonoAndroid10/_._",
@@ -4845,6 +4853,7 @@
       "path": "system.io/4.3.0",
       "files": [
         ".nupkg.metadata",
+        ".signature.p7s",
         "ThirdPartyNotices.txt",
         "dotnet_library_license.txt",
         "lib/MonoAndroid10/_._",
@@ -4925,6 +4934,7 @@
       "path": "system.io.filesystem/4.3.0",
       "files": [
         ".nupkg.metadata",
+        ".signature.p7s",
         "ThirdPartyNotices.txt",
         "dotnet_library_license.txt",
         "lib/MonoAndroid10/_._",
@@ -4962,6 +4972,7 @@
       "path": "system.io.filesystem.primitives/4.3.0",
       "files": [
         ".nupkg.metadata",
+        ".signature.p7s",
         "ThirdPartyNotices.txt",
         "dotnet_library_license.txt",
         "lib/MonoAndroid10/_._",
@@ -5000,6 +5011,7 @@
       "path": "system.linq/4.3.0",
       "files": [
         ".nupkg.metadata",
+        ".signature.p7s",
         "ThirdPartyNotices.txt",
         "dotnet_library_license.txt",
         "lib/MonoAndroid10/_._",
@@ -5113,6 +5125,7 @@
       "path": "system.net.primitives/4.3.0",
       "files": [
         ".nupkg.metadata",
+        ".signature.p7s",
         "ThirdPartyNotices.txt",
         "dotnet_library_license.txt",
         "lib/MonoAndroid10/_._",
@@ -5206,6 +5219,7 @@
       "path": "system.reflection/4.3.0",
       "files": [
         ".nupkg.metadata",
+        ".signature.p7s",
         "ThirdPartyNotices.txt",
         "dotnet_library_license.txt",
         "lib/MonoAndroid10/_._",
@@ -5412,6 +5426,7 @@
       "path": "system.reflection.extensions/4.3.0",
       "files": [
         ".nupkg.metadata",
+        ".signature.p7s",
         "ThirdPartyNotices.txt",
         "dotnet_library_license.txt",
         "lib/MonoAndroid10/_._",
@@ -5468,6 +5483,7 @@
       "path": "system.reflection.primitives/4.3.0",
       "files": [
         ".nupkg.metadata",
+        ".signature.p7s",
         "ThirdPartyNotices.txt",
         "dotnet_library_license.txt",
         "lib/MonoAndroid10/_._",
@@ -5578,6 +5594,7 @@
       "path": "system.resources.resourcemanager/4.3.0",
       "files": [
         ".nupkg.metadata",
+        ".signature.p7s",
         "ThirdPartyNotices.txt",
         "dotnet_library_license.txt",
         "lib/MonoAndroid10/_._",
@@ -5634,6 +5651,7 @@
       "path": "system.runtime/4.3.0",
       "files": [
         ".nupkg.metadata",
+        ".signature.p7s",
         "ThirdPartyNotices.txt",
         "dotnet_library_license.txt",
         "lib/MonoAndroid10/_._",
@@ -5791,6 +5809,7 @@
       "path": "system.runtime.extensions/4.3.0",
       "files": [
         ".nupkg.metadata",
+        ".signature.p7s",
         "ThirdPartyNotices.txt",
         "dotnet_library_license.txt",
         "lib/MonoAndroid10/_._",
@@ -5871,6 +5890,7 @@
       "path": "system.runtime.handles/4.3.0",
       "files": [
         ".nupkg.metadata",
+        ".signature.p7s",
         "ThirdPartyNotices.txt",
         "dotnet_library_license.txt",
         "lib/MonoAndroid10/_._",
@@ -5908,6 +5928,7 @@
       "path": "system.runtime.interopservices/4.3.0",
       "files": [
         ".nupkg.metadata",
+        ".signature.p7s",
         "ThirdPartyNotices.txt",
         "dotnet_library_license.txt",
         "lib/MonoAndroid10/_._",
@@ -6000,6 +6021,7 @@
       "path": "system.runtime.serialization.formatters/4.3.0",
       "files": [
         ".nupkg.metadata",
+        ".signature.p7s",
         "ThirdPartyNotices.txt",
         "dotnet_library_license.txt",
         "lib/MonoAndroid10/_._",
@@ -6270,6 +6292,7 @@
       "path": "system.security.cryptography.primitives/4.3.0",
       "files": [
         ".nupkg.metadata",
+        ".signature.p7s",
         "ThirdPartyNotices.txt",
         "dotnet_library_license.txt",
         "lib/MonoAndroid10/_._",
@@ -6472,6 +6495,7 @@
       "path": "system.text.encoding/4.3.0",
       "files": [
         ".nupkg.metadata",
+        ".signature.p7s",
         "ThirdPartyNotices.txt",
         "dotnet_library_license.txt",
         "lib/MonoAndroid10/_._",
@@ -6580,6 +6604,7 @@
       "path": "system.text.encoding.extensions/4.3.0",
       "files": [
         ".nupkg.metadata",
+        ".signature.p7s",
         "ThirdPartyNotices.txt",
         "dotnet_library_license.txt",
         "lib/MonoAndroid10/_._",
@@ -6666,6 +6691,7 @@
       "path": "system.text.regularexpressions/4.3.0",
       "files": [
         ".nupkg.metadata",
+        ".signature.p7s",
         "ThirdPartyNotices.txt",
         "dotnet_library_license.txt",
         "lib/MonoAndroid10/_._",
@@ -6749,6 +6775,7 @@
       "path": "system.threading/4.3.0",
       "files": [
         ".nupkg.metadata",
+        ".signature.p7s",
         "ThirdPartyNotices.txt",
         "dotnet_library_license.txt",
         "lib/MonoAndroid10/_._",
@@ -6819,6 +6846,7 @@
       "path": "system.threading.tasks/4.3.0",
       "files": [
         ".nupkg.metadata",
+        ".signature.p7s",
         "ThirdPartyNotices.txt",
         "dotnet_library_license.txt",
         "lib/MonoAndroid10/_._",
@@ -6886,6 +6914,7 @@
       "path": "system.threading.tasks.extensions/4.3.0",
       "files": [
         ".nupkg.metadata",
+        ".signature.p7s",
         "ThirdPartyNotices.txt",
         "dotnet_library_license.txt",
         "lib/netstandard1.0/System.Threading.Tasks.Extensions.dll",
@@ -6924,6 +6953,7 @@
       "path": "system.xml.readerwriter/4.3.0",
       "files": [
         ".nupkg.metadata",
+        ".signature.p7s",
         "ThirdPartyNotices.txt",
         "dotnet_library_license.txt",
         "lib/MonoAndroid10/_._",
@@ -6995,6 +7025,7 @@
       "path": "system.xml.xdocument/4.3.0",
       "files": [
         ".nupkg.metadata",
+        ".signature.p7s",
         "ThirdPartyNotices.txt",
         "dotnet_library_license.txt",
         "lib/MonoAndroid10/_._",
@@ -7280,11 +7311,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Development\\MyFundi\\MyFundi.Web\\MyFundi.Web.csproj",
+      "projectUniqueName": "D:\\Development\\MyFundi\\MyFundi.Web\\MyFundi.Web.csproj",
       "projectName": "MyFundi.Web",
-      "projectPath": "C:\\Development\\MyFundi\\MyFundi.Web\\MyFundi.Web.csproj",
+      "projectPath": "D:\\Development\\MyFundi\\MyFundi.Web\\MyFundi.Web.csproj",
       "packagesPath": "C:\\Users\\mart4\\.nuget\\packages\\",
-      "outputPath": "C:\\Development\\MyFundi\\MyFundi.Web\\obj\\",
+      "outputPath": "D:\\Development\\MyFundi\\MyFundi.Web\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages",
@@ -7308,47 +7339,47 @@
         "netcoreapp3.1": {
           "targetAlias": "netcoreapp3.1",
           "projectReferences": {
-            "C:\\Development\\MyFundi\\BLG.Business\\BLG.Business.csproj": {
-              "projectPath": "C:\\Development\\MyFundi\\BLG.Business\\BLG.Business.csproj"
+            "D:\\Development\\MyFundi\\BLG.Business\\BLG.Business.csproj": {
+              "projectPath": "D:\\Development\\MyFundi\\BLG.Business\\BLG.Business.csproj"
             },
-            "C:\\Development\\MyFundi\\ExcelAccessDataEngine\\ExcelAccessDataEngine.csproj": {
-              "projectPath": "C:\\Development\\MyFundi\\ExcelAccessDataEngine\\ExcelAccessDataEngine.csproj"
+            "D:\\Development\\MyFundi\\ExcelAccessDataEngine\\ExcelAccessDataEngine.csproj": {
+              "projectPath": "D:\\Development\\MyFundi\\ExcelAccessDataEngine\\ExcelAccessDataEngine.csproj"
             },
-            "C:\\Development\\MyFundi\\MyFundi.AppConfigurations\\MyFundi.AppConfigurations.csproj": {
-              "projectPath": "C:\\Development\\MyFundi\\MyFundi.AppConfigurations\\MyFundi.AppConfigurations.csproj"
+            "D:\\Development\\MyFundi\\MyFundi.AppConfigurations\\MyFundi.AppConfigurations.csproj": {
+              "projectPath": "D:\\Development\\MyFundi\\MyFundi.AppConfigurations\\MyFundi.AppConfigurations.csproj"
             },
-            "C:\\Development\\MyFundi\\MyFundi.DataAccess\\MyFundi.DataAccess.csproj": {
-              "projectPath": "C:\\Development\\MyFundi\\MyFundi.DataAccess\\MyFundi.DataAccess.csproj"
+            "D:\\Development\\MyFundi\\MyFundi.DataAccess\\MyFundi.DataAccess.csproj": {
+              "projectPath": "D:\\Development\\MyFundi\\MyFundi.DataAccess\\MyFundi.DataAccess.csproj"
             },
-            "C:\\Development\\MyFundi\\MyFundi.Domain\\MyFundi.Domain.csproj": {
-              "projectPath": "C:\\Development\\MyFundi\\MyFundi.Domain\\MyFundi.Domain.csproj"
+            "D:\\Development\\MyFundi\\MyFundi.Domain\\MyFundi.Domain.csproj": {
+              "projectPath": "D:\\Development\\MyFundi\\MyFundi.Domain\\MyFundi.Domain.csproj"
             },
-            "C:\\Development\\MyFundi\\MyFundi.Services\\MyFundi.Services.csproj": {
-              "projectPath": "C:\\Development\\MyFundi\\MyFundi.Services\\MyFundi.Services.csproj"
+            "D:\\Development\\MyFundi\\MyFundi.Services\\MyFundi.Services.csproj": {
+              "projectPath": "D:\\Development\\MyFundi\\MyFundi.Services\\MyFundi.Services.csproj"
             },
-            "C:\\Development\\MyFundi\\MyFundi.UnitOfWork\\MyFundi.UnitOfWork.csproj": {
-              "projectPath": "C:\\Development\\MyFundi\\MyFundi.UnitOfWork\\MyFundi.UnitOfWork.csproj"
+            "D:\\Development\\MyFundi\\MyFundi.UnitOfWork\\MyFundi.UnitOfWork.csproj": {
+              "projectPath": "D:\\Development\\MyFundi\\MyFundi.UnitOfWork\\MyFundi.UnitOfWork.csproj"
             },
-            "C:\\Development\\MyFundi\\PaymentCalculater\\PaymentCalculater.csproj": {
-              "projectPath": "C:\\Development\\MyFundi\\PaymentCalculater\\PaymentCalculater.csproj"
+            "D:\\Development\\MyFundi\\PaymentCalculater\\PaymentCalculater.csproj": {
+              "projectPath": "D:\\Development\\MyFundi\\PaymentCalculater\\PaymentCalculater.csproj"
             },
-            "C:\\Development\\MyFundi\\PaymentGateway\\PaymentsGateway.csproj": {
-              "projectPath": "C:\\Development\\MyFundi\\PaymentGateway\\PaymentsGateway.csproj"
+            "D:\\Development\\MyFundi\\PaymentGateway\\PaymentsGateway.csproj": {
+              "projectPath": "D:\\Development\\MyFundi\\PaymentGateway\\PaymentsGateway.csproj"
             },
-            "C:\\Development\\MyFundi\\PaypalFacility\\PaypalFacility.csproj": {
-              "projectPath": "C:\\Development\\MyFundi\\PaypalFacility\\PaypalFacility.csproj"
+            "D:\\Development\\MyFundi\\PaypalFacility\\PaypalFacility.csproj": {
+              "projectPath": "D:\\Development\\MyFundi\\PaypalFacility\\PaypalFacility.csproj"
             },
-            "C:\\Development\\MyFundi\\ServiceEndPoint\\ServiceEndPoint.csproj": {
-              "projectPath": "C:\\Development\\MyFundi\\ServiceEndPoint\\ServiceEndPoint.csproj"
+            "D:\\Development\\MyFundi\\ServiceEndPoint\\ServiceEndPoint.csproj": {
+              "projectPath": "D:\\Development\\MyFundi\\ServiceEndPoint\\ServiceEndPoint.csproj"
             },
-            "C:\\Development\\MyFundi\\SimbaToursEastAfrica.Caching\\SimbaToursEastAfrica.Caching.csproj": {
-              "projectPath": "C:\\Development\\MyFundi\\SimbaToursEastAfrica.Caching\\SimbaToursEastAfrica.Caching.csproj"
+            "D:\\Development\\MyFundi\\SimbaToursEastAfrica.Caching\\SimbaToursEastAfrica.Caching.csproj": {
+              "projectPath": "D:\\Development\\MyFundi\\SimbaToursEastAfrica.Caching\\SimbaToursEastAfrica.Caching.csproj"
             },
-            "C:\\Development\\MyFundi\\SimbaToursEastAfrica.SocialMedia\\SimbaToursEastAfrica.SocialMedia.csproj": {
-              "projectPath": "C:\\Development\\MyFundi\\SimbaToursEastAfrica.SocialMedia\\SimbaToursEastAfrica.SocialMedia.csproj"
+            "D:\\Development\\MyFundi\\SimbaToursEastAfrica.SocialMedia\\SimbaToursEastAfrica.SocialMedia.csproj": {
+              "projectPath": "D:\\Development\\MyFundi\\SimbaToursEastAfrica.SocialMedia\\SimbaToursEastAfrica.SocialMedia.csproj"
             },
-            "C:\\Development\\MyFundi\\Twitter\\Twitter.csproj": {
-              "projectPath": "C:\\Development\\MyFundi\\Twitter\\Twitter.csproj"
+            "D:\\Development\\MyFundi\\Twitter\\Twitter.csproj": {
+              "projectPath": "D:\\Development\\MyFundi\\Twitter\\Twitter.csproj"
             }
           }
         }

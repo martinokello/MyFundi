@@ -11,6 +11,7 @@
     <!-- Set this to true if you enable server-side prerendering -->
     <BuildServerSideRenderer>false</BuildServerSideRenderer>
     <StartupObject>MyFundi.Web.Program</StartupObject>
+    <NoWin32Manifest>true</NoWin32Manifest>
   </PropertyGroup>
 
   <ItemGroup>
@@ -42,22 +43,6 @@
     <Content Remove="wwwroot\assets\images\uk-flag.gif" />
     <Content Remove="wwwroot\assets\jquery-star-rating\jquery.star-rating-svg.js" />
     <Content Remove="wwwroot\assets\jquery-star-rating\star-rating-svg.css" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <None Remove="ClientApp\dist\assets\images\handyman.jpg" />
-    <None Remove="ClientApp\dist\assets\images\handymantools.jpg" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <Content Include="ClientApp\dist\assets\images\handyman.jpg">
-      <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
-      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
-    </Content>
-    <Content Include="ClientApp\dist\assets\images\handymantools.jpg">
-      <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
-      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
-    </Content>
   </ItemGroup>
 
   <ItemGroup>

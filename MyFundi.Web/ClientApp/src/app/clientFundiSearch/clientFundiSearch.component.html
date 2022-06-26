@@ -43,18 +43,24 @@
           <ul>
             <li *ngFor="let fundiRating of fundiProfileRatingDictionary[profileId]">
               <div>
-                Rating: {{fundiRating.rating}} out of 5
+                Rated By: <em style="color:brown !important;">{{fundiRating.ratedByUser.firstName}} {{fundiRating.ratedByUser.lastName}}</em><br/>
+                Rating: <span style="color:brown !important;">{{fundiRating.rating}} out of 5</span><br/>
               </div>
               <div>
-                Review: {{fundiRating.review}}
+                Review By: <em style="color:brown !important;">{{fundiRating.ratedByUser.firstName}} {{fundiRating.ratedByUser.lastName}}</em><br />
+                Review: {{fundiRating.review}}<br/>
               </div>
             </li>
           </ul>
           <h5>Rate This Fundi</h5>
           <form id="ratingForm-{{profileId}}">
-            <div id="fundiRating-{{profileId}}" class="rating"></div>
+            <div id="fundiRating-{{profileId}}" class="rating"></div><br/>
+            <span>Choose Work Category:</span><br/>
+            <select id="workCategory-{{profileId}}" name="workCategory" class="form-control">
+              <option *ngFor="let fundiRating of fundiProfileRatingDictionary[profileId]" value="{{fundiRating.workCategoryType}}">{{fundiRating.workCategoryType}}</option>
+             </select>
             <br/>
-            <textarea id="review-{{profileId}}" placeholder="Write review" rows="5" cols="20"></textarea>
+            <textarea id="review-{{profileId}}" placeholder="Write review" rows="5" cols="20"></textarea><br/>
             <input type="button" id="{{profileId}}" class="but-primary" value="Rate Fundi" (click)="rateFundi($event)" />
           </form>
         </div>

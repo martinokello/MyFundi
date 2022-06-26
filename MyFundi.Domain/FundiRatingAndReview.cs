@@ -20,5 +20,6 @@ namespace MyFundi.Domain
         public FundiProfile FundiProfile { get; set; }
         public DateTime DateCreated { get; set; } = DateTime.Now;
         public DateTime DateUpdated { get; set; } = DateTime.Now;
+        public string WorkCategoryType { get; set; }
     }
 }

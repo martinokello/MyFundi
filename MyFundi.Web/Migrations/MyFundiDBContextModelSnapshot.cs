@@ -296,6 +296,9 @@ namespace MyFundi.Web.Migrations
                     b.Property<Guid>("UserId")
                         .HasColumnType("uniqueidentifier");
 
+                    b.Property<string>("WorkCategoryType")
+                        .HasColumnType("nvarchar(max)");
+
                     b.HasKey("FundiRatingAndReviewId");
 
                     b.HasIndex("FundiProfileId");

@@ -299,7 +299,7 @@ namespace MyFundi.Web.Controllers
 
             var fundiRated = _mapper.Map<FundiRatingAndReview>(fundiRatingReview);
 
-            if (fundiRated == null || fundiRated.FundiProfileId < 1 || fundiRated.UserId == null || string.IsNullOrEmpty(fundiRated.Review))
+            if (string.IsNullOrEmpty(fundiRatingReview.WorkCategoryType) || fundiRated == null || fundiRated.FundiProfileId < 1 || fundiRated.UserId == null || string.IsNullOrEmpty(fundiRated.Review))
             {
                 return await Task.FromResult(Ok(new { Message = "Fundi Not Found!" }));
             }
@@ -331,7 +331,9 @@ namespace MyFundi.Web.Controllers
                                   UserId= us.UserId,
                                   User = _mapper.Map<UserViewModel>(us),
                                   DateUpdated = j.DateUpdated,
-                                  WorkCategoryType = fwcat.WorkCategory.WorkCategoryType
+                                  WorkCategoryType = fwcat.WorkCategory.WorkCategoryType,
+                                  RatedByUser = _mapper.Map<UserViewModel>(j.User),
+                                  RatingByUserId = j.UserId
                               };
             if(reviewCateg.Any())
             {

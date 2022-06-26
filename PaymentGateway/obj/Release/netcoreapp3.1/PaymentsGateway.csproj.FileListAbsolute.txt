@@ -50,3 +50,16 @@ C:\Development\MyFundi\PaymentGateway\obj\Release\netcoreapp3.1\PaymentsGateway.
 C:\Development\MyFundi\PaymentGateway\obj\Release\netcoreapp3.1\PaymentsGateway.csproj.CopyComplete
 C:\Development\MyFundi\PaymentGateway\obj\Release\netcoreapp3.1\PaymentsGateway.dll
 C:\Development\MyFundi\PaymentGateway\obj\Release\netcoreapp3.1\PaymentsGateway.pdb
+D:\Development\MyFundi\PaymentGateway\bin\Release\netcoreapp3.1\PaymentsGateway.deps.json
+D:\Development\MyFundi\PaymentGateway\bin\Release\netcoreapp3.1\PaymentsGateway.dll
+D:\Development\MyFundi\PaymentGateway\bin\Release\netcoreapp3.1\PaymentsGateway.pdb
+D:\Development\MyFundi\PaymentGateway\bin\Release\netcoreapp3.1\PaypalFacility.dll
+D:\Development\MyFundi\PaymentGateway\bin\Release\netcoreapp3.1\PaypalFacility.pdb
+D:\Development\MyFundi\PaymentGateway\obj\Release\netcoreapp3.1\PaymentsGateway.csproj.AssemblyReference.cache
+D:\Development\MyFundi\PaymentGateway\obj\Release\netcoreapp3.1\PaymentsGateway.GeneratedMSBuildEditorConfig.editorconfig
+D:\Development\MyFundi\PaymentGateway\obj\Release\netcoreapp3.1\PaymentsGateway.AssemblyInfoInputs.cache
+D:\Development\MyFundi\PaymentGateway\obj\Release\netcoreapp3.1\PaymentsGateway.AssemblyInfo.cs
+D:\Development\MyFundi\PaymentGateway\obj\Release\netcoreapp3.1\PaymentsGateway.csproj.CoreCompileInputs.cache
+D:\Development\MyFundi\PaymentGateway\obj\Release\netcoreapp3.1\PaymentsGateway.csproj.CopyComplete
+D:\Development\MyFundi\PaymentGateway\obj\Release\netcoreapp3.1\PaymentsGateway.dll
+D:\Development\MyFundi\PaymentGateway\obj\Release\netcoreapp3.1\PaymentsGateway.pdb

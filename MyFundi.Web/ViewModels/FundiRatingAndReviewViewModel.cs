@@ -17,5 +17,7 @@ namespace MyFundi.Web.ViewModels
         public DateTime DateCreated { get; set; } = DateTime.Now;
         public DateTime DateUpdated { get; set; } = DateTime.Now;
         public string WorkCategoryType { get; set; }
+        public Guid RatingByUserId { get; set; }
+        public UserViewModel RatedByUser { get; set; }
     }
 }

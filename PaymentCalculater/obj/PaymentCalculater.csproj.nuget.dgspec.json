@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Development\\MyFundi\\PaymentCalculater\\PaymentCalculater.csproj": {}
+    "D:\\Development\\MyFundi\\PaymentCalculater\\PaymentCalculater.csproj": {}
   },
   "projects": {
-    "C:\\Development\\MyFundi\\PaymentCalculater\\PaymentCalculater.csproj": {
+    "D:\\Development\\MyFundi\\PaymentCalculater\\PaymentCalculater.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Development\\MyFundi\\PaymentCalculater\\PaymentCalculater.csproj",
+        "projectUniqueName": "D:\\Development\\MyFundi\\PaymentCalculater\\PaymentCalculater.csproj",
         "projectName": "PaymentCalculater",
-        "projectPath": "C:\\Development\\MyFundi\\PaymentCalculater\\PaymentCalculater.csproj",
+        "projectPath": "D:\\Development\\MyFundi\\PaymentCalculater\\PaymentCalculater.csproj",
         "packagesPath": "C:\\Users\\mart4\\.nuget\\packages\\",
-        "outputPath": "C:\\Development\\MyFundi\\PaymentCalculater\\obj\\",
+        "outputPath": "D:\\Development\\MyFundi\\PaymentCalculater\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages",
@@ -62,11 +62,6 @@
             }
           },
           "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.106\\RuntimeIdentifierGraph.json"
-        }
-      },
-      "runtimes": {
-        "win-x64": {
-          "#import": []
         }
       }
     }
