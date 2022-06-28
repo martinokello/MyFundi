@@ -13,7 +13,7 @@
     <section id="Profile" *ngFor="let profileId of profileIdKeys">
       <div class="row" style="text-align: center !important; align-content: center !important;">
         <div class="col-lg-12">
-          <img id="profileImage" src="/FundiProfile/GetFundiProfileImage?fundiProfileId={{profileId}}" alt="profileImage" style="width:250px; height:auto; align-content:center !important;" /><br />
+          <img id="profileImage" src="/FundiProfile/GetFundiProfileImageByProfileId?fundiProfileId={{profileId}}" alt="profileImage" style="width:250px; height:auto; align-content:center !important;" /><br />
           <span>Fundi Name: {{fundiProfileRatingDictionary[profileId][0].user.firstName}} {{fundiProfileRatingDictionary[profileId][0].user.lastName}}</span>
         </div>
       </div>
@@ -34,7 +34,7 @@
       </div>
       <div class="row" style="text-align: center !important; align-content: center !important;margin:2px 0px !important;">
         <div class="col-lg-12" style="margin: 2px 0px !important;">
-          <a style="line-height: 17px 0px !important;" id="downloadCV" href='/FundiProfile/GetFundiCV?fundiProfileId={{profileId}}'>Download Profile CV</a><br />
+          <a style="line-height: 17px 0px !important;" id="downloadCV" href='/FundiProfile/GetFundiCVByProfileId?fundiProfileId={{profileId}}'>Download Profile CV</a><br />
         </div>
       </div>
       <div class="row" style="margin: 2px 0px !important;">
@@ -43,50 +43,43 @@
           <ul>
             <li *ngFor="let fundiRating of fundiProfileRatingDictionary[profileId]">
               <div>
-                Rated By: <em style="color:brown !important;">{{fundiRating.ratedByUser.firstName}} {{fundiRating.ratedByUser.lastName}}</em><br/>
-                Rating: <span style="color:brown !important;">{{fundiRating.rating}} out of 5</span><br/>
+                Rated By: <em style="color:brown !important;">{{fundiRating.ratedByUser.firstName}} {{fundiRating.ratedByUser.lastName}}</em><br />
+                Rating: <span style="color:brown !important;">{{fundiRating.rating}} out of 5</span><br />
               </div>
               <div>
                 Review By: <em style="color:brown !important;">{{fundiRating.ratedByUser.firstName}} {{fundiRating.ratedByUser.lastName}}</em><br />
-                Review: {{fundiRating.review}}<br/>
+                Review: {{fundiRating.review}}<br />
               </div>
             </li>
           </ul>
           <h5>Rate This Fundi</h5>
           <form id="ratingForm-{{profileId}}">
-            <div id="fundiRating-{{profileId}}" class="rating"></div><br/>
-            <span>Choose Work Category:</span><br/>
+            <div id="fundiRating-{{profileId}}" class="rating"></div><br />
+            <span>Choose Work Category:</span><br />
             <select id="workCategory-{{profileId}}" name="workCategory" class="form-control">
               <option *ngFor="let fundiRating of fundiProfileRatingDictionary[profileId]" value="{{fundiRating.workCategoryType}}">{{fundiRating.workCategoryType}}</option>
-             </select>
-            <br/>
-            <textarea id="review-{{profileId}}" placeholder="Write review" rows="5" cols="20"></textarea><br/>
+            </select>
+            <br />
+            <textarea id="review-{{profileId}}" placeholder="Write review" rows="5" cols="20"></textarea><br />
             <input type="button" id="{{profileId}}" class="but-primary" value="Rate Fundi" (click)="rateFundi($event)" />
           </form>
         </div>
       </div>
       <div class="row" style="margin: 2px 0px !important;">
-        <div class="col-lg-12" id="profileRating" style="margin: 2px 0px !important;">
+        <div class="col-lg-12" id="workCategory" style="margin: 2px 0px !important;">
           <h5>Work Category Type</h5>
-          <ul>
-            <li *ngFor="let fundiRating of fundiProfileRatingDictionary[profileId]">
-              <div>
-                {{fundiRating.workCategoryType}}
-              </div>
-            </li>
+          <ul id="{{profileId}}-workCategory">
           </ul>
         </div>
       </div>
       <div class="row" style="margin: 2px 0px !important;">
-        <div class="col-lg-12" id="workCategories" style="margin: 2px 0px !important;">
+        <div class="col-lg-12" id="skills" style="margin: 2px 0px !important;">
           <h5>Fundi Skills</h5>
-          <ul>
-            <li *ngFor="let fundiRating of fundiProfileRatingDictionary[profileId]">
-              {{fundiRating.fundiProfile.skills}}
-            </li>
+          <ul id="{{profileId}}-skills">
           </ul>
         </div>
       </div>
+      <hr /><br />
     </section>
   </div>
 </div>

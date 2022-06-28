@@ -1214,3 +1214,9 @@ D:\Development\MyFundi\SimbaToursEastAfrica.SocialMedia\obj\Debug\SimbaToursEast
 D:\Development\MyFundi\SimbaToursEastAfrica.SocialMedia\obj\Debug\SimbaToursEastAfrica.SocialMedia.csproj.CopyComplete
 D:\Development\MyFundi\SimbaToursEastAfrica.SocialMedia\obj\Debug\SimbaToursEastAfrica.SocialMedia.dll
 D:\Development\MyFundi\SimbaToursEastAfrica.SocialMedia\obj\Debug\SimbaToursEastAfrica.SocialMedia.pdb
+D:\Development\MyFundi\SimbaToursEastAfrica.SocialMedia\bin\Debug\Newtonsoft.Json.dll
+D:\Development\MyFundi\SimbaToursEastAfrica.SocialMedia\bin\Debug\System.Buffers.dll
+D:\Development\MyFundi\SimbaToursEastAfrica.SocialMedia\bin\Debug\System.Memory.dll
+D:\Development\MyFundi\SimbaToursEastAfrica.SocialMedia\bin\Debug\System.Numerics.Vectors.dll
+D:\Development\MyFundi\SimbaToursEastAfrica.SocialMedia\bin\Debug\System.Runtime.CompilerServices.Unsafe.dll
+D:\Development\MyFundi\SimbaToursEastAfrica.SocialMedia\bin\Debug\System.ValueTuple.dll

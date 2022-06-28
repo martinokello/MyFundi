@@ -20,10 +20,10 @@ C:\Development\MyFundi\PaymentCalculater\obj\Debug\netcoreapp3.1\PaymentCalculat
 D:\Development\MyFundi\PaymentCalculater\bin\Debug\netcoreapp3.1\PaymentCalculater.deps.json
 D:\Development\MyFundi\PaymentCalculater\bin\Debug\netcoreapp3.1\PaymentCalculater.dll
 D:\Development\MyFundi\PaymentCalculater\bin\Debug\netcoreapp3.1\PaymentCalculater.pdb
-D:\Development\MyFundi\PaymentCalculater\obj\Debug\netcoreapp3.1\PaymentCalculater.csproj.AssemblyReference.cache
 D:\Development\MyFundi\PaymentCalculater\obj\Debug\netcoreapp3.1\PaymentCalculater.GeneratedMSBuildEditorConfig.editorconfig
 D:\Development\MyFundi\PaymentCalculater\obj\Debug\netcoreapp3.1\PaymentCalculater.AssemblyInfoInputs.cache
 D:\Development\MyFundi\PaymentCalculater\obj\Debug\netcoreapp3.1\PaymentCalculater.AssemblyInfo.cs
 D:\Development\MyFundi\PaymentCalculater\obj\Debug\netcoreapp3.1\PaymentCalculater.csproj.CoreCompileInputs.cache
 D:\Development\MyFundi\PaymentCalculater\obj\Debug\netcoreapp3.1\PaymentCalculater.dll
 D:\Development\MyFundi\PaymentCalculater\obj\Debug\netcoreapp3.1\PaymentCalculater.pdb
+D:\Development\MyFundi\PaymentCalculater\obj\Debug\netcoreapp3.1\PaymentCalculater.csproj.AssemblyReference.cache

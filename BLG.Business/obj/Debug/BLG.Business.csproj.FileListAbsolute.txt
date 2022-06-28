@@ -197,3 +197,4 @@ D:\Development\MyFundi\BLG.Business\obj\Debug\BLG.Business.csproj.CoreCompileInp
 D:\Development\MyFundi\BLG.Business\obj\Debug\BLG.Business.csproj.CopyComplete
 D:\Development\MyFundi\BLG.Business\obj\Debug\BLG.Business.dll
 D:\Development\MyFundi\BLG.Business\obj\Debug\BLG.Business.pdb
+D:\Development\MyFundi\BLG.Business\bin\Debug\Newtonsoft.Json.dll

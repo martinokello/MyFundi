@@ -46,7 +46,7 @@ namespace MyFundi.Web.Controllers
             _mapper = mapper;
             Environment = _environment;
         }
-        public async Task<IActionResult> GetFundiProfileImage(string username)
+        public async Task<IActionResult> GetFundiProfileImageByUsername(string username)
         {
 
             string contentPath = this.Environment.ContentRootPath;
@@ -75,7 +75,7 @@ namespace MyFundi.Web.Controllers
 
             //return  File(BitmapToBytes(profileImage), "image/jpg");
         }
-        public async Task<IActionResult> GetFundiProfileImage(int fundiProfileId)
+        public async Task<IActionResult> GetFundiProfileImageByProfileId(int fundiProfileId)
         {
 
             string contentPath = this.Environment.ContentRootPath;
@@ -107,7 +107,7 @@ namespace MyFundi.Web.Controllers
             //return  File(BitmapToBytes(profileImage), "image/jpg");
         }
 
-        public async Task<IActionResult> GetFundiCV(int fundiProfileId)
+        public async Task<IActionResult> GetFundiCVByProfileId(int fundiProfileId)
         {
 
             string contentPath = this.Environment.ContentRootPath + "\\MyFundiProfile\\";
@@ -146,7 +146,7 @@ namespace MyFundi.Web.Controllers
 
             //return  File(BitmapToBytes(profileImage), "image/jpg");
         }
-        public async Task<IActionResult> GetFundiCV(string username)
+        public async Task<IActionResult> GetFundiCVByUsername(string username)
         {
 
             string contentPath = this.Environment.ContentRootPath + "\\MyFundiProfile\\";
@@ -277,6 +277,36 @@ namespace MyFundi.Web.Controllers
             }
             return await Task.FromResult(Ok(_mapper.Map<FundiProfileViewModel>(fundiProfile)));
         }
+        
+
+       [AuthorizeIdentity]
+        public async Task<IActionResult> GetFundiSkillsByFundiProfileId(int fundiProfileId)
+        {
+            var fundiProfile = _unitOfWork._fundiProfileRepository.GetById(fundiProfileId);
+
+            if (fundiProfile == null)
+            {
+                return await Task.FromResult(NotFound(new { Message = "profile not Found!" }));
+            }
+
+            return await Task.FromResult(Ok(new string[]{ fundiProfile.Skills}));
+        }
+        
+
+       [AuthorizeIdentity]
+        public async Task<IActionResult> GetFundiWorkCategoriesByFundiProfileId(int fundiProfileId)
+        {
+            var fundiProfile = _unitOfWork._fundiProfileRepository.GetById(fundiProfileId);
+
+            if (fundiProfile == null)
+            {
+                return await Task.FromResult(NotFound(new { Message = "Profile not Found!" }));
+            }
+            var workCategories = _unitOfWork._fundiWorkCategoryRepository.GetAll().Where(q => q.FundiProfileId == fundiProfileId);
+
+            return await Task.FromResult(Ok(workCategories.Select(q=> q.WorkCategory.WorkCategoryType).ToArray()));
+        }
+
         [AuthorizeIdentity]
         public async Task<IActionResult> GetFundiRatings(string username)
         {
@@ -320,7 +350,8 @@ namespace MyFundi.Web.Controllers
                               join frR in _unitOfWork._fundiRatingsAndReviewRepository.GetAll()
                               on fp.FundiProfileId equals frR.FundiProfileId into catFp
                               from j in catFp.DefaultIfEmpty()
-                              where categoriesViewModel.Categories.Contains(fwcat.WorkCategory.WorkCategoryType)
+                              where categoriesViewModel.Categories.Contains(j.WorkCategoryType)
+                              && j.WorkCategoryType == fwcat.WorkCategory.WorkCategoryType
                               select new FundiRatingAndReviewViewModel
                               {
                                   FundiRatingAndReviewId = j.FundiRatingAndReviewId,
@@ -331,7 +362,7 @@ namespace MyFundi.Web.Controllers
                                   UserId= us.UserId,
                                   User = _mapper.Map<UserViewModel>(us),
                                   DateUpdated = j.DateUpdated,
-                                  WorkCategoryType = fwcat.WorkCategory.WorkCategoryType,
+                                  WorkCategoryType = j.WorkCategoryType,
                                   RatedByUser = _mapper.Map<UserViewModel>(j.User),
                                   RatingByUserId = j.UserId
                               };

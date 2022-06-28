@@ -43,7 +43,7 @@ export class FundiProfileByIdComponent implements OnInit {
     }).subscribe();
 
     let downloadLink: HTMLAnchorElement = document.querySelector('a#downloadCV');
-    downloadLink.setAttribute('href', `/FundiProfile/GetFundiCV?username=${this.profileUserDetails.username}`);
+    downloadLink.setAttribute('href', `/FundiProfile/GetFundiCVByUsername?username=${this.profileUserDetails.username}`);
 
   }
   constructor(private myFundiService: MyFundiService) {

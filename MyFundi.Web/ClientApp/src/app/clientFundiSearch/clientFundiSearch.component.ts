@@ -25,6 +25,8 @@ export class ClientFundiSearchComponent implements OnInit, AfterViewChecked {
   fundiProfileRatingDictionary: any;
   profileIdKeys: string[];
   currentRating: number;
+  fundiWorkCategories: string[];
+  fundiSkills: string[];
 
   decoderUrl(url: string): string {
     return decodeURIComponent(url);
@@ -83,7 +85,6 @@ export class ClientFundiSearchComponent implements OnInit, AfterViewChecked {
     /*  let downloadLink: HTMLAnchorElement = document.querySelector('a#downloadCV');
       downloadLink.setAttribute('ng-reflect-router-link', '/manage-profile');
       downloadLink.setAttribute('href',`/FundiProfile/GetFundiCV?username=${this.userDetails.username}`);*/
-
   }
   constructor(private myFundiService: MyFundiService, private router: Router) {
     this.userDetails = {};
@@ -99,6 +100,7 @@ export class ClientFundiSearchComponent implements OnInit, AfterViewChecked {
           curthis.currentRating = rating;
         }
       });
+
   }
 
   searchFundiByCategories($event) {
@@ -115,6 +117,12 @@ export class ClientFundiSearchComponent implements OnInit, AfterViewChecked {
     fundiRatingsObs.map((q: any) => {
       this.fundiProfileRatingDictionary = q;
       this.profileIdKeys = Object.keys(this.fundiProfileRatingDictionary);
+
+      if (this.profileIdKeys && this.profileIdKeys.length > 0) {
+          for (var n = 0; n < this.profileIdKeys.length; n++)
+            this.getFundiWorkCategoriesByProfileId(parseInt(this.profileIdKeys[n]));
+      }
+
     }).subscribe();
 
     $event.stopPropagation();
@@ -146,6 +154,35 @@ export class ClientFundiSearchComponent implements OnInit, AfterViewChecked {
       }).subscribe();
     }).subscribe();
 
+  }
+  getFundiWorkCategoriesByProfileId(profileId: number) {
+    let fundiWorkCatObs: Observable<string[]> = this.myFundiService.GetFundiWorkCategoriesByProfileId(profileId);
+
+    fundiWorkCatObs.map((res: string[]) => {
+      let fundiWorkCategories = res;
+      let ul = jQuery(document).find(`ul#${profileId}-workCategory`);
+      let ulskillsChildren = jQuery(document).find(`ul#${profileId}-workCategory li`);
+      //ulWorkCatChildren.remove();
+      for (let workCat in fundiWorkCategories) {
+        let li = document.createElement('li');
+        li.innerHTML = fundiWorkCategories[workCat];
+        jQuery(ul).append(li);
+      }
+      this.getFundiSkillsByProfileId(profileId);
+    }).subscribe();
+  }
+  getFundiSkillsByProfileId(profileId: number) {
+    let fundiSkillsObs: Observable<string[]> = this.myFundiService.GetFundiSkillsByProfileId(profileId);
+
+    fundiSkillsObs.map((res: string[]) => {
+      let fundiSkills = res;
+      let ul = jQuery(document).find(`ul#${profileId}-skills`);
+      let ulskillsChildren = jQuery(document).find(`ul#${profileId}-skills li`);
+      //ulskillsChildren.remove();
+      let li = document.createElement('li');
+      li.innerHTML = fundiSkills[0];
+      jQuery(ul).append(li);
+    }).subscribe();
   }
   populateFundiUserDetails($event, profileId: number) {
     let userObs: Observable<any> = this.myFundiService.GetFundiUserByProfileId(profileId);

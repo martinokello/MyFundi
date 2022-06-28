@@ -32,7 +32,9 @@ export class MyFundiService {
   public addFundiCertificateUrl: string = this.baseServerUrl + "/FundiProfile/AddFundiCertificate"; 
   public addFundiCourseUrl: string = this.baseServerUrl + "/FundiProfile/AddFundiCourse";
   public getFundiCoursesUrl: string = this.baseServerUrl + "/FundiProfile/GetFundiCoursesTaken";
-  public getFundiRatingsUrl: string = this.baseServerUrl + "/FundiProfile/GetFundiRatings";
+  public getFundiRatingsUrl: string = this.baseServerUrl + "/FundiProfile/GetFundiRatings"; 
+  public getFundiSkillsByProfileIdUrl: string = this.baseServerUrl + "/FundiProfile/GetFundiSkillsByFundiProfileId";
+  public getFundiWorkCategoriesByFundiProfileIdUrl: string = this.baseServerUrl + "/FundiProfile/GetFundiWorkCategoriesByFundiProfileId";
   public getFundiWorkCategoriesUrl: string = this.baseServerUrl + "/FundiProfile/GetFundiWorkCategories";
   public getFundiCertificationsUrl: string = this.baseServerUrl + "/FundiProfile/GetFundiCertifications";
   public getAllFundiWorkCategoriesUrl: string = this.baseServerUrl + "/FundiProfile/GetAllFundiWorkCategories";
@@ -189,6 +191,38 @@ export class MyFundiService {
     return this.httpClient.get(requestOptions.url, requestOptions.headers).map((res: any): object[] => {
       let certificates: object[] = res;
       return certificates;
+    });
+  } 
+  public GetFundiSkillsByProfileId(fundiProfileId: number): Observable<string[]> {
+
+    const headers = new HttpHeaders({ 'content-type': 'application/json' });
+    let requestUrl = this.getFundiSkillsByProfileIdUrl + "?fundiProfileId=" + fundiProfileId;
+    let requestOptions: any = {
+      url: requestUrl,
+      method: 'GET',
+      headers: headers,
+      responseType: 'application/json'
+    };
+
+    return this.httpClient.get(requestOptions.url, requestOptions.headers).map((res: any): string[] => {
+      let workCategories: string[] = res;
+      return workCategories;
+    });
+  }
+  public GetFundiWorkCategoriesByProfileId(fundiProfileId: number): Observable<string[]> {
+
+    const headers = new HttpHeaders({ 'content-type': 'application/json' });
+    let requestUrl = this.getFundiWorkCategoriesByFundiProfileIdUrl + "?fundiProfileId=" + fundiProfileId;
+    let requestOptions: any = {
+      url: requestUrl,
+      method: 'GET',
+      headers: headers,
+      responseType: 'application/json'
+    };
+
+    return this.httpClient.get(requestOptions.url, requestOptions.headers).map((res: any): string[] => {
+      let workCategories: string[] = res;
+      return workCategories;
     });
   }
   public GetFundiWorkCategories(username: string): Observable<IWorkCategory[]> {
