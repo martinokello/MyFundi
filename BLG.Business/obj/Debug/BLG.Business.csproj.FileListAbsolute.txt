@@ -191,10 +191,10 @@ C:\Development\MyFundi\BLG.Business\obj\Debug\BLG.Business.pdb
 D:\Development\MyFundi\BLG.Business\bin\Debug\BLG.Business.dll
 D:\Development\MyFundi\BLG.Business\bin\Debug\BLG.Business.pdb
 D:\Development\MyFundi\BLG.Business\bin\Debug\BLGWeather.Domain.dll
+D:\Development\MyFundi\BLG.Business\bin\Debug\Newtonsoft.Json.dll
 D:\Development\MyFundi\BLG.Business\bin\Debug\BLGWeather.Domain.pdb
 D:\Development\MyFundi\BLG.Business\obj\Debug\BLG.Business.csproj.AssemblyReference.cache
 D:\Development\MyFundi\BLG.Business\obj\Debug\BLG.Business.csproj.CoreCompileInputs.cache
 D:\Development\MyFundi\BLG.Business\obj\Debug\BLG.Business.csproj.CopyComplete
 D:\Development\MyFundi\BLG.Business\obj\Debug\BLG.Business.dll
 D:\Development\MyFundi\BLG.Business\obj\Debug\BLG.Business.pdb
-D:\Development\MyFundi\BLG.Business\bin\Debug\Newtonsoft.Json.dll

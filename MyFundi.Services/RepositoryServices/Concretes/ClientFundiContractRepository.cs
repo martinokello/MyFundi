@@ -45,7 +45,9 @@ namespace MyFundi.Services.RepositoryServices.Concretes
                 cert.NotesForNotice = toUpdate.NotesForNotice;
                 cert.IsCompleted = toUpdate.IsCompleted;
                 cert.IsSignedOffByClient = toUpdate.IsSignedOffByClient;
-                cert.ClientUserId = toUpdate.ClientUserId;
+                cert.NumberOfDaysToComplete = toUpdate.NumberOfDaysToComplete;
+                cert.AgreedCost = toUpdate.AgreedCost;
+                cert.DateUpdated = toUpdate.DateUpdated;
                 return true;
             }
             catch (Exception e)

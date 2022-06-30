@@ -71,6 +71,7 @@
   <ItemGroup>
     <Folder Include="ClientApp\src\metricsreporting\" />
     <Folder Include="extLibs\" />
+    <Folder Include="ClientProfile\" />
   </ItemGroup>
 
   <ItemGroup>

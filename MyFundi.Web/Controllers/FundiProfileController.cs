@@ -80,7 +80,7 @@ namespace MyFundi.Web.Controllers
 
             string contentPath = this.Environment.ContentRootPath;
             var fundiProfile =_unitOfWork._fundiProfileRepository.GetById(fundiProfileId);
-            var username = _unitOfWork._userRepository.GetByGuid(fundiProfile.UserId);
+            var username = _unitOfWork._userRepository.GetByGuid(fundiProfile.UserId).Username;
 
             string fundiProfileImagePath = contentPath + "\\MyFundiProfile\\ProfileImage_" + username + ".jpg";
 

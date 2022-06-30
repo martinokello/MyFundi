@@ -46,7 +46,9 @@ namespace MyFundi.DataAccess
         public DbSet<Item> Items { get; set; }
         public DbSet<Location> Locations { get; set; }
         public DbSet<Company> Companies { get; set; }
-        public DbSet<TransportLog> TransportLogs { get; set; }
+        public DbSet<ClientProfile> ClientProfiles { get; set; }
+        public DbSet<Job> Jobs { get; set; }
+
 
         public List<dynamic> GetFoodHubCommoditiesStockStorageUsage()
         {

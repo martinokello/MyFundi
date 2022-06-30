@@ -21,7 +21,6 @@ namespace MyFundi.UnitOfWork.Concretes
         public RolesRepository _rolesRepository;
         public UserInRolesRepository _userInRolesRepository;
         public CompanyRepository _companyRepository;
-
         public CertificationRepository _certificationRepository;
         public ClientFundiContractRepository _clientFundiContractRepository;
         public CourseRepository _courseRepository;
@@ -31,6 +30,8 @@ namespace MyFundi.UnitOfWork.Concretes
         public FundiRatingsAndReviewRepository _fundiRatingsAndReviewRepository;
         public FundiWorkCategoryRepository _fundiWorkCategoryRepository;
         public WorkCategoryRepository _workCategoryRepository;
+        public ClientProfileRepository _clientProfileRepository;
+        public JobRepository _jobRepository;
         public MyFundiDBContext MyFundiDBContext { get; set; }
         public MyFundiUnitOfWork(
             AbstractRepository<Address> addressRepository,
@@ -50,6 +51,8 @@ namespace MyFundi.UnitOfWork.Concretes
             AbstractRepository<FundiRatingAndReview> fundiRatingsAndReviewRepository,
             AbstractRepository<FundiWorkCategory> fundiWorkCategoryRepository,
             AbstractRepository<WorkCategory> workCategoryRepository,
+            AbstractRepository<ClientProfile> clientProfileRepository,
+            AbstractRepository<Job> jobRepository,
             MyFundiDBContext myFundiDbContext)
         {
             this.MyFundiDBContext = myFundiDbContext;
@@ -69,7 +72,6 @@ namespace MyFundi.UnitOfWork.Concretes
             _userInRolesRepository.MyFundiDBContext = myFundiDbContext;
             _companyRepository = companyRepository as CompanyRepository;
             _companyRepository.MyFundiDBContext = myFundiDbContext;
-
             _certificationRepository = certificationRepository as CertificationRepository;
             _certificationRepository.MyFundiDBContext = myFundiDbContext;
             _clientFundiContractRepository = clientFundiContractRepository as ClientFundiContractRepository;
@@ -88,6 +90,10 @@ namespace MyFundi.UnitOfWork.Concretes
             _fundiWorkCategoryRepository.MyFundiDBContext = myFundiDbContext;
             _workCategoryRepository = workCategoryRepository as WorkCategoryRepository;
             _workCategoryRepository.MyFundiDBContext = myFundiDbContext;
+            _clientProfileRepository = clientProfileRepository as ClientProfileRepository;
+            _clientProfileRepository.MyFundiDBContext = myFundiDbContext;
+            _jobRepository = jobRepository as JobRepository;
+            _jobRepository.MyFundiDBContext = myFundiDbContext;
         }
         public void SaveChanges()
         {

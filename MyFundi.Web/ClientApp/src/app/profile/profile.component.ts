@@ -43,9 +43,9 @@ export class ProfileComponent implements OnInit {
       this.certifications = certs;
     }).subscribe();
 
+
     let downloadLink: HTMLAnchorElement = document.querySelector('a#downloadCV');
-    downloadLink.setAttribute('ng-reflect-router-link', '/manage-profile');
-    downloadLink.setAttribute('href',`/FundiProfile/GetFundiCV?username=${this.userDetails.username}`);
+    downloadLink.setAttribute('href', `/FundiProfile/GetFundiCVByUsername?username=${this.userDetails.username}`);
 
   }
   constructor(private myFundiService: MyFundiService) {

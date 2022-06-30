@@ -80,7 +80,7 @@ export class NavMenuComponent implements AfterContentInit,AfterViewInit {
     localStorage.removeItem("userDetails");
     localStorage.removeItem("userRoles");
     localStorage.removeItem("Orders");
-    this.userRoles = null;
+    this.userRoles = [];
 
     this.actUserStatus.isUserLoggedIn = MyFundiService.actUserStatus.isUserLoggedIn = false;
     this.actUserStatus.isUserAdministrator = MyFundiService.actUserStatus.isUserAdministrator = false;
@@ -93,16 +93,16 @@ export class NavMenuComponent implements AfterContentInit,AfterViewInit {
       localStorage.removeItem("actUserStatus");
       this.actUserStatus.isUserLoggedIn = false;
       this.actUserStatus.isUserAdministrator = false;
-
+      this.userRoles = [];
     }).subscribe();
 
   }
 
   public ensureUserRolesGot(): void {
     if (this.actUserStatus.isUserLoggedIn) {
-      let userRolesStr = localStorage.getItem("userRoles");
+      let userRolesStr = JSON.parse(localStorage.getItem("userRoles"));
       if (userRolesStr != null && userRolesStr.length > 0) {
-        this.userRoles = MyFundiService.userRoles = JSON.parse(userRolesStr);
+        this.userRoles = MyFundiService.userRoles = userRolesStr;
         localStorage.setItem("userRoles", JSON.stringify(MyFundiService.userRoles));
         return;
       }

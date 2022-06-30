@@ -11,15 +11,22 @@
         </li>
         <ng-container *ngIf="actUserStatus.isUserLoggedIn" ngDefaultControl ngModel="actUserStatus">
           <li style="margin: 10px 0px !important; padding: 10px !important;">
-            <a [routerLink]="['/crud']">Manage Entities</a>
+            <a routerLink='/crud'>Manage Entities</a>
           </li>
+        </ng-container>
+        <ng-container *ngIf="userRoles && userRoles.indexOf('Fundi') > -1" ngDefaultControl ngModel="userRoles">
           <li style="margin: 10px 0px !important; padding: 10px !important;">
-            <a [routerLink]="['/manage-profile']">Manage Profile</a>
+            <a routerLink='/manage-profile'>Manage Fundi Profile</a>
+          </li>
+        </ng-container>
+        <ng-container *ngIf="userRoles && userRoles.indexOf('Client') > -1" ngDefaultControl ngModel="userRoles">
+          <li style="margin: 10px 0px !important; padding: 10px !important;">
+            <a routerLink='/client-create-job'>Manage Jobs</a>
           </li>
         </ng-container>
         <ng-container *ngIf="actUserStatus.isUserAdministrator" ngDefaultControl ngModel="actUserStatus">
           <li style="margin: 10px 0px !important; padding: 10px !important;">
-            <a [routerLink]="['/manage-roles']">
+            <a routerLink='/manage-roles'>
               Manage Roles
             </a>
           </li>

@@ -48,6 +48,7 @@ import { CertificationCrudComponent } from './crud-operations/certificationcrud/
 import { WorkCategoryCrudComponent } from './crud-operations/workcategorycrud/workcategorycrud.component';
 import { ClientFundiSearchComponent } from './clientFundiSearch/clientFundiSearch.component';
 import { FundiProfileByIdComponent } from './fundiProfile-by-id/fundiProfileById.component';
+import { ClientProfileComponent } from './client/client.component';
 
 @NgModule({
   declarations: [
@@ -89,7 +90,8 @@ import { FundiProfileByIdComponent } from './fundiProfile-by-id/fundiProfileById
     CertificationCrudComponent,
     WorkCategoryCrudComponent,
     ClientFundiSearchComponent,
-    FundiProfileByIdComponent
+    FundiProfileByIdComponent,
+    ClientProfileComponent
 
 
   ],
@@ -101,7 +103,7 @@ import { FundiProfileByIdComponent } from './fundiProfile-by-id/fundiProfileById
       { path: '', component: HomeComponent, pathMatch: 'full' },
       { path: 'home', component: HomeComponent },
       { path: 'crud', component: ActiveCrudOperationsComponent, canActivate:[AuthGuard] },
-      { path: 'manage-profile', component: ProfileComponent, canActivate: [AuthGuard] },
+      { path: 'manage-profile', component: ProfileComponent, canActivate: [AuthFundiGuard] },
       { path: 'create-profile', component: ProfileCreateComponent, canActivate: [AuthFundiGuard] },
       { path: 'add-location', component: LocationComponent, canActivate: [AdminAuthGuard] },
       { path: 'login', component: LoginComponent },
@@ -121,8 +123,9 @@ import { FundiProfileByIdComponent } from './fundiProfile-by-id/fundiProfileById
       { path: 'Fundi', component: FundiRoleComponent, canActivate: [AuthFundiGuard] },
       { path: 'Client', component: ClientRoleComponent, canActivate: [AuthClientGuard] },
       { path: 'clientsearch', component: ClientFundiSearchComponent, canActivate: [AuthGuard] },
-      { path: 'fundiprofile-by-id', component: FundiProfileByIdComponent, canActivate: [AuthGuard] }
-
+      { path: 'fundiprofile-by-id', component: FundiProfileByIdComponent, canActivate: [AuthGuard] },
+      { path: 'client-create-job', component: ClientProfileComponent, canActivate: [AuthClientGuard] }
+      
     ])
   ],
   providers: [{ provide: AdminAuthGuard, useClass: AdminAuthGuard },

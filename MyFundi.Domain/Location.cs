@@ -18,6 +18,8 @@ namespace MyFundi.Domain
         public virtual Address Address { get; set; }
         public int AddressId { get; set; }
         public string LocationName { get; set; }
+        public decimal Latitude { get; set; }
+        public decimal Longitude { get; set; }
         public DateTime DateCreated { get; set; } = DateTime.Now;
         public DateTime DateUpdated { get; set; } = DateTime.Now;
     }

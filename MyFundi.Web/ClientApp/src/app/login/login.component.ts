@@ -76,7 +76,6 @@ export class LoginComponent implements OnInit {
         MyFundiService.isLoginPage = false;
         MyFundiService.SetUserEmail(this.userDetail.emailAddress);
         this.ensureUserRolesGot();
-        this.router.navigateByUrl("/scanqrcode");
       }
       else {
         $('span#loginName').css('display', 'none');
@@ -104,8 +103,13 @@ export class LoginComponent implements OnInit {
       this.myFundiService.GetAllUserRoles(MyFundiService.clientEmailAddress).
         map((userroles: string[]) => {
           localStorage.setItem("userRoles", JSON.stringify(userroles));
+          this.userRoles = userroles;
           MyFundiService.userRoles = userroles;
+          this.router.navigateByUrl("/scanqrcode");
         }).subscribe();
+    }
+    else {
+      this.router.navigateByUrl("/scanqrcode");
     }
   }
 }

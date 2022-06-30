@@ -29,7 +29,6 @@ D:\Development\MyFundi\MyFundi.AppConfigurations\bin\Debug\netcoreapp3.1\MyFundi
 D:\Development\MyFundi\MyFundi.AppConfigurations\bin\Debug\netcoreapp3.1\MyFundi.AppConfigurations.runtimeconfig.dev.json
 D:\Development\MyFundi\MyFundi.AppConfigurations\bin\Debug\netcoreapp3.1\MyFundi.AppConfigurations.dll
 D:\Development\MyFundi\MyFundi.AppConfigurations\bin\Debug\netcoreapp3.1\MyFundi.AppConfigurations.pdb
-D:\Development\MyFundi\MyFundi.AppConfigurations\obj\Debug\netcoreapp3.1\MyFundi.AppConfigurations.csproj.AssemblyReference.cache
 D:\Development\MyFundi\MyFundi.AppConfigurations\obj\Debug\netcoreapp3.1\MyFundi.AppConfigurations.GeneratedMSBuildEditorConfig.editorconfig
 D:\Development\MyFundi\MyFundi.AppConfigurations\obj\Debug\netcoreapp3.1\MyFundi.AppConfigurations.AssemblyInfoInputs.cache
 D:\Development\MyFundi\MyFundi.AppConfigurations\obj\Debug\netcoreapp3.1\MyFundi.AppConfigurations.AssemblyInfo.cs
@@ -37,3 +36,4 @@ D:\Development\MyFundi\MyFundi.AppConfigurations\obj\Debug\netcoreapp3.1\MyFundi
 D:\Development\MyFundi\MyFundi.AppConfigurations\obj\Debug\netcoreapp3.1\MyFundi.AppConfigurations.dll
 D:\Development\MyFundi\MyFundi.AppConfigurations\obj\Debug\netcoreapp3.1\MyFundi.AppConfigurations.pdb
 D:\Development\MyFundi\MyFundi.AppConfigurations\obj\Debug\netcoreapp3.1\MyFundi.AppConfigurations.genruntimeconfig.cache
+D:\Development\MyFundi\MyFundi.AppConfigurations\obj\Debug\netcoreapp3.1\MyFundi.AppConfigurations.csproj.AssemblyReference.cache
