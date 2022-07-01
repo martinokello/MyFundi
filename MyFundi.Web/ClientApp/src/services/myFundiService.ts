@@ -39,7 +39,8 @@ export class MyFundiService {
   public getFundiCertificationsUrl: string = this.baseServerUrl + "/FundiProfile/GetFundiCertifications";
   public getAllFundiWorkCategoriesUrl: string = this.baseServerUrl + "/FundiProfile/GetAllFundiWorkCategories";
   public getAllFundiCertificatesUrl: string = this.baseServerUrl + "/FundiProfile/GetAllFundiCertificates";
-
+  public saveOrupdateClientProfileUrl: string = this.baseServerUrl + "/ClientProfile/CreateOrUpdateClientProfile";
+  
   public postAllFundiRatingsAndReviewsByCategoriesUrl: string = this.baseServerUrl + "/FundiProfile/PostAllFundiRatingsAndReviewsByCategories";
   public updateFundiProfileUrl: string = this.baseServerUrl + "/FundiProfile/UpdateFundiProfile";
   public getFundiProfileUrl: string = this.baseServerUrl + "/FundiProfile/GetFundiProfile";
@@ -61,6 +62,7 @@ export class MyFundiService {
   public postVerifyQrcodeScan: string = this.baseServerUrl + "/Home/GetClientEmailAndMobilePhoneNumber";
 
 
+  public getClientProfileUrl: string = this.baseServerUrl + "/ClientProfile/GetClientProfile";
   public postOrCreateCompanyUrl: string = this.baseServerUrl + "/Company/PostOrCreateCompany";
   public updateCompanyUrl: string = this.baseServerUrl + "/Company/UpdateCompany";
   public getAllCompaniesUrl: string = this.baseServerUrl + "/Company/GetAllCompanies";
@@ -161,6 +163,23 @@ export class MyFundiService {
       return courses;
     });
   } 
+  public GetClientProfile(username: string): Observable<any> {
+
+    const headers = new HttpHeaders({ 'content-type': 'application/json' });
+    let requestUrl = this.getClientProfileUrl + "?username=" + username;
+    let requestOptions: any = {
+      url: requestUrl,
+      method: 'GET',
+      headers: headers,
+      responseType: 'application/json'
+    };
+
+    return this.httpClient.get(requestOptions.url, requestOptions.headers).map((res: any) => {
+      let clientProfile: IProfile = res;
+      return clientProfile;
+    });
+  } 
+
   public GetFundiProfile(username:string): Observable<any> {
 
     const headers = new HttpHeaders({ 'content-type': 'application/json' });
@@ -1024,6 +1043,20 @@ export class MyFundiService {
       return res;
     });
   }
+  public SaveClientProfile(profile: IClientProfile): Observable<any> {
+    let body = JSON.stringify(profile);
+
+    const headers = new HttpHeaders({ 'content-type': 'application/json' });
+
+    let requestOptions: any = {
+      url: this.saveOrupdateClientProfileUrl,
+      headers: headers,
+      body: body
+    };
+    return this.httpClient.post(requestOptions.url, requestOptions.body, { 'headers': requestOptions.headers }).map((res: any) => {
+      return res;
+    });
+  }
   public UpdateCourse(wc: ICourse): Observable<any> {
     let body = JSON.stringify(wc);
 
@@ -1197,6 +1230,13 @@ export interface IProfile {
   addressId: number;
 }
 
+export interface IClientProfile {
+  clientProfileId: number;
+  userId: string;
+  profileSummary: string;
+  profileImageUrl: string;
+  addressId: number;
+}
 export interface IFundiRating {
   fundiRatingAndReviewId: number;
   userId: string;

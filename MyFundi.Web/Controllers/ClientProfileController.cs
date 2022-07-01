@@ -130,7 +130,7 @@ namespace MyFundi.Web.Controllers
             {
                 return await Task.FromResult(NotFound(new { Message = "User not found" }));
             }
-            return await Task.FromResult(Ok(_mapper.Map<FundiProfileViewModel>(clientProfile)));
+            return await Task.FromResult(Ok(_mapper.Map<ClientProfileViewModel>(clientProfile)));
         }
 
         [HttpPost]
@@ -179,23 +179,7 @@ namespace MyFundi.Web.Controllers
 
         [AuthorizeIdentity]
         [HttpPost]
-        public async Task<IActionResult> CreateClientProfile([FromBody] ClientProfileViewModel clientProfileViewModel)
-        {
-            if (ModelState.IsValid)
-            {
-                var clientProfile = _mapper.Map<ClientProfile>(clientProfileViewModel);
-
-                var result = _unitOfWork._clientProfileRepository.Insert(clientProfile);
-                _unitOfWork.SaveChanges();
-                return await Task.FromResult(Ok(new { Message = "Succefully Inserted Fundi Profile" }));
-
-            }
-
-            return await Task.FromResult(BadRequest(new { Message = "Fundi Profile not Inserted, therefore operation failed!" }));
-        }
-
-        [HttpPost]
-        public async Task<IActionResult> UpdateFundiProfile([FromBody] ClientProfileViewModel clientProfileViewModel)
+        public async Task<IActionResult> CreateOrUpdateClientProfile([FromBody] ClientProfileViewModel clientProfileViewModel)
         {
             if (ModelState.IsValid)
             {
@@ -220,7 +204,7 @@ namespace MyFundi.Web.Controllers
         }
         [AuthorizeIdentity]
         [HttpPost]
-        public async Task<IActionResult> DeleteFundiProfile([FromBody] ClientProfileViewModel clientProfileViewModel)
+        public async Task<IActionResult> DeleteClientProfile([FromBody] ClientProfileViewModel clientProfileViewModel)
         {
             if (ModelState.IsValid)
             {
