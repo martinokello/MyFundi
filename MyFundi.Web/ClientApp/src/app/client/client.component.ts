@@ -20,6 +20,8 @@ export class ClientProfileComponent implements OnInit {
   location: ILocation;
   clientUserGuidId: string;
   jobDescription: string;
+  jobName: string;
+  jobId: number;
   address: IAddress;
   addressId: number;
   profileSummary: string;
@@ -33,6 +35,7 @@ export class ClientProfileComponent implements OnInit {
     return decodeURIComponent(url);
   }
   ngOnInit(): void {
+    this.jobId = 0;
     this.chosenWorkCategories = [];
     this.userDetails = JSON.parse(localStorage.getItem("userDetails"));
     this.userRoles = JSON.parse(localStorage.getItem("userRoles"));
@@ -189,7 +192,8 @@ export class ClientProfileComponent implements OnInit {
     this.fundiProfile = this.fundiProfiles.filter(q => q.fundiProfileId == this.fundiProfile.fundiProfileId)
 
     let job: any = {
-      jobId: 0,
+      jobId: this.jobId,
+      jobName: this.userDetails.firstName +" "+ this.userDetails.lastName+"-"+ this.jobName,
       jobDescription: this.jobDescription,
       clientProfileId: this.profile.clientProfileId,
       clientUserId: this.profile.userId,

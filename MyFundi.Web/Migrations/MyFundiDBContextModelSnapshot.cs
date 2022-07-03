@@ -483,6 +483,9 @@ namespace MyFundi.Web.Migrations
                     b.Property<string>("JobDescription")
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<string>("JobName")
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<int>("LocationId")
                         .HasColumnType("int");
 

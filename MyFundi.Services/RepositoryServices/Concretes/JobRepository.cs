@@ -39,6 +39,7 @@ namespace MyFundi.Services.RepositoryServices.Concretes
             {
                 var item = GetById(toUpdate.JobId);
 
+                item.JobName = toUpdate.JobName;
                 item.JobDescription = toUpdate.JobDescription;
                 item.HasCompleted = toUpdate.HasCompleted;
                 item.LocationId = toUpdate.LocationId;

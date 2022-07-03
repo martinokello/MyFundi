@@ -8,6 +8,7 @@ namespace MyFundi.Web.ViewModels
     public class JobViewModel
     {
         public int JobId { get; set; }
+        public string JobName { get; set; }
         public string JobDescription { get; set; }
         public int ClientProfileId { get; set; }
         public ClientProfileViewModel ClientProfile { get; set; }
