@@ -39,11 +39,13 @@ export class MyFundiService {
   public getFundiCertificationsUrl: string = this.baseServerUrl + "/FundiProfile/GetFundiCertifications";
   public getAllFundiWorkCategoriesUrl: string = this.baseServerUrl + "/FundiProfile/GetAllFundiWorkCategories";
   public getAllFundiCertificatesUrl: string = this.baseServerUrl + "/FundiProfile/GetAllFundiCertificates";
-  public saveOrupdateClientProfileUrl: string = this.baseServerUrl + "/ClientProfile/CreateOrUpdateClientProfile";
+  public saveOrupdateClientProfileUrl: string = this.baseServerUrl + "/ClientProfile/CreateOrUpdateClientProfile"; 
+  public createOrUpdateFundiJobUrl: string = this.baseServerUrl + "/ClientProfile/CreateOrUpdateFundiJob";
   
   public postAllFundiRatingsAndReviewsByCategoriesUrl: string = this.baseServerUrl + "/FundiProfile/PostAllFundiRatingsAndReviewsByCategories";
   public updateFundiProfileUrl: string = this.baseServerUrl + "/FundiProfile/UpdateFundiProfile";
-  public getFundiProfileUrl: string = this.baseServerUrl + "/FundiProfile/GetFundiProfile";
+  public getFundiProfileUrl: string = this.baseServerUrl + "/FundiProfile/GetFundiProfile"; 
+  public getAllFundiProfilesUrl: string = this.baseServerUrl + "/FundiProfile/GetAllFundiProfiles";
   public getFundiUserByProfileIdUrl: string = this.baseServerUrl + "/FundiProfile/GetFundiUserByProfileId";
   public getAllFundiCoursesUrl: string = this.baseServerUrl + "/FundiProfile/GetAllFundiCourses";
   public getUserInvoicedItems: string = this.baseServerUrl + "/Home/GetUserInvoicedItems";
@@ -130,7 +132,22 @@ export class MyFundiService {
       return roles;
     });
   }
+  GetAllFundiProfiles(): Observable<IProfile[]> {
 
+    const headers = new HttpHeaders({ 'content-type': 'application/json' });
+    let requestUrl = this.getAllFundiProfilesUrl;
+    let requestOptions: any = {
+      url: requestUrl,
+      method: 'GET',
+      headers: headers,
+      responseType: 'application/json'
+    };
+
+    return this.httpClient.get(requestOptions.url, requestOptions.headers).map((res: any): IProfile[] => {
+      let fundiProfiles: IProfile[] = res;
+      return fundiProfiles;
+    });
+  }
   GetFundiUserByProfileId(profileId: number) {
     const headers = new HttpHeaders({ 'content-type': 'application/json' });
     let requestUrl = this.getFundiUserByProfileIdUrl+"/"+profileId;
@@ -941,6 +958,20 @@ export class MyFundiService {
       return res;
     });
   }
+  CreateFundiJob(job: any): Observable<any> {
+    let body = JSON.stringify(job);
+
+    const headers = new HttpHeaders({ 'content-type': 'application/json' });
+
+    let requestOptions: any = {
+      url: this.createOrUpdateFundiJobUrl,
+      headers: headers,
+      body: body
+    };
+    return this.httpClient.post(requestOptions.url, requestOptions.body, { 'headers': requestOptions.headers }).map((res: any) => {
+      return res;
+    });
+  }
   public PostOrCreateCertification(certification: ICertification): Observable<any> {
     let body = JSON.stringify(certification);
     var actionResult: any;
@@ -1228,6 +1259,7 @@ export interface IProfile {
   usedPowerTools: string;
   fundiProfileCvUrl: string;
   addressId: number;
+  user: IUserDetail;
 }
 
 export interface IClientProfile {
@@ -1266,4 +1298,24 @@ export interface ICourse {
   courseId: number;
   courseName: string;
   courseDescription: string
+}
+export interface IJob {
+  jobId: number;
+  jobDescription: string;
+  clientProfileId: number;
+  clientProfile: IClientProfile;
+  clientUserId: number;
+  clientUser: IUserDetail;
+  hasCompleted: boolean;
+  hasBeenAssignedFundi: boolean;
+  locationId: number;
+  location: ILocation;
+  numberOfDaysToComplete: number;
+  assignedFundiProfileId: number;
+  assignedFundiProfile: IProfile;
+  assignedFundiUserId: string;
+  assignedFundiUser: IUserDetail;
+  clientFundiContractId: number;
+  dateCreated: Date;
+  dateUpdated: Date;
 }

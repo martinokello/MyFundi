@@ -44,6 +44,7 @@ export class ProfileCreateComponent implements OnInit {
       else {
         this.profile = {
           fundiProfileId: 0,
+          user: null,
           userId:"",
           profileSummary: "",
           profileImageUrl: "",
@@ -60,6 +61,7 @@ export class ProfileCreateComponent implements OnInit {
     this.profile =  {
       fundiProfileId: 0,
       userId: "",
+      user:null,
       profileSummary: "",
       profileImageUrl: "",
       skills: "",

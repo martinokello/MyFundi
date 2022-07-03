@@ -176,6 +176,32 @@ namespace MyFundi.Web.Controllers
 
 
         }
+        
+        [AuthorizeIdentity]
+        [HttpPost]
+        public async Task<IActionResult> CreateOrUpdateFundiJob([FromBody] JobViewModel jobViewModel)
+        {
+            if (ModelState.IsValid)
+            {
+                var job = _mapper.Map<Job>(jobViewModel);
+
+                var result = _unitOfWork._jobRepository.GetById(job.JobId);
+
+                if (result == null)
+                {
+                    _unitOfWork._jobRepository.Insert(job);
+                    _unitOfWork.SaveChanges();
+                    return await Task.FromResult(Ok(new { Message = "Succefully Inserted Job" }));
+                }
+                else
+                {
+                    _unitOfWork._jobRepository.Update(job);
+                    _unitOfWork.SaveChanges();
+                    return await Task.FromResult(Ok(new { Message = "Succefully Updated Job" }));
+                }
+            }
+            return await Task.FromResult(BadRequest(new { Message = "Fundi Profile not Updated, therefore operation failed!" }));
+        }
 
         [AuthorizeIdentity]
         [HttpPost]

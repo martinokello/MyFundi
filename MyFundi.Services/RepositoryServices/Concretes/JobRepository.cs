@@ -44,7 +44,11 @@ namespace MyFundi.Services.RepositoryServices.Concretes
                 item.LocationId = toUpdate.LocationId;
                 item.ClientProfileId = toUpdate.ClientProfileId;
                 item.ClientUserId = toUpdate.ClientUserId;
+                item.AssignedFundiProfileId = toUpdate.AssignedFundiProfileId;
+                item.AssignedFundiUserId = toUpdate.AssignedFundiUserId;
                 item.ClientFundiContractId = toUpdate.ClientFundiContractId;
+                item.WorkCategoryIds = toUpdate.WorkCategoryIds;
+                item.HasBeenAssignedFundi = toUpdate.HasBeenAssignedFundi;
                 item.DateUpdated = DateTime.Now;
                 return true;
             }

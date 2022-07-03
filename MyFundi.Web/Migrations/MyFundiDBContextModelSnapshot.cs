@@ -453,7 +453,13 @@ namespace MyFundi.Web.Migrations
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<int>("ClientFundiContractId")
+                    b.Property<int?>("AssignedFundiProfileId")
+                        .HasColumnType("int");
+
+                    b.Property<Guid?>("AssignedFundiUserId")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<int?>("ClientFundiContractId")
                         .HasColumnType("int");
 
                     b.Property<int>("ClientProfileId")
@@ -468,6 +474,9 @@ namespace MyFundi.Web.Migrations
                     b.Property<DateTime>("DateUpdated")
                         .HasColumnType("datetime2");
 
+                    b.Property<bool>("HasBeenAssignedFundi")
+                        .HasColumnType("bit");
+
                     b.Property<bool>("HasCompleted")
                         .HasColumnType("bit");
 
@@ -477,7 +486,20 @@ namespace MyFundi.Web.Migrations
                     b.Property<int>("LocationId")
                         .HasColumnType("int");
 
+                    b.Property<string>("WorkCategoryIds")
+                        .HasColumnType("nvarchar(max)");
+
                     b.HasKey("JobId");
+
+                    b.HasIndex("AssignedFundiProfileId");
+
+                    b.HasIndex("AssignedFundiUserId");
+
+                    b.HasIndex("ClientProfileId");
+
+                    b.HasIndex("ClientUserId");
+
+                    b.HasIndex("LocationId");
 
                     b.ToTable("Jobs");
                 });
@@ -767,6 +789,35 @@ namespace MyFundi.Web.Migrations
                     b.HasOne("MyFundi.Domain.Invoice", "Invoice")
                         .WithMany("InvoicedItems")
                         .HasForeignKey("InvoiceId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+                });
+
+            modelBuilder.Entity("MyFundi.Domain.Job", b =>
+                {
+                    b.HasOne("MyFundi.Domain.FundiProfile", "AssignedFundiProfile")
+                        .WithMany()
+                        .HasForeignKey("AssignedFundiProfileId");
+
+                    b.HasOne("MyFundi.Domain.User", "AssignedFundiUser")
+                        .WithMany()
+                        .HasForeignKey("AssignedFundiUserId");
+
+                    b.HasOne("MyFundi.Domain.ClientProfile", "ClientProfile")
+                        .WithMany()
+                        .HasForeignKey("ClientProfileId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("MyFundi.Domain.User", "ClientUser")
+                        .WithMany()
+                        .HasForeignKey("ClientUserId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("MyFundi.Domain.Location", "Location")
+                        .WithMany()
+                        .HasForeignKey("LocationId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
                 });

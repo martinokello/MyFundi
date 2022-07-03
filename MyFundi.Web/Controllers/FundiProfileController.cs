@@ -254,6 +254,17 @@ namespace MyFundi.Web.Controllers
 
             return await Task.FromResult(Ok(new { Message = "Fundi Courses updated" }));
         }
+        
+         public async Task<IActionResult> GetAllFundiProfiles()
+        {
+            var fundiProfiles = _unitOfWork._fundiProfileRepository.GetAll().Include(q=> q.User).Include(q=> q.Address).ToArray();
+
+            if (fundiProfiles.Any())
+            {
+                return await Task.FromResult(Ok(fundiProfiles));
+            }
+            return await Task.FromResult(NotFound(new { Message = "User not found" }));
+        }
         [Route("~/FundiProfile/GetFundiUserByProfileId/{profileId}")]
         public async Task<IActionResult> GetFundiUserByProfileId(int profileId)
         {

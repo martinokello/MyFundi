@@ -47,3 +47,4 @@ D:\Development\MyFundi\PaypalFacility\obj\Debug\netcoreapp3.1\PaypalFacility.Ass
 D:\Development\MyFundi\PaypalFacility\obj\Debug\netcoreapp3.1\PaypalFacility.csproj.CoreCompileInputs.cache
 D:\Development\MyFundi\PaypalFacility\obj\Debug\netcoreapp3.1\PaypalFacility.dll
 D:\Development\MyFundi\PaypalFacility\obj\Debug\netcoreapp3.1\PaypalFacility.pdb
+D:\Development\MyFundi\PaypalFacility\obj\Debug\netcoreapp3.1\PaypalFacility.csproj.AssemblyReference.cache
