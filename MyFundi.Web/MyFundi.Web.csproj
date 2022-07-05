@@ -46,6 +46,10 @@
   </ItemGroup>
 
   <ItemGroup>
+    <None Remove="ClientApp\src\services\AddressLocationGeoCodeService.ts" />
+  </ItemGroup>
+
+  <ItemGroup>
     <ProjectReference Include="..\BLG.Business\BLG.Business.csproj" />
     <ProjectReference Include="..\ExcelAccessDataEngine\ExcelAccessDataEngine.csproj" />
     <ProjectReference Include="..\MyFundi.AppConfigurations\MyFundi.AppConfigurations.csproj" />
@@ -83,6 +87,10 @@
     <None Include="wwwroot\assets\images\uk-flag.gif" />
     <None Include="wwwroot\assets\jquery-star-rating\star-rating-svg.css" />
     <None Include="wwwroot\assets\jquery-star-rating\jquery.star-rating-svg.js" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <TypeScriptCompile Include="ClientApp\src\services\AddressLocationGeoCodeService.ts" />
   </ItemGroup>
 
   <Target Name="DebugEnsureNodeEnv" BeforeTargets="Build" Condition=" '$(Configuration)' == 'Debug' And !Exists('$(SpaRoot)node_modules') ">

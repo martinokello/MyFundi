@@ -1161,12 +1161,7 @@ export interface IVehicleCategory {
   vehicleCategoryName: string;
   description: string;
 }
-export interface ILocation {
-  locationId: number;
-  locationName: string;
-  address: IAddress;
-  addressId: number;
-}
+
 export interface IAddress {
   addressId: number;
   addressLine1: string;
@@ -1228,6 +1223,8 @@ export interface ILocation {
   locationId: number;
   country: string;
   locationName: string;
+  latitude: number;
+  longitude: number;
   addressId: number;
   address: IAddress;
 }

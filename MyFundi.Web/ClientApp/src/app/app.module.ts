@@ -49,6 +49,7 @@ import { WorkCategoryCrudComponent } from './crud-operations/workcategorycrud/wo
 import { ClientFundiSearchComponent } from './clientFundiSearch/clientFundiSearch.component';
 import { FundiProfileByIdComponent } from './fundiProfile-by-id/fundiProfileById.component';
 import { ClientProfileComponent } from './client/client.component';
+import { AddressLocationGeoCodeService } from '../services/AddressLocationGeoCodeService';
 
 @NgModule({
   declarations: [
@@ -135,7 +136,8 @@ import { ClientProfileComponent } from './client/client.component';
     { provide: HttpClient, useClass: HttpClient },
     { provide: MyFundiService, useClass: MyFundiService },
     { provide: HTTP_INTERCEPTORS,useClass: AppInterceptor, multi: true},
-    { provide: APP_BASE_HREF, useValue: '/myFundi/' }
+    { provide: APP_BASE_HREF, useValue: '/myFundi/' },
+    { provide: AddressLocationGeoCodeService, useClass: AddressLocationGeoCodeService }
   ],
   bootstrap: [AppComponent]
 })
