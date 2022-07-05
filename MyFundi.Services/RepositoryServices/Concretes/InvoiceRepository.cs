@@ -50,6 +50,7 @@ namespace MyFundi.Services.RepositoryServices.Concretes
             {
                 return false;
             }
+        
         }
     }
 }
