@@ -1227,6 +1227,7 @@ export interface ILocation {
   longitude: number;
   addressId: number;
   address: IAddress;
+  isGeocoded: boolean;
 }
 
 export interface IWeatherLocation {

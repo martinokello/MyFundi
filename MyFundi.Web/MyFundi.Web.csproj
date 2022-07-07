@@ -35,6 +35,11 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Compile Remove="Migrations\20220707103241_addLatLongIsGeocodedToLocationTable.cs" />
+    <Compile Remove="Migrations\20220707103241_addLatLongIsGeocodedToLocationTable.Designer.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
     <Content Remove="wwwroot\assets\images\brickWall.jpg" />
     <Content Remove="wwwroot\assets\images\HappyGrad.jpg" />
     <Content Remove="wwwroot\assets\images\martin.jpg" />

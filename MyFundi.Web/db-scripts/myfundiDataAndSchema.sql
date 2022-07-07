@@ -1,132 +1,6 @@
 USE [myfundi]
 GO
-ALTER TABLE [dbo].[UserRoles] DROP CONSTRAINT [FK_UserRoles_Users_UserId]
-GO
-ALTER TABLE [dbo].[UserRoles] DROP CONSTRAINT [FK_UserRoles_Roles_RoleId]
-GO
-ALTER TABLE [dbo].[Locations] DROP CONSTRAINT [FK_Locations_Addresses_AddressId]
-GO
-ALTER TABLE [dbo].[Jobs] DROP CONSTRAINT [FK_Jobs_Users_ClientUserId]
-GO
-ALTER TABLE [dbo].[Jobs] DROP CONSTRAINT [FK_Jobs_Users_AssignedFundiUserId]
-GO
-ALTER TABLE [dbo].[Jobs] DROP CONSTRAINT [FK_Jobs_Locations_LocationId]
-GO
-ALTER TABLE [dbo].[Jobs] DROP CONSTRAINT [FK_Jobs_FundiProfiles_AssignedFundiProfileId]
-GO
-ALTER TABLE [dbo].[Jobs] DROP CONSTRAINT [FK_Jobs_ClientProfiles_ClientProfileId]
-GO
-ALTER TABLE [dbo].[Items] DROP CONSTRAINT [FK_Items_Invoices_InvoiceId]
-GO
-ALTER TABLE [dbo].[Invoices] DROP CONSTRAINT [FK_Invoices_Users_UserId]
-GO
-ALTER TABLE [dbo].[FundiWorkCategories] DROP CONSTRAINT [FK_FundiWorkCategories_WorkCategories_WorkCategoryId]
-GO
-ALTER TABLE [dbo].[FundiWorkCategories] DROP CONSTRAINT [FK_FundiWorkCategories_FundiProfiles_FundiProfileId]
-GO
-ALTER TABLE [dbo].[FundiProfiles] DROP CONSTRAINT [FK_FundiProfiles_Addresses_AddressId]
-GO
-ALTER TABLE [dbo].[FundiProfileCourses] DROP CONSTRAINT [FK_FundiProfileCourses_FundiProfiles_FundiProfileId]
-GO
-ALTER TABLE [dbo].[FundiProfileCourses] DROP CONSTRAINT [FK_FundiProfileCourses_Courses_CourseId]
-GO
-ALTER TABLE [dbo].[FundiProfileCertifications] DROP CONSTRAINT [FK_FundiProfileCertifications_FundiProfiles_FundiProfileId]
-GO
-ALTER TABLE [dbo].[FundiProfileCertifications] DROP CONSTRAINT [FK_FundiProfileCertifications_Certifications_CertificationId]
-GO
-ALTER TABLE [dbo].[FundiProfileAndReviewRatings] DROP CONSTRAINT [FK_FundiProfileAndReviewRatings_Users_UserId]
-GO
-ALTER TABLE [dbo].[FundiProfileAndReviewRatings] DROP CONSTRAINT [FK_FundiProfileAndReviewRatings_FundiProfiles_FundiProfileId]
-GO
-ALTER TABLE [dbo].[Companies] DROP CONSTRAINT [FK_Companies_Locations_LocationId]
-GO
-ALTER TABLE [dbo].[ClientProfiles] DROP CONSTRAINT [FK_ClientProfiles_Users_UserId]
-GO
-ALTER TABLE [dbo].[ClientProfiles] DROP CONSTRAINT [FK_ClientProfiles_Addresses_AddressId]
-GO
-ALTER TABLE [dbo].[ClientFundiContracts] DROP CONSTRAINT [FK_ClientFundiContracts_Users_FundiUserId]
-GO
-ALTER TABLE [dbo].[ClientFundiContracts] DROP CONSTRAINT [FK_ClientFundiContracts_Users_ClientUserId]
-GO
-ALTER TABLE [dbo].[Locations] DROP CONSTRAINT [DF__Locations__Longi__3A81B327]
-GO
-ALTER TABLE [dbo].[Locations] DROP CONSTRAINT [DF__Locations__Latit__398D8EEE]
-GO
-ALTER TABLE [dbo].[Jobs] DROP CONSTRAINT [DF__Jobs__HasBeenAss__656C112C]
-GO
-ALTER TABLE [dbo].[FundiProfiles] DROP CONSTRAINT [DF__FundiProf__Addre__38996AB5]
-GO
-ALTER TABLE [dbo].[ClientFundiContracts] DROP CONSTRAINT [DF__ClientFun__Numbe__37A5467C]
-GO
-ALTER TABLE [dbo].[ClientFundiContracts] DROP CONSTRAINT [DF__ClientFun__Agree__36B12243]
-GO
-/****** Object:  Index [AK_Users_Username]    Script Date: 03/07/2022 18:23:03 ******/
-ALTER TABLE [dbo].[Users] DROP CONSTRAINT [AK_Users_Username]
-GO
-/****** Object:  Index [AK_UserRoles_UserId_RoleId]    Script Date: 03/07/2022 18:23:03 ******/
-ALTER TABLE [dbo].[UserRoles] DROP CONSTRAINT [AK_UserRoles_UserId_RoleId]
-GO
-/****** Object:  Table [dbo].[WorkCategories]    Script Date: 03/07/2022 18:23:03 ******/
-DROP TABLE [dbo].[WorkCategories]
-GO
-/****** Object:  Table [dbo].[Users]    Script Date: 03/07/2022 18:23:03 ******/
-DROP TABLE [dbo].[Users]
-GO
-/****** Object:  Table [dbo].[UserRoles]    Script Date: 03/07/2022 18:23:03 ******/
-DROP TABLE [dbo].[UserRoles]
-GO
-/****** Object:  Table [dbo].[Roles]    Script Date: 03/07/2022 18:23:03 ******/
-DROP TABLE [dbo].[Roles]
-GO
-/****** Object:  Table [dbo].[Locations]    Script Date: 03/07/2022 18:23:03 ******/
-DROP TABLE [dbo].[Locations]
-GO
-/****** Object:  Table [dbo].[Jobs]    Script Date: 03/07/2022 18:23:03 ******/
-DROP TABLE [dbo].[Jobs]
-GO
-/****** Object:  Table [dbo].[Items]    Script Date: 03/07/2022 18:23:03 ******/
-DROP TABLE [dbo].[Items]
-GO
-/****** Object:  Table [dbo].[Invoices]    Script Date: 03/07/2022 18:23:03 ******/
-DROP TABLE [dbo].[Invoices]
-GO
-/****** Object:  Table [dbo].[FundiWorkCategories]    Script Date: 03/07/2022 18:23:03 ******/
-DROP TABLE [dbo].[FundiWorkCategories]
-GO
-/****** Object:  Table [dbo].[FundiProfiles]    Script Date: 03/07/2022 18:23:03 ******/
-DROP TABLE [dbo].[FundiProfiles]
-GO
-/****** Object:  Table [dbo].[FundiProfileCourses]    Script Date: 03/07/2022 18:23:03 ******/
-DROP TABLE [dbo].[FundiProfileCourses]
-GO
-/****** Object:  Table [dbo].[FundiProfileCertifications]    Script Date: 03/07/2022 18:23:03 ******/
-DROP TABLE [dbo].[FundiProfileCertifications]
-GO
-/****** Object:  Table [dbo].[FundiProfileAndReviewRatings]    Script Date: 03/07/2022 18:23:03 ******/
-DROP TABLE [dbo].[FundiProfileAndReviewRatings]
-GO
-/****** Object:  Table [dbo].[Courses]    Script Date: 03/07/2022 18:23:03 ******/
-DROP TABLE [dbo].[Courses]
-GO
-/****** Object:  Table [dbo].[Companies]    Script Date: 03/07/2022 18:23:03 ******/
-DROP TABLE [dbo].[Companies]
-GO
-/****** Object:  Table [dbo].[ClientProfiles]    Script Date: 03/07/2022 18:23:03 ******/
-DROP TABLE [dbo].[ClientProfiles]
-GO
-/****** Object:  Table [dbo].[ClientFundiContracts]    Script Date: 03/07/2022 18:23:03 ******/
-DROP TABLE [dbo].[ClientFundiContracts]
-GO
-/****** Object:  Table [dbo].[Certifications]    Script Date: 03/07/2022 18:23:03 ******/
-DROP TABLE [dbo].[Certifications]
-GO
-/****** Object:  Table [dbo].[Addresses]    Script Date: 03/07/2022 18:23:03 ******/
-DROP TABLE [dbo].[Addresses]
-GO
-/****** Object:  Table [dbo].[__EFMigrationsHistory]    Script Date: 03/07/2022 18:23:03 ******/
-DROP TABLE [dbo].[__EFMigrationsHistory]
-GO
-/****** Object:  Table [dbo].[__EFMigrationsHistory]    Script Date: 03/07/2022 18:23:03 ******/
+/****** Object:  Table [dbo].[__EFMigrationsHistory]    Script Date: 07/07/2022 11:38:39 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -140,7 +14,7 @@ CREATE TABLE [dbo].[__EFMigrationsHistory](
 )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
 ) ON [PRIMARY]
 GO
-/****** Object:  Table [dbo].[Addresses]    Script Date: 03/07/2022 18:23:03 ******/
+/****** Object:  Table [dbo].[Addresses]    Script Date: 07/07/2022 11:38:39 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -161,7 +35,7 @@ CREATE TABLE [dbo].[Addresses](
 )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
 ) ON [PRIMARY] TEXTIMAGE_ON [PRIMARY]
 GO
-/****** Object:  Table [dbo].[Certifications]    Script Date: 03/07/2022 18:23:03 ******/
+/****** Object:  Table [dbo].[Certifications]    Script Date: 07/07/2022 11:38:39 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -178,7 +52,7 @@ CREATE TABLE [dbo].[Certifications](
 )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
 ) ON [PRIMARY] TEXTIMAGE_ON [PRIMARY]
 GO
-/****** Object:  Table [dbo].[ClientFundiContracts]    Script Date: 03/07/2022 18:23:03 ******/
+/****** Object:  Table [dbo].[ClientFundiContracts]    Script Date: 07/07/2022 11:38:39 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -201,7 +75,7 @@ CREATE TABLE [dbo].[ClientFundiContracts](
 )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
 ) ON [PRIMARY] TEXTIMAGE_ON [PRIMARY]
 GO
-/****** Object:  Table [dbo].[ClientProfiles]    Script Date: 03/07/2022 18:23:03 ******/
+/****** Object:  Table [dbo].[ClientProfiles]    Script Date: 07/07/2022 11:38:39 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -220,7 +94,7 @@ CREATE TABLE [dbo].[ClientProfiles](
 )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
 ) ON [PRIMARY] TEXTIMAGE_ON [PRIMARY]
 GO
-/****** Object:  Table [dbo].[Companies]    Script Date: 03/07/2022 18:23:03 ******/
+/****** Object:  Table [dbo].[Companies]    Script Date: 07/07/2022 11:38:39 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -238,7 +112,7 @@ CREATE TABLE [dbo].[Companies](
 )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
 ) ON [PRIMARY] TEXTIMAGE_ON [PRIMARY]
 GO
-/****** Object:  Table [dbo].[Courses]    Script Date: 03/07/2022 18:23:03 ******/
+/****** Object:  Table [dbo].[Courses]    Script Date: 07/07/2022 11:38:39 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -255,7 +129,7 @@ CREATE TABLE [dbo].[Courses](
 )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
 ) ON [PRIMARY] TEXTIMAGE_ON [PRIMARY]
 GO
-/****** Object:  Table [dbo].[FundiProfileAndReviewRatings]    Script Date: 03/07/2022 18:23:03 ******/
+/****** Object:  Table [dbo].[FundiProfileAndReviewRatings]    Script Date: 07/07/2022 11:38:39 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -275,7 +149,7 @@ CREATE TABLE [dbo].[FundiProfileAndReviewRatings](
 )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
 ) ON [PRIMARY] TEXTIMAGE_ON [PRIMARY]
 GO
-/****** Object:  Table [dbo].[FundiProfileCertifications]    Script Date: 03/07/2022 18:23:03 ******/
+/****** Object:  Table [dbo].[FundiProfileCertifications]    Script Date: 07/07/2022 11:38:39 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -292,7 +166,7 @@ CREATE TABLE [dbo].[FundiProfileCertifications](
 )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
 ) ON [PRIMARY]
 GO
-/****** Object:  Table [dbo].[FundiProfileCourses]    Script Date: 03/07/2022 18:23:03 ******/
+/****** Object:  Table [dbo].[FundiProfileCourses]    Script Date: 07/07/2022 11:38:39 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -309,7 +183,7 @@ CREATE TABLE [dbo].[FundiProfileCourses](
 )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
 ) ON [PRIMARY]
 GO
-/****** Object:  Table [dbo].[FundiProfiles]    Script Date: 03/07/2022 18:23:03 ******/
+/****** Object:  Table [dbo].[FundiProfiles]    Script Date: 07/07/2022 11:38:39 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -331,7 +205,7 @@ CREATE TABLE [dbo].[FundiProfiles](
 )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
 ) ON [PRIMARY] TEXTIMAGE_ON [PRIMARY]
 GO
-/****** Object:  Table [dbo].[FundiWorkCategories]    Script Date: 03/07/2022 18:23:03 ******/
+/****** Object:  Table [dbo].[FundiWorkCategories]    Script Date: 07/07/2022 11:38:39 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -348,7 +222,7 @@ CREATE TABLE [dbo].[FundiWorkCategories](
 )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
 ) ON [PRIMARY]
 GO
-/****** Object:  Table [dbo].[Invoices]    Script Date: 03/07/2022 18:23:03 ******/
+/****** Object:  Table [dbo].[Invoices]    Script Date: 07/07/2022 11:38:39 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -369,7 +243,7 @@ CREATE TABLE [dbo].[Invoices](
 )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
 ) ON [PRIMARY] TEXTIMAGE_ON [PRIMARY]
 GO
-/****** Object:  Table [dbo].[Items]    Script Date: 03/07/2022 18:23:03 ******/
+/****** Object:  Table [dbo].[Items]    Script Date: 07/07/2022 11:38:39 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -388,7 +262,7 @@ CREATE TABLE [dbo].[Items](
 )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
 ) ON [PRIMARY] TEXTIMAGE_ON [PRIMARY]
 GO
-/****** Object:  Table [dbo].[Jobs]    Script Date: 03/07/2022 18:23:03 ******/
+/****** Object:  Table [dbo].[Jobs]    Script Date: 07/07/2022 11:38:39 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -414,7 +288,7 @@ CREATE TABLE [dbo].[Jobs](
 )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
 ) ON [PRIMARY] TEXTIMAGE_ON [PRIMARY]
 GO
-/****** Object:  Table [dbo].[Locations]    Script Date: 03/07/2022 18:23:03 ******/
+/****** Object:  Table [dbo].[Locations]    Script Date: 07/07/2022 11:38:39 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -426,15 +300,16 @@ CREATE TABLE [dbo].[Locations](
 	[LocationName] [nvarchar](max) NULL,
 	[DateCreated] [datetime2](7) NOT NULL,
 	[DateUpdated] [datetime2](7) NOT NULL,
-	[Latitude] [decimal](18, 2) NOT NULL,
-	[Longitude] [decimal](18, 2) NOT NULL,
+	[Latitude] [real] NULL,
+	[Longitude] [real] NULL,
+	[IsGeocoded] [bit] NOT NULL,
  CONSTRAINT [PK_Locations] PRIMARY KEY CLUSTERED 
 (
 	[LocationId] ASC
 )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
 ) ON [PRIMARY] TEXTIMAGE_ON [PRIMARY]
 GO
-/****** Object:  Table [dbo].[Roles]    Script Date: 03/07/2022 18:23:03 ******/
+/****** Object:  Table [dbo].[Roles]    Script Date: 07/07/2022 11:38:39 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -448,7 +323,7 @@ CREATE TABLE [dbo].[Roles](
 )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
 ) ON [PRIMARY]
 GO
-/****** Object:  Table [dbo].[UserRoles]    Script Date: 03/07/2022 18:23:03 ******/
+/****** Object:  Table [dbo].[UserRoles]    Script Date: 07/07/2022 11:38:39 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -463,7 +338,7 @@ CREATE TABLE [dbo].[UserRoles](
 )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
 ) ON [PRIMARY]
 GO
-/****** Object:  Table [dbo].[Users]    Script Date: 03/07/2022 18:23:03 ******/
+/****** Object:  Table [dbo].[Users]    Script Date: 07/07/2022 11:38:39 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -488,7 +363,7 @@ CREATE TABLE [dbo].[Users](
 )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
 ) ON [PRIMARY] TEXTIMAGE_ON [PRIMARY]
 GO
-/****** Object:  Table [dbo].[WorkCategories]    Script Date: 03/07/2022 18:23:03 ******/
+/****** Object:  Table [dbo].[WorkCategories]    Script Date: 07/07/2022 11:38:39 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -532,6 +407,8 @@ GO
 INSERT [dbo].[__EFMigrationsHistory] ([MigrationId], [ProductVersion]) VALUES (N'20220703124538_JobAssociationsToWorkCatIds', N'3.1.22')
 GO
 INSERT [dbo].[__EFMigrationsHistory] ([MigrationId], [ProductVersion]) VALUES (N'20220703171943_addColJobNameToJob', N'3.1.22')
+GO
+INSERT [dbo].[__EFMigrationsHistory] ([MigrationId], [ProductVersion]) VALUES (N'20220707103553_addLatLongIsGeocodedToLocationTable', N'3.1.22')
 GO
 SET IDENTITY_INSERT [dbo].[Addresses] ON 
 GO
@@ -623,7 +500,7 @@ SET IDENTITY_INSERT [dbo].[FundiWorkCategories] OFF
 GO
 SET IDENTITY_INSERT [dbo].[Locations] ON 
 GO
-INSERT [dbo].[Locations] ([LocationId], [Country], [AddressId], [LocationName], [DateCreated], [DateUpdated], [Latitude], [Longitude]) VALUES (1, NULL, 1, N'MartinLayooInc HQ', CAST(N'2022-01-18T15:18:32.8895635' AS DateTime2), CAST(N'2022-01-18T15:18:32.8896617' AS DateTime2), CAST(0.00 AS Decimal(18, 2)), CAST(0.00 AS Decimal(18, 2)))
+INSERT [dbo].[Locations] ([LocationId], [Country], [AddressId], [LocationName], [DateCreated], [DateUpdated], [Latitude], [Longitude], [IsGeocoded]) VALUES (1, NULL, 1, N'MartinLayooInc HQ', CAST(N'2022-01-18T15:18:32.8895635' AS DateTime2), CAST(N'2022-01-18T15:18:32.8896617' AS DateTime2), 0, 0, 0)
 GO
 SET IDENTITY_INSERT [dbo].[Locations] OFF
 GO
@@ -659,7 +536,7 @@ INSERT [dbo].[Users] ([UserId], [FirstName], [LastName], [Username], [Password],
 GO
 INSERT [dbo].[Users] ([UserId], [FirstName], [LastName], [Username], [Password], [Email], [MobileNumber], [Token], [CompanyId], [CreateTime], [LastLogInTime], [IsActive], [IsLockedOut]) VALUES (N'41151b1a-930d-4c10-1b1a-08d9dac959d5', N'Alison', N'Mbuga', N'alison.mbuga@martinlayooinc.com', N'/qoGLh0s7Ii3+H6ftcrqrA==', N'alison.mbuga@martinlayooinc.com', N'05035835761', N'lNQGWQ/eqt6iWU4iG0A2mgNMt/OKY4HTMQf31+9z0iQSXkpqP8Pj98VLLFJiNAYUpAvFVXQqKGlf+dm7iuYumKw9GxQfdNDBoTFaMrxDDpkrWy+/Yjeh5PWyMmYdZnvKJb1Mwrc+IzCOs82G3+zpk5IPYc+k5wYQd1afeA06EWNMufFwyQCEAL5MdJPWfCVoUDyphBCyHJ+iSA+II2jgICDzU19HiVeql2KEtt4HcxYzoZoAPX/kBqCIr7YtyqgxS9iSVUt49FdD+q4mRvAo8CKWbjXLC6/6CeRbRX1KM0EyNLNK9fzfF5Ypn2aXi9loKS8p87MnQ0ZKjvUa1jYwpNX8odfNU3csOx5eraDRopf7TcxCSiPWe0D0U8klvn/i4qetCZPXg93LzVBkVMAx2fClqdZLEk37xPbN4FgwnBf3ZHHDXeOcnaOXKDUjTjoN+P4fQC9/EuLrhKfIEEguFjRzpKH/dgoK3RslgVHYNypOmblAV2cusN1n0iTe0NYrXO0VsawlWtGtJ5cx4QAWiHxRreR0lTZw2DQGeguaLNE+oolDn597QNxdJZNfxcp2Tz/2K8QpwO4YBKGQAcK33MkAXrHjMEeUljK7+NfNR5Etbzo+KPmZRQpI9K0Crd58Y3+7kqUynAEFTmD6XNaqrcxIA3n5tTtmslW5ZyzQUNF5ZX24jr/M/19c/pVbyBQaAiZ5nbYvgdNZ0lFUKTq2fBE/7aY+WU/avf1eneyAdh+7IBcF/IKongt0PN7PFup09SayRWXVi68ZOM8jCt5oIs5StJZ2h5TxNwjpwOxdC0xa9Uv/2lDhfZx26kP4mXaheqYRCl8X4aQYTmNumyEiJ+wvu6SZC5LWiqUx6zASgHg=', 0, CAST(N'2022-01-18T21:27:37.9896325' AS DateTime2), CAST(N'2022-01-21T19:45:47.8399723' AS DateTime2), 1, 0)
 GO
-INSERT [dbo].[Users] ([UserId], [FirstName], [LastName], [Username], [Password], [Email], [MobileNumber], [Token], [CompanyId], [CreateTime], [LastLogInTime], [IsActive], [IsLockedOut]) VALUES (N'2614b3e3-944e-4015-9aae-08da547eb15a', N'Martel', N'Lindo', N'mart42uk@hotmail.com', N'/qoGLh0s7Ii3+H6ftcrqrA==', N'mart42uk@hotmail.com', N'07809773364', N'lNQGWQ/eqt6iWU4iG0A2mgNMt/OKY4HTMQf31+9z0iQSXkpqP8Pj98VLLFJiNAYUpAvFVXQqKGlf+dm7iuYumKw9GxQfdNDBoTFaMrxDDpl/YSa0kysjVFE6kVPJ3Qd0i+b8f2Hp4aGoUXFcDeJ7h5IPYc+k5wYQd1afeA06EWNMufFwyQCEAL5MdJPWfCVoUDyphBCyHJ+iSA+II2jgICDzU19HiVeql2KEtt4HcxbcnMAPTKrfXKEzwzK1N2snHJnUfTqYlAGHXgUp1uam9oEmcMft+u4/IOBO842aa2Xa5c7c5bYmXILknB3Jvz1dgmRVigRVACe2dd4iV9s1bZRV2bfilLufoVOJyTtRExT+AnhSJ0xaz0FIA0tVyqoPJMbpLHx1lwSUIFj0PvypUSN3BYO6Rlzp0kvK9T9O7jBRMfya/X3lNgV14YEKwrmx+lGlYrSXfYpduCFlP9x1NEq3n0RcRlETkodq3N8eeB3EBOit2xLpHbtuNKz6qYAiNPMjDLoOR1l0rp/hyI0su9ERUibNdn+jCx7FKCvu7lQkV1UTZp/1Vu32xdi1ttRtHJvO3CBnB2NB5ndnc1Qxj9U0q2u9nI35+OEOj7QCUUlJxQ+vjED22jCPQRN/sIj4r+u8rzs9VzU0jMc0iUstwwtwxthvLq0EAG3J/j86zlbIlHeoK76NjAPWI/Yn97ewtrIEbgqRVtQiWGH9Jy71MgI10QZaRsBUz5ihSOnpbkIqp3tUsec0Oaz3y7QFJFqiycj1dildWS9XIEYUa28Kv9WfPjckudygX3/5g0hQz0vMNLmYTrfOisCDjO4+D3c9xGj96B6CAjaUvPyEVUHj+1VO9AOOQRoOXpr/b/loUdU=', 0, CAST(N'2022-06-22T19:40:34.4294697' AS DateTime2), CAST(N'2022-07-03T14:14:04.7133858' AS DateTime2), 1, 0)
+INSERT [dbo].[Users] ([UserId], [FirstName], [LastName], [Username], [Password], [Email], [MobileNumber], [Token], [CompanyId], [CreateTime], [LastLogInTime], [IsActive], [IsLockedOut]) VALUES (N'2614b3e3-944e-4015-9aae-08da547eb15a', N'Martel', N'Lindo', N'mart42uk@hotmail.com', N'/qoGLh0s7Ii3+H6ftcrqrA==', N'mart42uk@hotmail.com', N'07809773364', N'lNQGWQ/eqt6iWU4iG0A2mgNMt/OKY4HTMQf31+9z0iQSXkpqP8Pj98VLLFJiNAYUpAvFVXQqKGlf+dm7iuYumKw9GxQfdNDBoTFaMrxDDpmprnIhJ95Ip8KIJ+KAyF3+NMWstTKVj2vBhxl4hYZ3Q5IPYc+k5wYQd1afeA06EWNMufFwyQCEAL5MdJPWfCVoUDyphBCyHJ+iSA+II2jgICDzU19HiVeql2KEtt4HcxbcnMAPTKrfXKEzwzK1N2snHJnUfTqYlAGHXgUp1uam9oEmcMft+u4/IOBO842aa2Xa5c7c5bYmXILknB3Jvz1dgmRVigRVACe2dd4iV9s1bZRV2bfilLufoVOJyTtRExT+AnhSJ0xaz0FIA0tVyqoPJMbpLHx1lwSUIFj0PvypUSN3BYO6Rlzp0kvK9T9O7jBRMfya/X3lNgV14YEKwrmx+lGlYrSXfYpduCFlP9x1NEq3n0RcRlETkodq3N8eeB3EBOit2xLpHbtuNKz6qYAiNPMjDLoOR1l0rp/hyI0su9ERUibNdn+jCx7FKCvu7lQkV1UTZp/1Vu32xdi1ttRtHJvO3CBnB2NB5ndnc1Qxj9U0q2u9nI35+OEOj7QCUUlJxQ+vjED22jCPQRN/sIj4r+u8rzs9VzU0jMc0iUstwwtwxthvLq0EAG3J/j86zlbIlHeoK76NjAPWI/Yn97ewtrIEbgqRVtQiWGH9Jy71MgI10QZaRsBUz5ihSOnpbkIqp3tUsec0Oaz3y7QFJFqiycj1dildWS9XIEYUa28Kv9WfPjckudygX3/5g0hQz0vMNLmYTrfOisCDjO4+D3c9xGj96B6CAjaUvPyEVUHj+1VO9AOOQRoOXpr/b/loUdU=', 0, CAST(N'2022-06-22T19:40:34.4294697' AS DateTime2), CAST(N'2022-07-05T13:20:27.4494138' AS DateTime2), 1, 0)
 GO
 SET IDENTITY_INSERT [dbo].[WorkCategories] ON 
 GO
@@ -675,7 +552,7 @@ INSERT [dbo].[WorkCategories] ([WorkCategoryId], [WorkCategoryType], [WorkCatego
 GO
 SET IDENTITY_INSERT [dbo].[WorkCategories] OFF
 GO
-/****** Object:  Index [AK_UserRoles_UserId_RoleId]    Script Date: 03/07/2022 18:23:03 ******/
+/****** Object:  Index [AK_UserRoles_UserId_RoleId]    Script Date: 07/07/2022 11:38:40 ******/
 ALTER TABLE [dbo].[UserRoles] ADD  CONSTRAINT [AK_UserRoles_UserId_RoleId] UNIQUE NONCLUSTERED 
 (
 	[UserId] ASC,
@@ -684,7 +561,7 @@ ALTER TABLE [dbo].[UserRoles] ADD  CONSTRAINT [AK_UserRoles_UserId_RoleId] UNIQU
 GO
 SET ANSI_PADDING ON
 GO
-/****** Object:  Index [AK_Users_Username]    Script Date: 03/07/2022 18:23:03 ******/
+/****** Object:  Index [AK_Users_Username]    Script Date: 07/07/2022 11:38:40 ******/
 ALTER TABLE [dbo].[Users] ADD  CONSTRAINT [AK_Users_Username] UNIQUE NONCLUSTERED 
 (
 	[Username] ASC
@@ -698,9 +575,7 @@ ALTER TABLE [dbo].[FundiProfiles] ADD  DEFAULT ((0)) FOR [AddressId]
 GO
 ALTER TABLE [dbo].[Jobs] ADD  DEFAULT (CONVERT([bit],(0))) FOR [HasBeenAssignedFundi]
 GO
-ALTER TABLE [dbo].[Locations] ADD  DEFAULT ((0.0)) FOR [Latitude]
-GO
-ALTER TABLE [dbo].[Locations] ADD  DEFAULT ((0.0)) FOR [Longitude]
+ALTER TABLE [dbo].[Locations] ADD  DEFAULT (CONVERT([bit],(0))) FOR [IsGeocoded]
 GO
 ALTER TABLE [dbo].[ClientFundiContracts]  WITH CHECK ADD  CONSTRAINT [FK_ClientFundiContracts_Users_ClientUserId] FOREIGN KEY([ClientUserId])
 REFERENCES [dbo].[Users] ([UserId])
