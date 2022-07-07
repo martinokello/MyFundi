@@ -14,8 +14,8 @@ export class AppInterceptor implements HttpInterceptor {
     //You can mutate your request here
     return next
       .handle(req.clone({
-        withCredentials: true,
-        setHeaders: { 'authToken': localStorage.getItem('authToken') != null ? localStorage.getItem('authToken') : "" }
+        withCredentials: false,
+        setHeaders: { 'authToken': localStorage.getItem('authToken') != null && !(req.url.indexOf('https://maps.googleapis.com') > -1)? localStorage.getItem('authToken'):""  }
       })).do((event: any) => {
         if (event instanceof HttpResponse) {
           //you can transform your response here

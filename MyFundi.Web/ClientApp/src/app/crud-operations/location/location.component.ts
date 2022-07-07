@@ -4,50 +4,33 @@ import * as $ from 'jquery';
 import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/operator/map';
 import { Router } from '@angular/router';
+import { AddressLocationGeoCodeService } from '../../../services/AddressLocationGeoCodeService';
 
 @Component({
-    selector: 'location',
-    templateUrl: './location.component.html',
-    styleUrls: ['./location.component.css'],
-    providers: [MyFundiService]
+  selector: 'location',
+  templateUrl: './location.component.html',
+  styleUrls: ['./location.component.css'],
+  providers: [MyFundiService]
 })
 @Injectable()
 export class LocationComponent implements OnInit, AfterContentInit {
-  private myFundiService: MyFundiService ;
-  public constructor(myFundiService: MyFundiService , private router: Router) {
-    this.myFundiService = myFundiService;
-    }
-    public location: ILocation | any;
+
+  public constructor(private myFundiService: MyFundiService, private router: Router, private geoCoder: AddressLocationGeoCodeService) {
+
+  }
+  public location: ILocation | any;
 
   public addLocation(): void {
-    this.location.address = null;
-      let actualResult: Observable<any> = this.myFundiService.PostOrCreateLocation(this.location);
-      actualResult.map((p: any) => {
-        alert('Location Added: ' + p.result); if (p.result) {
-          this.router.navigateByUrl('success');
-        }
-        else {
-          this.router.navigateByUrl('failure');
-        }
-        }).subscribe();
-        $('form#locationView').css('display', 'block').slideDown();
-    }
-    public updateLocation() {
-      let actualResult: Observable<any> = this.myFundiService.UpdateLocation(this.location);
-      actualResult.map((p: any) => {
-        alert('Location Updated: ' + p.result); if (p.result) {
-          this.router.navigateByUrl('success');
-        }
-        else {
-          this.router.navigateByUrl('failure');
-        }
-        }).subscribe();
-        $('form#locationView').css('display', 'block').slideDown();
+    this.checkLocationGeoCodedAndUpdate("create");
   }
+  public updateLocation() {
+    this.checkLocationGeoCodedAndUpdate("update");
+  }
+
   public selectLocation(): void {
     let actualResult: Observable<any> = this.myFundiService.GetLocationById(this.location.locationId);
     actualResult.map((p: any) => {
-      this.location = p; 
+      this.location = p;
     }).subscribe();
     $('form#locationView').css('display', 'block').slideDown();
   }
@@ -63,9 +46,9 @@ export class LocationComponent implements OnInit, AfterContentInit {
     }).subscribe();
     $('form#locationView').css('display', 'block').slideDown();
   }
-    public ngOnInit(): void {
-        this.location = {}
-        this.location.address = {};
+  public ngOnInit(): void {
+    this.location = {}
+    this.location.address = {};
   }
   ngAfterContentInit(): void {
     const addsObs: Observable<IAddress[]> = this.myFundiService.GetAllAddresses();
@@ -99,5 +82,20 @@ export class LocationComponent implements OnInit, AfterContentInit {
         document.querySelector('select#locationId').append(optionElem);
       });
     }).subscribe();
+  }
+
+  checkLocationGeoCodedAndUpdate(operation: string) {
+
+    if (!this.location.isGeocoded) {
+      let addObs: Observable<IAddress> = this.myFundiService.GetAddressById(this.location.addressId);
+      addObs.map((add: IAddress) => {
+        this.geoCoder.location = this.location;
+        this.geoCoder.geocodeAddress(add, operation);
+
+      }).subscribe();
+    }
+    else {
+      this.geoCoder.setCreateUpdateLocation(operation,this.location);
+    }
   }
 }

@@ -42,6 +42,9 @@ namespace MyFundi.Services.RepositoryServices.Concretes
                 locations.AddressId = toUpdate.AddressId;
                 locations.Country = toUpdate.Country;
                 locations.DateUpdated = DateTime.Now;
+                locations.Latitude = toUpdate.Latitude;
+                locations.Longitude = toUpdate.Longitude;
+                locations.LocationName = toUpdate.LocationName;
                 locations.IsGeocoded = toUpdate.IsGeocoded;
                 return true;
             }

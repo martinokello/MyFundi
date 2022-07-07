@@ -24,56 +24,24 @@ export class AddLocationComponent implements OnInit {
 
   public addLocation(): void {
     this.checkLocationGeoCodedAndUpdate("create");
-
-    $('div#locationView').css('display', 'block').slideDown();
   }
   public updateLocation() {
     this.checkLocationGeoCodedAndUpdate("update");
-    $('div#locationView').css('display', 'block').slideDown();
   }
+
   checkLocationGeoCodedAndUpdate(operation: string) {
 
-      if (!this.location.isGeocoded) {
-        let addObs: Observable<IAddress> = this.myFundiService.GetAddressById(this.location.addressId);
-        addObs.map((add: IAddress) => {
-          this.geoCoder.geocodeAddress(add);
-          while (this.geoCoder.tOut != null) {
-            //if(this,geoCoder.tOut == null) then geocoding is over
-            continue;
-          }
-          if (this.geoCoder.location != null) {
+    if (!this.location.isGeocoded) {
+      let addObs: Observable<IAddress> = this.myFundiService.GetAddressById(this.location.addressId);
+      addObs.map((add: IAddress) => {
+        this.geoCoder.geocodeAddress(add, operation);
 
-            this.location.isGeocoded = true;
-            this.location.latitude = this.geoCoder.location.latitude;
-            this.location.longitude = this.geoCoder.location.longitude;
-
-            this.setCreateUpdateLocation(operation);
-          }
-          else {
-            alert("Failed to Geocode location! Please, check location Address is correct.");
-          }
-
-        }).subscribe();
-      }
-      else {
-        this.setCreateUpdateLocation(operation);
-      }
-    }
-  setCreateUpdateLocation(operation: string) {
-
-    if (operation.toLowerCase() === "create") {
-      let actualResult: Observable<any> = this.myFundiService.PostOrCreateLocation(this.location);
-      actualResult.map((p: any) => {
-        alert('Location Added: ' + p.result);
       }).subscribe();
     }
-    else if(operation.toLowerCase() === "update"){
-      let actualResult: Observable<any> = this.myFundiService.UpdateLocation(this.location);
-      actualResult.map((p: any) => {
-        alert('Location Updated: ' + p.result);
-      }).subscribe();
+    else {
+      this.geoCoder.setCreateUpdateLocation(operation, this.location);
     }
-   }
+  }
 
   public ngOnInit(): void {
     this.location = {}

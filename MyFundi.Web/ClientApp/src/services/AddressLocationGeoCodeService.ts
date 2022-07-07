@@ -4,8 +4,9 @@ import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs/Observable';
 import { Binary } from '@angular/compiler';
 import { APP_BASE_HREF } from '@angular/common';
-import { IAddress, ILocation } from './myFundiService';
-import * as google from '../assets/google/googleMaps.js';
+import { IAddress, ILocation, MyFundiService } from './myFundiService';
+//import * as google from '../assets/google/googleMaps.js';
+import * as $ from 'jquery';
 declare const google: any;
 
 @Injectable()
@@ -15,16 +16,17 @@ export class AddressLocationGeoCodeService {
   geocoder: any;
   poly: any[] = [];
   line: any;
+  address: IAddress;
   location: ILocation;
+  addressString: string;
   successGeocode: boolean = false;
-  tOut: any;
+  operation: string;
+  googleGeocodeBaseUrl: string = "https://maps.googleapis.com/maps/api/geocode/json?key=AIzaSyCNPbLu2PRqU9dWbtw6WE5qijg9o7B3FDQ&address=";
 
-  constructor() {
-
+  constructor(private httpClient: HttpClient, private myFundiService: MyFundiService) {
   }
   ngOnInit() {
 
-    this.initialize();
   }
   // Draw a circle on map around center (radius in miles)
   // Modified by Jeremy Schneider based on https://maps.huge.info/dragcircle2.htm
@@ -54,67 +56,94 @@ export class AddressLocationGeoCodeService {
     map.addOverlay(this.line);
   }
 
-  initialize() {
-    this.geocoder = new google.maps.Geocoder();
+  showAddress(address: IAddress, operation: string) {
+    this.addressString = address.country + "," + address.town + "," + address.addressLine1 + "," + address.addressLine2 + "," + address.postCode;
+    this.address = address;
+    this.operation = operation;
+    this.geocode(this.googleGeocodeBaseUrl + this.addressString);
   }
-  showAddress(address: IAddress) {
+  geocode(requestUrl) {
 
-    let addressString: string = address.country + "," + address.town + "," + address.addressLine1 + "," + address.addressLine2 + "," + address.postCode;
+    let actualAdLocService = this;
 
-    this.geocoder.geocode({ 'address': addressString }, function (results, status) {
-      if (status != google.maps.GeocoderStatus.OK) {
-        alert(address + " not found");
-        this.location = null;
-        this.successGeocode = false;
-      }
-      else {
-        var myOptions = {
-          zoom: 15,
-          center: results[0].geometry.location,
-          mapTypeControl: true,
-          mapTypeControlOptions: { style: google.maps.MapTypeControlStyle.DROPDOWN_MENU },
-          navigationControl: true,
-          mapTypeId: google.maps.MapTypeId.ROADMAP
-        };
+    $.ajax({
+      url: requestUrl,
+      method: "GET",
+      crossDomain: true,
+      success: function (data) {
 
-        this.map = new google.maps.Map(document.getElementById("map"), myOptions);
+        if (data.status != "OK") {
 
-        this.map.setCenter(results[0].geometry.location);
-
-        var infowindow = new google.maps.InfoWindow(
-          {
-            content: '<b>' + address + '</b>',
-            size: new google.maps.Size(150, 50)
-          });
-        //var address = "London, St. Johns Terrace W10 4RB";
-        var marker = new google.maps.Marker({
-          position: results[0].geometry.location,
-          map: this.map,
-          title: address
-        });
-        //drawCircle(map, results[0].geometry.location, 2.5, 40);
-
-        google.maps.event.addListener(marker, 'click', function () {
-          infowindow.open(this.map, marker);
-        });
-
-        this.location = {
-          locationId: 0,
-          locationName: addressString,
-          latitude: results[0].geometry.location.lat,
-          longitude: results[0].geometry.location.long,
-          country: address.country,
-          addressId: address.addressId,
-          address: address
+          alert("Failed to Geocode location! Please, check location Address is correct.");
         }
-        this.successGeocode = true;
-      }
+        else {
+          let results: any[] = data.results;
 
-      clearInterval(this.tOut);
-      this.tOut = null;
+          var myOptions = {
+            zoom: 15,
+            center: results[0].geometry.location,
+            mapTypeControl: true,
+            mapTypeControlOptions: { style: google.maps.MapTypeControlStyle.DROPDOWN_MENU },
+            navigationControl: true,
+            mapTypeId: google.maps.MapTypeId.ROADMAP
+          };
+
+          let actMap = new google.maps.Map(document.getElementById("locmap"), myOptions);
+
+          var infowindow = new google.maps.InfoWindow(
+            {
+              content: '<b>' + results[0].formatted_address + '</b>',
+              size: new google.maps.Size(150, 50)
+            });
+          //var address = "London, St. Johns Terrace W10 4RB";
+          var marker = new google.maps.Marker({
+            position: results[0].geometry.location,
+            map: actMap,
+            title: results[0].formatted_address
+          });
+          //drawCircle(map, results[0].geometry.location, 2.5, 40);
+
+          google.maps.event.addListener(marker, 'click', function () {
+            infowindow.open(actMap, marker);
+          });
+
+          let curLoc: ILocation = {
+            locationId: actualAdLocService.location.locationId,
+            locationName: results[0].formatted_address,
+            latitude: parseFloat(results[0].geometry.location.lat),
+            longitude: parseFloat(results[0].geometry.location.lng),
+            country: actualAdLocService.location.country,
+            addressId: actualAdLocService.address.addressId,
+            address: null,
+            isGeocoded: true
+          }
+          actualAdLocService.setCreateUpdateLocation(actualAdLocService.operation, curLoc);
+        }
+      }
     });
   }
-  geocodeAddress(address: IAddress) {
-    this.tOut = setInterval(this.showAddress, 5000, address);
+
+  setCreateUpdateLocation(operation: string, loc: ILocation) {
+
+    if (operation.toLowerCase() === "create") {
+      let actualResult: Observable<any> = this.myFundiService.PostOrCreateLocation(loc);
+      actualResult.map((p: any) => {
+        alert('Location Added: ' + p.result);
+        this.successGeocode = true;
+        document.getElementById('locmap').scrollIntoView({ behavior: "smooth", block: "end", inline: "nearest" });
+      }).subscribe();
+    }
+    else if (operation.toLowerCase() === "update") {
+      let actualResult: Observable<any> = this.myFundiService.UpdateLocation(loc);
+      actualResult.map((p: any) => {
+        alert('Location Updated: ' + p.result);
+        this.successGeocode = true;
+        document.getElementById('locmap').scrollIntoView({ behavior: "smooth", block: "end", inline: "nearest" });
+      }).subscribe();
+    }
+  }
+
+  geocodeAddress(address: IAddress, operation: string) {
+    this.showAddress(address, operation);
   }
 }
