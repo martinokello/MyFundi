@@ -242,7 +242,7 @@ namespace MyFundi.ServiceEndPoint.GeneralSevices
         public async Task<bool> CreateLocation(Location locationDefault)
         {
             var res = false;
-            var location = _myFundiUnitOfWork._locationRepository.GetAll()?.FirstOrDefault(q => q.LocationName.ToLower() == locationDefault.LocationName.ToLower());
+            var location = _myFundiUnitOfWork._locationRepository.GetAll()?.FirstOrDefault(q => q.LocationName == locationDefault.LocationName);
             if (location == null)
             {
                 res = _myFundiUnitOfWork._locationRepository.Insert(locationDefault);

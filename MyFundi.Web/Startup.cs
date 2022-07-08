@@ -98,7 +98,7 @@ namespace MyFundi.Web
                 }
                 var defaultAddress = new Address { AddressLine1 = "MartinLayooInc Software Ltd.", AddressLine2 = "Unit 3, 2 St. Johns Terrace", Country = "United Kingdom", PostCode = "W10", PhoneNumber = "07809773365", Town = "London", DateCreated = DateTime.Now, DateUpdated = DateTime.Now };
                 await serviceEndPoint.CreateAddress(defaultAddress);
-                var locationDefault = new Location { LocationName = "MartinLayooInc HQ", AddressId = defaultAddress.AddressId, DateCreated = DateTime.Now, DateUpdated = DateTime.Now };
+                var locationDefault = new Location { LocationName = "3, 2 St John's Terrace, London W10 4SB, UK", AddressId = defaultAddress.AddressId, DateCreated = DateTime.Now, DateUpdated = DateTime.Now , IsGeocoded=false, Latitude=null, Longitude =null, Country="UK"};
                 await serviceEndPoint.CreateLocation(locationDefault);
                 var companyDefault = new Company { CompanyName = "MartinLayooInc Software", CompanyPhoneNUmber = "07809773365", DateCreated = DateTime.Now, DateUpdated = DateTime.Now, LocationId = locationDefault.LocationId };
                 await serviceEndPoint.CreateCompany(companyDefault);
