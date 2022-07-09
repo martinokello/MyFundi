@@ -176,6 +176,18 @@ Replace("[[TransactionCommoditesList]]", userInvoice.InvoiceName + ", Net Price:
             Bitmap qrCodeImage = qrCode.GetGraphic(20);
             return File(BitmapToBytes(qrCodeImage), "image/png");
         }
+        [HttpGet]
+        [AuthorizeIdentity]
+        public async Task<IActionResult> GetAllJobs()
+        {
+            var results = _mapper.Map<JobViewModel[]>(this._unitOfWork._jobRepository.GetAll().ToArray());
+
+            if (results.Any()) {  
+                return await Task.FromResult(Ok(results));
+            }
+            return await Task.FromResult(NotFound(new JobViewModel[] { }));
+        }
+
         private Byte[] BitmapToBytes(Bitmap img)
         {
             using (MemoryStream stream = new MemoryStream())

@@ -12,6 +12,7 @@ declare var jQuery: any;
 export class ClientProfileComponent implements OnInit {
   userDetails: any;
   userRoles: string[];
+  locationId: number;
   clientProfileId: number;
   numberOfDaysToComplete: number;
   profileImage: File;
@@ -122,6 +123,31 @@ export class ClientProfileComponent implements OnInit {
       this.fundiProfile = {};
       this.fundiProfile.fundiProfileId = 0;
     }).subscribe();
+
+    let locatObs: Observable<ILocation[]> = this.myFundiService.GetAllLocations();
+    locatObs.map((loc: ILocation[]) => {
+      let locations = loc;
+
+      let addSelect = document.querySelector('select#locationId');
+      let opts = addSelect.querySelector('option');
+      if (opts) {
+        opts.remove();
+      }
+
+      let optionElem: HTMLOptionElement = document.createElement('option');
+      optionElem.selected = true;
+      optionElem.value = (0).toString();
+      optionElem.text = "Select Location";
+      document.querySelector('select#locationId').append(optionElem);
+
+
+      locations.forEach((comCat: ILocation, index: number, cmdCats) => {
+        let optionElem: HTMLOptionElement = document.createElement('option');
+        optionElem.value = comCat.locationId.toString();
+        optionElem.text = comCat.locationName;
+        document.querySelector('select#locationId').append(optionElem);
+      });
+    }).subscribe();
   }
   constructor(private myFundiService: MyFundiService, private router: Router, private httpClient: HttpClient) {
     this.userDetails = {};
@@ -199,7 +225,7 @@ export class ClientProfileComponent implements OnInit {
       clientUserId: this.profile.userId,
       hasCompleted: false,
       hasBeenAssignedFundi: false,
-      locationId: this.location.locationId,
+      locationId: parseInt(document.querySelector('select#locationId').nodeValue),
       numberOfDaysToComplete: this.numberOfDaysToComplete,
       clientFundiContractId: 0,
       assignedFundiUserId: null,//this.fundiProfile.user.userId,

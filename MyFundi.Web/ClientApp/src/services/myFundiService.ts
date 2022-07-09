@@ -43,8 +43,10 @@ export class MyFundiService {
   public createOrUpdateFundiJobUrl: string = this.baseServerUrl + "/ClientProfile/CreateOrUpdateFundiJob";
   
   public postAllFundiRatingsAndReviewsByCategoriesUrl: string = this.baseServerUrl + "/FundiProfile/PostAllFundiRatingsAndReviewsByCategories";
-  public updateFundiProfileUrl: string = this.baseServerUrl + "/FundiProfile/UpdateFundiProfile";
+  public updateFundiProfileUrl: string = this.baseServerUrl + "/FundiProfile/UpdateFundiProfile"; 
   public getFundiProfileUrl: string = this.baseServerUrl + "/FundiProfile/GetFundiProfile"; 
+  public getFundiProfileByProfileIdUrl: string = this.baseServerUrl + "/FundiProfile/GetFundiProfileByProfileId";
+  public getFundiLocationByFundiProfileIddUrl: string = this.baseServerUrl + "/FundiProfile/GetFundiLocationByFundiProfileId";
   public getAllFundiProfilesUrl: string = this.baseServerUrl + "/FundiProfile/GetAllFundiProfiles";
   public getFundiUserByProfileIdUrl: string = this.baseServerUrl + "/FundiProfile/GetFundiUserByProfileId";
   public getAllFundiCoursesUrl: string = this.baseServerUrl + "/FundiProfile/GetAllFundiCourses";
@@ -66,11 +68,13 @@ export class MyFundiService {
 
   public getClientProfileUrl: string = this.baseServerUrl + "/ClientProfile/GetClientProfile";
   public postOrCreateCompanyUrl: string = this.baseServerUrl + "/Company/PostOrCreateCompany";
-  public updateCompanyUrl: string = this.baseServerUrl + "/Company/UpdateCompany";
+  public updateCompanyUrl: string = this.baseServerUrl + "/Company/UpdateCompany"; 
   public getAllCompaniesUrl: string = this.baseServerUrl + "/Company/GetAllCompanies";
   public getCompanyByIdUrl: string = this.baseServerUrl + "/Company/GetCompanyById";
-  public deleteCompanyUrl: string = this.baseServerUrl + "/Company/DeleteCompany"
+  public deleteCompanyUrl: string = this.baseServerUrl + "/Company/DeleteCompany";
 
+
+  public getAllJobsUrl: string = this.baseServerUrl + "/Home/GetAllJobs";
 
   public postOrCreateCertificationUrl: string = this.baseServerUrl + "/Administration/PostOrCreateCertification";
   public updateCertificationUrl: string = this.baseServerUrl + "/Administration/UpdateCertification";
@@ -196,7 +200,39 @@ export class MyFundiService {
       return clientProfile;
     });
   } 
+  
+  public GetFundiLocationByFundiProfileId(profileId: number): Observable<any> {
 
+    const headers = new HttpHeaders({ 'content-type': 'application/json' });
+    let requestUrl = this.getFundiLocationByFundiProfileIddUrl + "/" + profileId;
+    let requestOptions: any = {
+      url: requestUrl,
+      method: 'GET',
+      headers: headers,
+      responseType: 'application/json'
+    };
+
+    return this.httpClient.get(requestOptions.url, requestOptions.headers).map((res: any) => {
+      let fundiProfile: IProfile = res;
+      return fundiProfile;
+    });
+  }
+  public GetFundiProfileByProfileId(profileId: string): Observable<any> {
+
+    const headers = new HttpHeaders({ 'content-type': 'application/json' });
+    let requestUrl = this.getFundiProfileByProfileIdUrl + "/" + profileId;
+    let requestOptions: any = {
+      url: requestUrl,
+      method: 'GET',
+      headers: headers,
+      responseType: 'application/json'
+    };
+
+    return this.httpClient.get(requestOptions.url, requestOptions.headers).map((res: any) => {
+      let fundiProfile: IProfile = res;
+      return fundiProfile;
+    });
+  }
   public GetFundiProfile(username:string): Observable<any> {
 
     const headers = new HttpHeaders({ 'content-type': 'application/json' });
@@ -728,7 +764,7 @@ export class MyFundiService {
   GetFundiRatingsAndReviews(categories: string[]): Observable<any> {
     const headers = new HttpHeaders({ 'content-type': 'application/json' });
 
-    let body: string = JSON.stringify({ categories: categories });
+    let body: string = JSON.stringify({ categories: categories});
 
     let requestUrl = this.postAllFundiRatingsAndReviewsByCategoriesUrl;
     let requestOptions: any = {
@@ -823,6 +859,24 @@ export class MyFundiService {
       return res;
     });
   }
+
+  GetAllJobs(): Observable<IJob[]> {
+
+    const headers = new HttpHeaders({ 'content-type': 'application/json' });
+    let requestUrl = this.getAllJobsUrl;
+    let requestOptions: any = {
+      url: requestUrl,
+      method: 'GET',
+      headers: headers,
+      responseType: 'application/json'
+    };
+
+    return this.httpClient.get(requestOptions.url, requestOptions.headers).map((res: any) => {
+      return res;
+    });
+  }
+
+
   public GetAllCompanies(): Observable<ICompany[]> {
     const headers = new HttpHeaders({ 'content-type': 'application/json' });
     let requestUrl = this.getAllCompaniesUrl;
@@ -1260,6 +1314,10 @@ export interface IProfile {
   user: IUserDetail;
 }
 
+export interface ICoordinate {
+  latitude: number;
+  longitude: number;
+}
 export interface IClientProfile {
   clientProfileId: number;
   userId: string;
@@ -1300,6 +1358,7 @@ export interface ICourse {
 export interface IJob {
   jobId: number;
   jobDescription: string;
+  jobName: string;
   clientProfileId: number;
   clientProfile: IClientProfile;
   clientUserId: number;

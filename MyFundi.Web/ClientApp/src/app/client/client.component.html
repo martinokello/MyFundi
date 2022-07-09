@@ -35,13 +35,20 @@
       <div class="row" style="margin: 2px 0px !important;">
         <div class="col-lg-12" style="margin: 2px 0px !important;">
           <h5>Create Job</h5>
-          <input type="number" name="jobId" [(ngModel)]="jobId" placeholder="JobId" readonly/>
+          <input type="number" name="jobId" [(ngModel)]="jobId" placeholder="JobId" readonly />
+        </div>
+      </div>
+
+      <div class="row" style="margin: 2px 0px !important;">
+        <div class="col-lg-12" style="margin: 2px 0px !important;">
+          <h5>Job Name</h5>
+          <input type="text" id="jobName" [(ngModel)]="jobName" placeholder="Job Name" /><br />
         </div>
       </div>
       <div class="row" style="margin: 2px 0px !important;">
         <div class="col-lg-12" style="margin: 2px 0px !important;">
-          <h5>Job Name</h5>
-          <input type="text" id="jobName" [(ngModel)]="jobName" placeholder="Job Name"/><br />
+          <h5>Job Location</h5>
+          <select id="locationId" name="locationId" [(ngModel)]="locationId"></select>
         </div>
       </div>
       <div class="row" style="margin: 2px 0px !important;">

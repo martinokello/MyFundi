@@ -1,6 +1,6 @@
 import { Component, OnInit, Inject, AfterContentInit } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { IProfile, ICertification, ICourse, IWorkCategory, IFundiRating, ILocation, IUserDetail, MyFundiService, IFundiRatingDictionary } from '../../services/myFundiService';
+import { IProfile, ICertification, ICourse, IWorkCategory, IFundiRating, ILocation, IUserDetail, MyFundiService, IFundiRatingDictionary, IJob, ICoordinate } from '../../services/myFundiService';
 import { Observable } from 'rxjs';
 //import * as $ from 'jquery';
 import { Router } from '@angular/router';
@@ -16,6 +16,9 @@ export class ClientFundiSearchComponent implements OnInit, AfterViewChecked {
   userDetails: any;
   userRoles: string[];
   profile: IProfile;
+  jobId: number;
+  jobLocationCoordinate: ICoordinate;
+  jobs: IJob[];
   location: ILocation;
   fundiRatings: IFundiRating[];
   workCategories: IWorkCategory[];
@@ -27,6 +30,7 @@ export class ClientFundiSearchComponent implements OnInit, AfterViewChecked {
   currentRating: number;
   fundiWorkCategories: string[];
   fundiSkills: string[];
+  fundiListSatisfyingJobRadiusDictionary: any;
 
   decoderUrl(url: string): string {
     return decodeURIComponent(url);
@@ -82,9 +86,37 @@ export class ClientFundiSearchComponent implements OnInit, AfterViewChecked {
       });
     }).subscribe();
 
-    /*  let downloadLink: HTMLAnchorElement = document.querySelector('a#downloadCV');
-      downloadLink.setAttribute('ng-reflect-router-link', '/manage-profile');
-      downloadLink.setAttribute('href',`/FundiProfile/GetFundiCV?username=${this.userDetails.username}`);*/
+
+    let locatObs: Observable<IJob[]> = this.myFundiService.GetAllJobs();
+
+    locatObs.map((jobs: IJob[]) => {
+
+      let addSelect = document.querySelector('select#jobId');
+      let opts = addSelect.querySelector('option');
+      if (opts) {
+        opts.remove();
+      }
+
+
+      let optionElem: HTMLOptionElement = document.createElement('option');
+      optionElem.selected = true;
+      optionElem.value = (0).toString();
+      optionElem.text = "Select Job";
+      document.querySelector('select#jobId').append(optionElem);
+
+      if (jobs && jobs.length > 0) {
+        let allJobs: IJob[] = jobs;
+        this.jobs = allJobs;
+
+        allJobs.forEach((comCat: IJob, index: number, cmdCats) => {
+          let optionElem: HTMLOptionElement = document.createElement('option');
+          optionElem.value = comCat.jobId.toString();
+          optionElem.text = comCat.jobName;
+          document.querySelector('select#jobId').append(optionElem);
+        });
+      }
+
+    }).subscribe();
   }
   constructor(private myFundiService: MyFundiService, private router: Router) {
     this.userDetails = {};
@@ -104,29 +136,69 @@ export class ClientFundiSearchComponent implements OnInit, AfterViewChecked {
   }
 
   searchFundiByCategories($event) {
-    let currentThis = this;
+    this.fundiListSatisfyingJobRadiusDictionary = {};
+    this.fundiProfileRatingDictionary = {};
     let divFundiCategories: HTMLElement = document.querySelector('form#fundiSearchForm div#fundiCategories');
     let chosenCategories: string[] = [];
 
-    let checkedboxes = jQuery('form#fundiSearchForm div#fundiCategories').find('input[type="checkbox"]:checked');
-    for (let n = 0; n < checkedboxes.length; n++) {
-      chosenCategories.push(checkedboxes[n].name);
-    }
-    let fundiRatingsObs: Observable<any> = this.myFundiService.GetFundiRatingsAndReviews(chosenCategories);
+    if (this.jobs && this.jobs.length > 0) {
+      var jobId = parseInt(document.querySelector('select#jobId').nodeValue);
+      let selectedJob: IJob = null;
 
-    fundiRatingsObs.map((q: any) => {
-      this.fundiProfileRatingDictionary = q;
-      this.profileIdKeys = Object.keys(this.fundiProfileRatingDictionary);
+      selectedJob = this.jobs.find((j: IJob) => {
+        return j.jobId === jobId;
+      });
+      this.jobLocationCoordinate = {
+        latitude: selectedJob.location.latitude,
+        longitude: selectedJob.location.longitude
+      };
 
-      if (this.profileIdKeys && this.profileIdKeys.length > 0) {
-          for (var n = 0; n < this.profileIdKeys.length; n++)
-            this.getFundiWorkCategoriesByProfileId(parseInt(this.profileIdKeys[n]));
+      let checkedboxes = jQuery('form#fundiSearchForm div#fundiCategories').find('input[type="checkbox"]:checked');
+      for (let n = 0; n < checkedboxes.length; n++) {
+        chosenCategories.push(checkedboxes[n].name);
       }
+      let fundiRatingsObs: Observable<any> = this.myFundiService.GetFundiRatingsAndReviews(chosenCategories);
 
-    }).subscribe();
+      fundiRatingsObs.map((q: any) => {
 
-    $event.stopPropagation();
+        this.fundiProfileRatingDictionary = q;
+        this.profileIdKeys = Object.keys(this.fundiProfileRatingDictionary);
+
+        if (this.profileIdKeys && this.profileIdKeys.length > 0) {
+
+          for (var n = 0; n < this.profileIdKeys.length; n++) {
+
+            let currProfileLocObs: Observable<ILocation> = this.myFundiService.GetFundiLocationByFundiProfileId(parseInt(this.profileIdKeys[n]));
+
+            currProfileLocObs.map((q: ILocation) => {
+              let curProfile: ICoordinate = { latitude: q.latitude, longitude: q.longitude };
+
+              if (this.arePointsNear(curProfile, this.jobLocationCoordinate, 5)) {
+
+                let fundiProfileId = parseInt(this.profileIdKeys[n]);
+
+                this.getFundiWorkCategoriesByProfileId(fundiProfileId);
+
+                this.fundiListSatisfyingJobRadiusDictionary.assign(
+                  {
+                    fundiProfileId: this.fundiProfileRatingDictionary[fundiProfileId]
+                  }
+                );
+
+              }
+            });
+          }
+        }
+
+      }).subscribe();
+
+      $event.stopPropagation();
+    }
+    else {
+      alert("There are currently no jobs that match your criteria within 5Km of your chosen location!")
+    }
   }
+
   rateFundi($event) {
 
     let button = $event.target;
@@ -193,5 +265,14 @@ export class ClientFundiSearchComponent implements OnInit, AfterViewChecked {
     }).subscribe();
     $event.preventDefault();
   }
+
+  arePointsNear(checkPoint: ICoordinate, centerPoint: ICoordinate, km: number): boolean {
+    var ky = 40000 / 360;
+    var kx = Math.cos(Math.PI * centerPoint.latitude / 180.0) * ky;
+    var dx = Math.abs(centerPoint.longitude - checkPoint.longitude) * kx;
+    var dy = Math.abs(centerPoint.latitude - checkPoint.latitude) * ky;
+    return Math.sqrt(dx * dx + dy * dy) <= km;
+  }
+
 }
 

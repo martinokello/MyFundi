@@ -79,7 +79,7 @@ namespace MyFundi.Web.Controllers
         {
 
             string contentPath = this.Environment.ContentRootPath;
-            var fundiProfile =_unitOfWork._fundiProfileRepository.GetById(fundiProfileId);
+            var fundiProfile = _unitOfWork._fundiProfileRepository.GetById(fundiProfileId);
             var username = _unitOfWork._userRepository.GetByGuid(fundiProfile.UserId).Username;
 
             string fundiProfileImagePath = contentPath + "\\MyFundiProfile\\ProfileImage_" + username + ".jpg";
@@ -112,7 +112,7 @@ namespace MyFundi.Web.Controllers
 
             string contentPath = this.Environment.ContentRootPath + "\\MyFundiProfile\\";
             var userId = _unitOfWork._fundiProfileRepository.GetById(fundiProfileId).UserId;
-            string fundiCVImagePath = contentPath + "ProfileCV_" +_unitOfWork._userRepository.GetByGuid(userId);
+            string fundiCVImagePath = contentPath + "ProfileCV_" + _unitOfWork._userRepository.GetByGuid(userId);
             DirectoryInfo dir = new DirectoryInfo(contentPath);
 
             if (dir.Exists)
@@ -254,10 +254,37 @@ namespace MyFundi.Web.Controllers
 
             return await Task.FromResult(Ok(new { Message = "Fundi Courses updated" }));
         }
-        
-         public async Task<IActionResult> GetAllFundiProfiles()
+
+        [Route("~/FundiProfile/GetFundiProfileByProfileId/{profileId}")]
+        public async Task<IActionResult> GetFundiProfileByProfileId(int profileId)
         {
-            var fundiProfiles = _unitOfWork._fundiProfileRepository.GetAll().Include(q=> q.User).Include(q=> q.Address).ToArray();
+            var fundiProfile = _unitOfWork._fundiProfileRepository.GetById(profileId);
+
+            if (fundiProfile != null)
+            {
+                return await Task.FromResult(Ok(_mapper.Map<FundiProfileViewModel>(fundiProfile)));
+            }
+            return await Task.FromResult(NotFound(new { Message = "Fundi not found" }));
+        }
+
+        [Route("~/FundiProfile/GetFundiLocationByFundiProfileId/{profileId}")]
+        public async Task<IActionResult> GetFundiLocationByFundiProfileId(int profileId)
+        {
+            var fundiProfile = _unitOfWork._fundiProfileRepository.GetById(profileId);
+
+            if (fundiProfile != null)
+            {
+                var location = _unitOfWork._locationRepository.GetAll().FirstOrDefault(q => q.AddressId == fundiProfile.AddressId);
+                if (location != null)
+                {
+                    return await Task.FromResult(Ok(_mapper.Map<LocationViewModel>(location)));
+                }
+            }
+            return await Task.FromResult(NotFound(new { Message = "Fundi not found" }));
+        }
+        public async Task<IActionResult> GetAllFundiProfiles()
+        {
+            var fundiProfiles = _unitOfWork._fundiProfileRepository.GetAll().Include(q => q.User).Include(q => q.Address).ToArray();
 
             if (fundiProfiles.Any())
             {
@@ -288,9 +315,9 @@ namespace MyFundi.Web.Controllers
             }
             return await Task.FromResult(Ok(_mapper.Map<FundiProfileViewModel>(fundiProfile)));
         }
-        
 
-       [AuthorizeIdentity]
+
+        [AuthorizeIdentity]
         public async Task<IActionResult> GetFundiSkillsByFundiProfileId(int fundiProfileId)
         {
             var fundiProfile = _unitOfWork._fundiProfileRepository.GetById(fundiProfileId);
@@ -300,11 +327,11 @@ namespace MyFundi.Web.Controllers
                 return await Task.FromResult(NotFound(new { Message = "profile not Found!" }));
             }
 
-            return await Task.FromResult(Ok(new string[]{ fundiProfile.Skills}));
+            return await Task.FromResult(Ok(new string[] { fundiProfile.Skills }));
         }
-        
 
-       [AuthorizeIdentity]
+
+        [AuthorizeIdentity]
         public async Task<IActionResult> GetFundiWorkCategoriesByFundiProfileId(int fundiProfileId)
         {
             var fundiProfile = _unitOfWork._fundiProfileRepository.GetById(fundiProfileId);
@@ -315,7 +342,7 @@ namespace MyFundi.Web.Controllers
             }
             var workCategories = _unitOfWork._fundiWorkCategoryRepository.GetAll().Where(q => q.FundiProfileId == fundiProfileId);
 
-            return await Task.FromResult(Ok(workCategories.Select(q=> q.WorkCategory.WorkCategoryType).ToArray()));
+            return await Task.FromResult(Ok(workCategories.Select(q => q.WorkCategory.WorkCategoryType).ToArray()));
         }
 
         [AuthorizeIdentity]
@@ -333,7 +360,7 @@ namespace MyFundi.Web.Controllers
             return await Task.FromResult(Ok(_mapper.Map<FundiRatingAndReviewViewModel[]>(fundiProfileRatings.ToArray())));
         }
 
-        
+
         [AuthorizeIdentity]
         public async Task<IActionResult> RateFundiByProfileId([FromBody] FundiRatingAndReviewViewModel fundiRatingReview)
         {
@@ -370,28 +397,28 @@ namespace MyFundi.Web.Controllers
                                   Rating = j.Rating,
                                   Review = j.Review,
                                   FundiProfile = _mapper.Map<FundiProfileViewModel>(fp),
-                                  UserId= us.UserId,
+                                  UserId = us.UserId,
                                   User = _mapper.Map<UserViewModel>(us),
                                   DateUpdated = j.DateUpdated,
                                   WorkCategoryType = j.WorkCategoryType,
                                   RatedByUser = _mapper.Map<UserViewModel>(j.User),
                                   RatingByUserId = j.UserId
                               };
-            if(reviewCateg.Any())
+            if (reviewCateg.Any())
             {
                 var fundiGroupedRatings = new Dictionary<string, List<FundiRatingAndReviewViewModel>>();
-                foreach(var rat in reviewCateg)
+                foreach (var rat in reviewCateg)
                 {
                     if (!fundiGroupedRatings.Keys.Contains(rat.FundiProfileId.ToString().ToLower()))
                     {
                         var list = new List<FundiRatingAndReviewViewModel>();
                         list.Add(rat);
-                        fundiGroupedRatings.Add(rat.FundiProfileId.ToString().ToLower(), list);                        
+                        fundiGroupedRatings.Add(rat.FundiProfileId.ToString().ToLower(), list);
                     }
                     else
                     {
-                       var list = fundiGroupedRatings[rat.FundiProfileId.ToString().ToLower()];
-                       list.Add(rat);
+                        var list = fundiGroupedRatings[rat.FundiProfileId.ToString().ToLower()];
+                        list.Add(rat);
                     }
 
                 }
@@ -450,7 +477,7 @@ namespace MyFundi.Web.Controllers
                                     select c;
             return await Task.FromResult(Ok(_mapper.Map<CourseViewModel[]>(fundiCoursesTaken.ToArray())));
         }
-        
+
         [AuthorizeIdentity]
         public async Task<IActionResult> GetWorkCategories()
         {
@@ -490,7 +517,7 @@ namespace MyFundi.Web.Controllers
             {
                 return await Task.FromResult(Ok(_mapper.Map<WorkCategoryViewModel[]>(wcs.ToArray())));
             }
-            return await Task.FromResult(NotFound(new { Message = "No Work Categories Found!"}));
+            return await Task.FromResult(NotFound(new { Message = "No Work Categories Found!" }));
         }
         [AuthorizeIdentity]
         public async Task<IActionResult> GetAllFundiCourses()
@@ -630,7 +657,7 @@ namespace MyFundi.Web.Controllers
 
                 var result = _unitOfWork._fundiProfileRepository.Insert(fundiProfile);
                 _unitOfWork.SaveChanges();
-                return await Task.FromResult(Ok(new { Message = "Succefully Inserted Fundi Profile"}));
+                return await Task.FromResult(Ok(new { Message = "Succefully Inserted Fundi Profile" }));
 
             }
 
