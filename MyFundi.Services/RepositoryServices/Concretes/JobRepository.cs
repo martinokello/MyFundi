@@ -50,6 +50,7 @@ namespace MyFundi.Services.RepositoryServices.Concretes
                 item.ClientFundiContractId = toUpdate.ClientFundiContractId;
                 item.WorkCategoryIds = toUpdate.WorkCategoryIds;
                 item.HasBeenAssignedFundi = toUpdate.HasBeenAssignedFundi;
+                item.NumberOfDaysToComplete = toUpdate.NumberOfDaysToComplete;
                 item.DateUpdated = DateTime.Now;
                 return true;
             }

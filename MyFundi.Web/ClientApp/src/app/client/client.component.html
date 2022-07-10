@@ -58,7 +58,7 @@
       <div class="row" style="margin: 2px 0px !important;">
         <div class="col-lg-12" style="margin: 2px 0px !important;">
           <h5>Job Description</h5>
-          <textarea id="jobDescription" [(ngModel)]="job.jobDescription" placeholder="Job Description" cols="10" rows="6"></textarea><br />
+          <textarea id="jobDescription" name="jobDescription" [(ngModel)]="job.jobDescription" placeholder="Job Description" cols="10" rows="6"></textarea><br />
         </div>
       </div>
       <div class="row" style="margin: 2px 0px !important;">
@@ -85,7 +85,7 @@
       <div class="row" style="margin: 2px 0px !important;">
         <div class="col-lg-12" id="workCategories" style="margin: 2px 0px !important;">
           <h5>Estimate Of Days To Complete</h5>
-          <input type="number" id="numberOfDaysToComplete" [(ngModel)]="job.numberOfDaysToComplete" placeholder="Number Of Days To Complete" />
+          <input type="number" id="numberOfDaysToComplete" name="numberOfDaysToComplete" [(ngModel)]="job.numberOfDaysToComplete" placeholder="Number Of Days To Complete" />
         </div>
       </div>
       <div class="row" style="margin: 2px 0px !important;">
