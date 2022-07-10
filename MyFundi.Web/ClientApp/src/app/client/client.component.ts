@@ -282,7 +282,7 @@ export class ClientProfileComponent implements OnInit {
     let jobObs: Observable<any> = this.myFundiService.UpdateJob(this.job);
     jobObs.map((q: any) => {
       alert(q.message);
-    });
+    }).subscribe();
 
     $event.preventDefault();
   }
