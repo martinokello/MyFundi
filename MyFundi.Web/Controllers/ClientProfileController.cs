@@ -109,6 +109,7 @@ namespace MyFundi.Web.Controllers
             }
         }
 
+        [AuthorizeIdentity]
         [Route("~/ClientProfile/GetClientUserByProfileId/{profileId}")]
         public async Task<IActionResult> GetClientUserByProfileId(int profileId)
         {
@@ -121,6 +122,21 @@ namespace MyFundi.Web.Controllers
             }
             return await Task.FromResult(Ok(_mapper.Map<UserViewModel>(user)));
         }
+
+        [AuthorizeIdentity]
+        [Route("~/ClientProfile/GetAllClientJobByClientProfileId/{clientProfileId}")]
+        public async Task<IActionResult> GetAllClientJobByClientProfileId(int clientProfileId)
+        {
+            var clientJobs = _unitOfWork._jobRepository.GetAll().Where(q => q.ClientProfileId == clientProfileId);
+
+            if (clientJobs.Any())
+            {
+                return await Task.FromResult(Ok(_mapper.Map<JobViewModel[]>(clientJobs)));
+            }
+            return await Task.FromResult(NotFound(new { Message = "Jobs not found" }));
+        }
+
+        [AuthorizeIdentity]
         public async Task<IActionResult> GetClientProfile(string username)
         {
             User user = _serviceEndPoint.GetUserByEmailAddress(username);
@@ -133,6 +149,7 @@ namespace MyFundi.Web.Controllers
             return await Task.FromResult(Ok(_mapper.Map<ClientProfileViewModel>(clientProfile)));
         }
 
+        [AuthorizeIdentity]
         [HttpPost]
         public async Task<IActionResult> SaveClientProfileImage(string username, [FromForm] IFormFile profileImage)
         {
@@ -227,6 +244,31 @@ namespace MyFundi.Web.Controllers
                 }
             }
             return await Task.FromResult(BadRequest(new { Message = "Fundi Profile not Updated, therefore operation failed!" }));
+        }
+        
+
+        [AuthorizeIdentity]
+        [HttpPost]
+        public async Task<IActionResult> UpdateJob([FromBody] JobViewModel jobViewModel)
+        {
+            if (ModelState.IsValid)
+            {
+                var job = _mapper.Map<Job>(jobViewModel);
+
+                var result = _unitOfWork._jobRepository.GetById(job.JobId);
+
+                if (result == null)
+                {
+                    return await Task.FromResult(Ok(new { Message = "Failed to Update Job. Job does not Exist!GetClientProfile" }));
+                }
+                else
+                {
+                    _unitOfWork._jobRepository.Update(job);
+                    _unitOfWork.SaveChanges();
+                    return await Task.FromResult(Ok(new { Message = "Succefully Updated Job" }));
+                }
+            }
+            return await Task.FromResult(BadRequest(new { Message = "Job Details are bad, therefore operation failed!" }));
         }
         [AuthorizeIdentity]
         [HttpPost]

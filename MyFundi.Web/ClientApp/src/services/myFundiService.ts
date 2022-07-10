@@ -40,6 +40,7 @@ export class MyFundiService {
   public getAllFundiWorkCategoriesUrl: string = this.baseServerUrl + "/FundiProfile/GetAllFundiWorkCategories";
   public getAllFundiCertificatesUrl: string = this.baseServerUrl + "/FundiProfile/GetAllFundiCertificates";
   public saveOrupdateClientProfileUrl: string = this.baseServerUrl + "/ClientProfile/CreateOrUpdateClientProfile"; 
+  public updateJobUrl: string = this.baseServerUrl + "/ClientProfile/UpdateJob";
   public createOrUpdateFundiJobUrl: string = this.baseServerUrl + "/ClientProfile/CreateOrUpdateFundiJob";
   
   public postAllFundiRatingsAndReviewsByCategoriesUrl: string = this.baseServerUrl + "/FundiProfile/PostAllFundiRatingsAndReviewsByCategories";
@@ -65,7 +66,8 @@ export class MyFundiService {
   public postSendEmail: string = this.baseServerUrl + "/Home/SendEmail";
   public postVerifyQrcodeScan: string = this.baseServerUrl + "/Home/GetClientEmailAndMobilePhoneNumber";
 
-
+  
+  public getAllClientJobByClientProfileIdUrl: string = this.baseServerUrl + "/ClientProfile/GetAllClientJobByClientProfileId";
   public getClientProfileUrl: string = this.baseServerUrl + "/ClientProfile/GetClientProfile";
   public postOrCreateCompanyUrl: string = this.baseServerUrl + "/Company/PostOrCreateCompany";
   public updateCompanyUrl: string = this.baseServerUrl + "/Company/UpdateCompany"; 
@@ -716,7 +718,22 @@ export class MyFundiService {
     return this.httpClient.get(requestOptions.url, requestOptions.headers).map((res: any) => {
       return res;
     });
+  } 
+  public GetAllClientJobByClientProfileId(clientProfileId: number): Observable<IJob[]> {
+    const headers = new HttpHeaders({ 'content-type': 'application/json' });
+    let requestUrl = this.getAllClientJobByClientProfileIdUrl + "/" + clientProfileId;
+    let requestOptions: any = {
+      url: requestUrl,
+      method: 'GET',
+      headers: headers,
+      responseType: 'application/json'
+    };
+
+    return this.httpClient.get(requestOptions.url, requestOptions.headers).map((res: any) => {
+      return res;
+    });
   }
+
   public GetAddressById(addressId: number): Observable<IAddress> {
     const headers = new HttpHeaders({ 'content-type': 'application/json' });
     let requestUrl = this.getAddressByIdUrl + "/" + addressId;
@@ -1019,6 +1036,20 @@ export class MyFundiService {
 
     let requestOptions: any = {
       url: this.createOrUpdateFundiJobUrl,
+      headers: headers,
+      body: body
+    };
+    return this.httpClient.post(requestOptions.url, requestOptions.body, { 'headers': requestOptions.headers }).map((res: any) => {
+      return res;
+    });
+  }
+  UpdateJob(job: any): Observable<any> {
+    let body = JSON.stringify(job);
+
+    const headers = new HttpHeaders({ 'content-type': 'application/json' });
+
+    let requestOptions: any = {
+      url: this.updateJobUrl,
       headers: headers,
       body: body
     };

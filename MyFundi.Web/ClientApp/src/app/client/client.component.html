@@ -34,27 +34,31 @@
     <form id="jobForm">
       <div class="row" style="margin: 2px 0px !important;">
         <div class="col-lg-12" style="margin: 2px 0px !important;">
-          <h5>Create Job</h5>
-          <input type="number" name="jobId" [(ngModel)]="jobId" placeholder="JobId" readonly />
+          <h5>Select, Create, Or Update Job</h5>
         </div>
       </div>
-
       <div class="row" style="margin: 2px 0px !important;">
         <div class="col-lg-12" style="margin: 2px 0px !important;">
           <h5>Job Name</h5>
-          <input type="text" id="jobName" [(ngModel)]="jobName" placeholder="Job Name" /><br />
+          <input type="text" id="jobName" name="jobName" [(ngModel)]="job.jobName" />
+        </div>
+      </div>
+      <div class="row" style="margin: 2px 0px !important;">
+        <div class="col-lg-12" style="margin: 2px 0px !important;">
+          <h5>Select Job</h5>
+          <select id="jobId" name="jobId" [(ngModel)]="job.jobId"></select><br />
         </div>
       </div>
       <div class="row" style="margin: 2px 0px !important;">
         <div class="col-lg-12" style="margin: 2px 0px !important;">
           <h5>Job Location</h5>
-          <select id="locationId" name="locationId" [(ngModel)]="locationId"></select>
+          <select id="locationId" name="locationId" [(ngModel)]="job.locationId"></select>
         </div>
       </div>
       <div class="row" style="margin: 2px 0px !important;">
         <div class="col-lg-12" style="margin: 2px 0px !important;">
           <h5>Job Description</h5>
-          <textarea id="jobDescription" [(ngModel)]="jobDescription" placeholder="Job Description" cols="10" rows="6"></textarea><br />
+          <textarea id="jobDescription" [(ngModel)]="job.jobDescription" placeholder="Job Description" cols="10" rows="6"></textarea><br />
         </div>
       </div>
       <div class="row" style="margin: 2px 0px !important;">
@@ -69,19 +73,19 @@
       <div class="row" style="margin: 2px 0px !important;">
         <div class="col-lg-12" style="margin: 2px 0px !important;">
           <h5>Assigned Fundi</h5>
-          <select type="text" id="assignedFundiProfileId" name="assignedFundiProfileId" [(ngModel)]="fundiProfile.fundiProfileId"></select><br />
+          <select id="assignedFundiProfileId" name="assignedFundiProfileId" [(ngModel)]="fundiProfile.fundiProfileId"></select><br />
         </div>
       </div>
       <div class="row" style="margin: 2px 0px !important;">
         <div class="col-lg-12" style="margin: 2px 0px !important;">
           <h5>Client Fundi Contract Id</h5>
-          <select type="text" id="clientFundiContractId" name="clientFundiContractId" [(ngModel)]="clientFundiContractId"></select><br />
+          <select id="clientFundiContractId" name="clientFundiContractId" [(ngModel)]="job.clientFundiContractId"></select><br />
         </div>
       </div>
       <div class="row" style="margin: 2px 0px !important;">
         <div class="col-lg-12" id="workCategories" style="margin: 2px 0px !important;">
           <h5>Estimate Of Days To Complete</h5>
-          <input type="number" id="numberOfDaysToComplete" placeholder="Number Of Days To Complete" />
+          <input type="number" id="numberOfDaysToComplete" [(ngModel)]="job.numberOfDaysToComplete" placeholder="Number Of Days To Complete" />
         </div>
       </div>
       <div class="row" style="margin: 2px 0px !important;">
@@ -95,16 +99,22 @@
       <div class="row" style="margin: 2px 0px !important;">
         <div class="col-lg-12" style="margin: 2px 0px !important;">
           <div class="custom-control custom-checkbox">
-            <input class="custom-control-input" type="checkbox" name="hasBeenAssignedFundi" id="hasBeenAssignedFundi" />
+            <input class="custom-control-input" type="checkbox" name="hasBeenAssignedFundi" [(ngModel)]="job.hasBeenAssignedFundi" id="hasBeenAssignedFundi" />
             <label class="custom-control-label" for="hasBeenAssignedFundi">Has Been Assigned Fundi</label>
           </div>
           <div class="custom-control custom-checkbox">
-            <input class="custom-control-input" type="checkbox" name="hasCompleted" id="hasCompleted" />
+            <input class="custom-control-input" type="checkbox" name="hasCompleted" [(ngModel)]="job.hasCompleted" id="hasCompleted" />
             <label class="custom-control-label" for="hasCompleted">Has Completed</label>
           </div>
         </div>
         <div class="col-lg-12" style="margin: 2px 0px !important;">
-          <input type="button" class="btn-primary" id="submit" value="Create Job" (click)="createJob($event)" />
+          <input type="button" class="btn-primary" value="Select Job" (click)="selectJob($event)" />
+        </div>
+        <div class="col-lg-12" style="margin: 2px 0px !important;">
+          <input type="button" class="btn-primary" value="Create Job" (click)="createJob($event)" />
+        </div>
+        <div class="col-lg-12" style="margin: 2px 0px !important;">
+          <input type="button" class="btn-primary" value="Update Job" (click)="updateJob($event)" />
         </div>
       </div>
     </form>

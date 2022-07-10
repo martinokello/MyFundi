@@ -31,13 +31,15 @@ export class ClientProfileComponent implements OnInit {
   workCategories: IWorkCategory[];
   chosenWorkCategories: IWorkCategory[];
   workCategoryId: number;
+  job: any;
+  jobs: IJob[];
 
   decoderUrl(url: string): string {
     return decodeURIComponent(url);
   }
   ngOnInit(): void {
-    this.jobId = 0;
-    this.jobName = "alto";
+    this.job = {};
+
     this.chosenWorkCategories = [];
     this.userDetails = JSON.parse(localStorage.getItem("userDetails"));
     this.userRoles = JSON.parse(localStorage.getItem("userRoles"));
@@ -69,11 +71,6 @@ export class ClientProfileComponent implements OnInit {
       });
     }).subscribe();
 
-    userGuidObs.map((q: string) => {
-      this.clientUserGuidId = q;
-      this.refreshAddresses();
-    }).subscribe();
-
     let resObs = this.myFundiService.GetClientProfile(this.userDetails.username);
 
 
@@ -85,6 +82,30 @@ export class ClientProfileComponent implements OnInit {
         curAddObs.map((q: IAddress) => {
           this.address = q;
           this.addressId = q.addressId;
+          let jobCatObs: Observable<IJob[]> = this.myFundiService.GetAllClientJobByClientProfileId(this.profile.clientProfileId);
+
+          jobCatObs.map((jobCats: IJob[]) => {
+            this.jobs = jobCats;
+
+            //Dynamic check boxes for Categories To Search for:
+            let selectjobCategories: HTMLSelectElement = document.querySelector('select#jobId');
+            let selectJobIdOptions: HTMLSelectElement = document.querySelector('select#jobId option');
+            if (selectJobIdOptions) {
+              selectJobIdOptions.remove();
+            }
+
+            let option = document.createElement('option');
+            option.textContent = "Select Job";
+            option.value = "0";
+            selectjobCategories.appendChild(option);
+
+            this.jobs.forEach((cat: IJob) => {
+              let option = document.createElement('option');
+              option.textContent = cat.jobName;
+              option.value = cat.jobId.toString();
+              selectjobCategories.appendChild(option);
+            });
+          }).subscribe();
         }).subscribe();
       }
       else {
@@ -96,6 +117,11 @@ export class ClientProfileComponent implements OnInit {
           addressId: 0
         }
       }
+    }).subscribe();
+
+    userGuidObs.map((q: string) => {
+      this.clientUserGuidId = q;
+      this.refreshAddresses();
     }).subscribe();
 
 
@@ -218,16 +244,16 @@ export class ClientProfileComponent implements OnInit {
 
     this.fundiProfile = this.fundiProfiles.filter(q => q.fundiProfileId == this.fundiProfile.fundiProfileId)
 
-    let job: any = {
-      jobId: 0,
-      jobName: this.userDetails.firstName +" "+ this.userDetails.lastName+"-"+ this.jobName,
-      jobDescription: this.jobDescription,
+    let job:any = {
+      jobId: null,
+      jobName: this.userDetails.firstName +" "+ this.userDetails.lastName+"-"+ this.job.jobName,
+      jobDescription: this.job.jobDescription,
       clientProfileId: this.profile.clientProfileId,
       clientUserId: this.profile.userId,
-      hasCompleted: false,
-      hasBeenAssignedFundi: false,
-      locationId: this.locationId,
-      numberOfDaysToComplete: this.numberOfDaysToComplete,
+      hasCompleted: this.job.hasCompleted,
+      hasBeenAssignedFundi: this.job.hasBeenAssignedFundi,
+      locationId: this.job.locationId,
+      numberOfDaysToComplete: this.job.numberOfDaysToComplete,
       clientFundiContractId: null,
       assignedFundiUserId: null,//this.fundiProfile.user.userId,
       assignedFundiProfileId: null,//this.fundiProfile.fundiProfileId
@@ -240,6 +266,24 @@ export class ClientProfileComponent implements OnInit {
     obsj.map((q: any) => {
       alert(q.message)
     }).subscribe();
+    $event.preventDefault();
+  }
+  selectJob($event) {
+    let job: IJob = this.jobs.find((j: IJob) => {
+      return j.jobId == this.job.jobId;
+    });
+
+    this.job = job;
+
+    $event.preventDefault();
+  }
+  updateJob($event) {
+
+    let jobObs: Observable<any> = this.myFundiService.UpdateJob(this.job);
+    jobObs.map((q: any) => {
+      alert(q.message);
+    });
+
     $event.preventDefault();
   }
   addWorkCategory($event) {
