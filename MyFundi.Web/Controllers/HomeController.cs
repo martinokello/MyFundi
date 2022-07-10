@@ -24,6 +24,7 @@ using Microsoft.AspNetCore.Http;
 using MyFundi.Services.EmailServices;
 using MyFundi.Web.IdentityServices;
 using System.Text;
+using Microsoft.EntityFrameworkCore;
 
 namespace MyFundi.Web.Controllers
 {
@@ -180,7 +181,7 @@ Replace("[[TransactionCommoditesList]]", userInvoice.InvoiceName + ", Net Price:
         [AuthorizeIdentity]
         public async Task<IActionResult> GetAllJobs()
         {
-            var results = _mapper.Map<JobViewModel[]>(this._unitOfWork._jobRepository.GetAll().ToArray());
+            var results = _mapper.Map<JobViewModel[]>(this._unitOfWork._jobRepository.GetAll().Include(q => q.Location).ToArray());
 
             if (results.Any()) {  
                 return await Task.FromResult(Ok(results));

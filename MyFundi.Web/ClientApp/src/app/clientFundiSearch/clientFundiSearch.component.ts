@@ -30,7 +30,8 @@ export class ClientFundiSearchComponent implements OnInit, AfterViewChecked {
   currentRating: number;
   fundiWorkCategories: string[];
   fundiSkills: string[];
-  fundiListSatisfyingJobRadiusDictionary: any;
+  actualProfileIdKeys: string[];
+  fundiListSatisfyingJobRadiusDictionary: any[];
 
   decoderUrl(url: string): string {
     return decodeURIComponent(url);
@@ -136,18 +137,20 @@ export class ClientFundiSearchComponent implements OnInit, AfterViewChecked {
   }
 
   searchFundiByCategories($event) {
-    this.fundiListSatisfyingJobRadiusDictionary = {};
+
+    this.fundiListSatisfyingJobRadiusDictionary = [];
     this.fundiProfileRatingDictionary = {};
+    this.actualProfileIdKeys = [];
+    this.profileIdKeys = null;
     let divFundiCategories: HTMLElement = document.querySelector('form#fundiSearchForm div#fundiCategories');
     let chosenCategories: string[] = [];
 
     if (this.jobs && this.jobs.length > 0) {
-      var jobId = parseInt(document.querySelector('select#jobId').nodeValue);
-      let selectedJob: IJob = null;
 
-      selectedJob = this.jobs.find((j: IJob) => {
-        return j.jobId === jobId;
+      let selectedJob: IJob = this.jobs.find((j: IJob) => {
+        return j.jobId == this.jobId;
       });
+
       this.jobLocationCoordinate = {
         latitude: selectedJob.location.latitude,
         longitude: selectedJob.location.longitude
@@ -168,25 +171,26 @@ export class ClientFundiSearchComponent implements OnInit, AfterViewChecked {
 
           for (var n = 0; n < this.profileIdKeys.length; n++) {
 
-            let currProfileLocObs: Observable<ILocation> = this.myFundiService.GetFundiLocationByFundiProfileId(parseInt(this.profileIdKeys[n]));
+            let fundiProfileId: number = parseInt(this.profileIdKeys[n]);
 
-            currProfileLocObs.map((q: ILocation) => {
-              let curProfile: ICoordinate = { latitude: q.latitude, longitude: q.longitude };
+            this.myFundiService.GetFundiLocationByFundiProfileId(fundiProfileId).map((q: ILocation) => {
 
-              if (this.arePointsNear(curProfile, this.jobLocationCoordinate, 5)) {
+              if (q) {
+                let curProfileCoord: ICoordinate = { latitude: q.latitude, longitude: q.longitude };
 
-                let fundiProfileId = parseInt(this.profileIdKeys[n]);
+                if (this.arePointsNear(curProfileCoord, this.jobLocationCoordinate, 5)) {
 
-                this.getFundiWorkCategoriesByProfileId(fundiProfileId);
+                  this.getFundiWorkCategoriesByProfileId(fundiProfileId);
 
-                this.fundiListSatisfyingJobRadiusDictionary.assign(
-                  {
-                    fundiProfileId: this.fundiProfileRatingDictionary[fundiProfileId]
-                  }
-                );
-
+                  this.fundiListSatisfyingJobRadiusDictionary.push(
+                    {
+                      fundiProfileId : fundiProfileId, fundiProfileData: this.fundiProfileRatingDictionary[fundiProfileId]
+                    }
+                  );
+                  this.actualProfileIdKeys.push(fundiProfileId.toString());
+                }
               }
-            });
+            }).subscribe();
           }
         }
 

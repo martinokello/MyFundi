@@ -46,7 +46,7 @@ export class MyFundiService {
   public updateFundiProfileUrl: string = this.baseServerUrl + "/FundiProfile/UpdateFundiProfile"; 
   public getFundiProfileUrl: string = this.baseServerUrl + "/FundiProfile/GetFundiProfile"; 
   public getFundiProfileByProfileIdUrl: string = this.baseServerUrl + "/FundiProfile/GetFundiProfileByProfileId";
-  public getFundiLocationByFundiProfileIddUrl: string = this.baseServerUrl + "/FundiProfile/GetFundiLocationByFundiProfileId";
+  public getFundiLocationByFundiProfileIdUrl: string = this.baseServerUrl + "/FundiProfile/GetFundiLocationByFundiProfileId";
   public getAllFundiProfilesUrl: string = this.baseServerUrl + "/FundiProfile/GetAllFundiProfiles";
   public getFundiUserByProfileIdUrl: string = this.baseServerUrl + "/FundiProfile/GetFundiUserByProfileId";
   public getAllFundiCoursesUrl: string = this.baseServerUrl + "/FundiProfile/GetAllFundiCourses";
@@ -200,11 +200,11 @@ export class MyFundiService {
       return clientProfile;
     });
   } 
-  
+
   public GetFundiLocationByFundiProfileId(profileId: number): Observable<any> {
 
     const headers = new HttpHeaders({ 'content-type': 'application/json' });
-    let requestUrl = this.getFundiLocationByFundiProfileIddUrl + "/" + profileId;
+    let requestUrl = this.getFundiLocationByFundiProfileIdUrl + "/" + profileId;
     let requestOptions: any = {
       url: requestUrl,
       method: 'GET',
@@ -213,8 +213,8 @@ export class MyFundiService {
     };
 
     return this.httpClient.get(requestOptions.url, requestOptions.headers).map((res: any) => {
-      let fundiProfile: IProfile = res;
-      return fundiProfile;
+      let location: any = res;
+      return location;
     });
   }
   public GetFundiProfileByProfileId(profileId: string): Observable<any> {

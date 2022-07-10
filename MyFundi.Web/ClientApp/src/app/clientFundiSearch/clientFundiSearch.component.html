@@ -14,16 +14,16 @@
     </form>
   </section>
   <div *ngIf="fundiListSatisfyingJobRadiusDictionary">
-    <section id="Profile" *ngFor="let profileId of profileIdKeys">
+    <section id="Profile" *ngFor="let profile of fundiListSatisfyingJobRadiusDictionary">
       <div class="row" style="text-align: center !important; align-content: center !important;">
         <div class="col-lg-12">
-          <img id="profileImage" src="/FundiProfile/GetFundiProfileImageByProfileId?fundiProfileId={{profileId}}" alt="profileImage" style="width:250px; height:auto; align-content:center !important;" /><br />
-          <span>Fundi Name: {{fundiListSatisfyingJobRadiusDictionary[profileId][0].user.firstName}} {{fundiListSatisfyingJobRadiusDictionary[profileId][0].user.lastName}}</span>
+          <img id="profileImage" src="/FundiProfile/GetFundiProfileImageByProfileId?fundiProfileId={{profile.fundiProfileId}}" alt="profileImage" style="width:250px; height:auto; align-content:center !important;" /><br />
+          <span>Fundi Name: {{profile.fundiProfileData[0].user.firstName}} {{profile.fundiProfileData[0].user.lastName}}</span>
         </div>
       </div>
       <div class="row" style="text-align: center !important; align-content: center !important;">
         <div class="col-lg-12">
-          <a href="#" (click)="populateFundiUserDetails($event,profileId)" style="width:250px; height:auto; align-content:center !important;">View Fundi Profile</a><br />
+          <a href="#" (click)="populateFundiUserDetails($event,profile.fundiProfileId)" style="width:250px; height:auto; align-content:center !important;">View Fundi Profile</a><br />
         </div>
       </div>
       <div class="row" style="margin: 2px 0px !important;">
@@ -31,37 +31,37 @@
           <h5>Fundi Profile Summary</h5>
           <ul>
             <li>
-              {{fundiListSatisfyingJobRadiusDictionary[profileId][0].fundiProfile.profileSummary}}
+              {{profile.fundiProfileData[0].fundiProfile.profileSummary}}
             </li>
           </ul>
         </div>
       </div>
       <div class="row" style="text-align: center !important; align-content: center !important;margin:2px 0px !important;">
         <div class="col-lg-12" style="margin: 2px 0px !important;">
-          <a style="line-height: 17px 0px !important;" id="downloadCV" href='/FundiProfile/GetFundiCVByProfileId?fundiProfileId={{profileId}}'>Download Profile CV</a><br />
+          <a style="line-height: 17px 0px !important;" id="downloadCV" href='/FundiProfile/GetFundiCVByProfileId?fundiProfileId={{profile.fundiProfileId}}'>Download Profile CV</a><br />
         </div>
       </div>
       <div class="row" style="margin: 2px 0px !important;">
         <div class="col-lg-12" id="profileRating" style="margin: 2px 0px !important;">
           <h5>Profile Rating &amp; Reviews</h5>
           <ul>
-            <li *ngFor="let fundiRating of fundiListSatisfyingJobRadiusDictionary[profileId]">
+            <li *ngFor="let rating of profile.fundiProfileData">
               <div>
-                Rated By: <em style="color:brown !important;">{{fundiRating.ratedByUser.firstName}} {{fundiRating.ratedByUser.lastName}}</em><br />
-                Rating: <span style="color:brown !important;">{{fundiRating.rating}} out of 5</span><br />
+                Rated By: <em style="color:brown !important;">{{rating.ratedByUser.firstName}} {{rating.ratedByUser.lastName}}</em><br />
+                Rating: <span style="color:brown !important;">{{rating.rating}} out of 5</span><br />
               </div>
               <div>
-                Review By: <em style="color:brown !important;">{{fundiRating.ratedByUser.firstName}} {{fundiRating.ratedByUser.lastName}}</em><br />
-                Review: {{fundiRating.review}}<br />
+                Review By: <em style="color:brown !important;">{{rating.ratedByUser.firstName}} {{rating.ratedByUser.lastName}}</em><br />
+                Review: {{rating.review}}<br />
               </div>
             </li>
           </ul>
           <h5>Rate This Fundi</h5>
-          <form id="ratingForm-{{profileId}}">
-            <div id="fundiRating-{{profileId}}" class="rating"></div><br />
+          <form id="ratingForm-{{profile.fundiProfileId}}">
+            <div id="fundiRating-{{profile.fundiProfileId}}" class="rating"></div><br />
             <span>Choose Work Category:</span><br />
-            <select id="workCategory-{{profileId}}" name="workCategory" class="form-control">
-              <option *ngFor="let fundiRating of fundiListSatisfyingJobRadiusDictionary[profileId]" value="{{fundiRating.workCategoryType}}">{{fundiRating.workCategoryType}}</option>
+            <select id="workCategory-{{profile.fundiProfileId}}" name="workCategory" class="form-control">
+              <option *ngFor="let rating of profile.fundiProfileData" value="{{rating.workCategoryType}}">{{rating.workCategoryType}}</option>
             </select>
             <br />
             <textarea id="review-{{profileId}}" placeholder="Write review" rows="5" cols="20"></textarea><br />
@@ -72,14 +72,14 @@
       <div class="row" style="margin: 2px 0px !important;">
         <div class="col-lg-12" id="workCategory" style="margin: 2px 0px !important;">
           <h5>Work Category Type</h5>
-          <ul id="{{profileId}}-workCategory">
+          <ul id="{{profile.fundiProfileId}}-workCategory">
           </ul>
         </div>
       </div>
       <div class="row" style="margin: 2px 0px !important;">
         <div class="col-lg-12" id="skills" style="margin: 2px 0px !important;">
           <h5>Fundi Skills</h5>
-          <ul id="{{profileId}}-skills">
+          <ul id="{{profile.fundiProfileId}}-skills">
           </ul>
         </div>
       </div>

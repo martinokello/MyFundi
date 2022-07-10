@@ -37,6 +37,7 @@ export class ClientProfileComponent implements OnInit {
   }
   ngOnInit(): void {
     this.jobId = 0;
+    this.jobName = "alto";
     this.chosenWorkCategories = [];
     this.userDetails = JSON.parse(localStorage.getItem("userDetails"));
     this.userRoles = JSON.parse(localStorage.getItem("userRoles"));
@@ -218,16 +219,16 @@ export class ClientProfileComponent implements OnInit {
     this.fundiProfile = this.fundiProfiles.filter(q => q.fundiProfileId == this.fundiProfile.fundiProfileId)
 
     let job: any = {
-      jobId: this.jobId,
+      jobId: 0,
       jobName: this.userDetails.firstName +" "+ this.userDetails.lastName+"-"+ this.jobName,
       jobDescription: this.jobDescription,
       clientProfileId: this.profile.clientProfileId,
       clientUserId: this.profile.userId,
       hasCompleted: false,
       hasBeenAssignedFundi: false,
-      locationId: parseInt(document.querySelector('select#locationId').nodeValue),
+      locationId: this.locationId,
       numberOfDaysToComplete: this.numberOfDaysToComplete,
-      clientFundiContractId: 0,
+      clientFundiContractId: null,
       assignedFundiUserId: null,//this.fundiProfile.user.userId,
       assignedFundiProfileId: null,//this.fundiProfile.fundiProfileId
       workCategoryIds: this.chosenWorkCategories.map((workCat: IWorkCategory) => {
