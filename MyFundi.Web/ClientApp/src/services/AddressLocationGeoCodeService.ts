@@ -4,7 +4,7 @@ import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs/Observable';
 import { Binary } from '@angular/compiler';
 import { APP_BASE_HREF } from '@angular/common';
-import { IAddress, ILocation, MyFundiService } from './myFundiService';
+import { IAddress, ICoordinate, ILocation, MyFundiService } from './myFundiService';
 //import * as google from '../assets/google/googleMaps.js';
 import * as $ from 'jquery';
 declare const google: any;
@@ -145,5 +145,18 @@ export class AddressLocationGeoCodeService {
 
   geocodeAddress(address: IAddress, operation: string) {
     this.showAddress(address, operation);
+  }
+
+  arePointsNear(checkPoint: ICoordinate, centerPoint: ICoordinate, km: number): boolean {
+    var ky = 40000 / 360;
+    var kx = Math.cos(Math.PI * centerPoint.latitude / 180.0) * ky;
+    var dx = Math.abs(centerPoint.longitude - checkPoint.longitude) * kx;
+    var dy = Math.abs(centerPoint.latitude - checkPoint.latitude) * ky;
+    return Math.sqrt(dx * dx + dy * dy) <= km;
+  }
+
+  roundPositiveNumberTo2DecPlaces(num: number):number {
+    var m = Number((Math.abs(num) * 100).toPrecision(15));
+    return Math.round(m) / 100;// * Math.sign(num);
   }
 }

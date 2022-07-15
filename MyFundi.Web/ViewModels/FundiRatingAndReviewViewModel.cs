@@ -1,4 +1,5 @@
-﻿using System;
+﻿using MyFundi.Web.Infrastructure;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Text;
@@ -19,5 +20,6 @@ namespace MyFundi.Web.ViewModels
         public string WorkCategoryType { get; set; }
         public Guid RatingByUserId { get; set; }
         public UserViewModel RatedByUser { get; set; }
+        public DistanceApartModel DistanceApart { get; set; }
     }
 }

@@ -18,10 +18,18 @@
           <li style="margin: 10px 0px !important; padding: 10px !important;">
             <a routerLink='/manage-profile'>Manage Fundi Profile</a>
           </li>
+          <li style="margin: 10px 0px !important; padding: 10px !important;">
+            <a routerLink='/fundi-search-job'>Search For Jobs</a>
+          </li>
         </ng-container>
         <ng-container *ngIf="userRoles && userRoles.indexOf('Client') > -1" ngDefaultControl ngModel="userRoles">
           <li style="margin: 10px 0px !important; padding: 10px !important;">
             <a routerLink='/client-create-job'>Manage Jobs</a>
+          </li>
+          <li style="margin: 10px 0px !important; padding: 10px !important;">
+            <a [routerLink]="['/clientsearch']">
+              Search For Fundi
+            </a>
           </li>
         </ng-container>
         <ng-container *ngIf="actUserStatus.isUserAdministrator" ngDefaultControl ngModel="actUserStatus">
@@ -56,11 +64,6 @@
           </li>
         </ng-container>
         <ng-container *ngIf="actUserStatus.isUserLoggedIn" ngModel="actUserStatus" ngDefaultControl>
-          <li style="margin: 10px 0px !important; padding: 10px !important;">
-            <a [routerLink]="['/clientsearch']">
-              Search For Fundi
-            </a>
-          </li>
           <li style="margin: 10px 0px !important; padding: 10px !important;">
             <a [routerLink]="['/scanqrcode']">
               Scan Qr-Code

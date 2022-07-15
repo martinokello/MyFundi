@@ -11,6 +11,7 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Cors;
 using MyFundi.Web.IdentityServices;
+using MyFundi.Web.ViewModels;
 
 namespace MyFundi.Web.Controllers
 {
@@ -121,7 +122,7 @@ namespace MyFundi.Web.Controllers
         {
             try
             {
-                var foodHubCommoditiesStorageUsage = _unitOfWork.MyFundiDBContext.GetFoodHubDateAnalysisCommoditiesStockStorageUsage(DateTime.Now.AddYears(-1),DateTime.Now);
+                var foodHubCommoditiesStorageUsage = _unitOfWork.MyFundiDBContext.GetFoodHubDateAnalysisCommoditiesStockStorageUsage(DateTime.Now.AddYears(-1), DateTime.Now);
                 return await Task.FromResult(Ok(foodHubCommoditiesStorageUsage));
             }
             catch (Exception e)
@@ -135,7 +136,7 @@ namespace MyFundi.Web.Controllers
         {
             try
             {
-                var allFoodHubCommoditiesStorageUsage = _unitOfWork.MyFundiDBContext.GetAllFoodHubDateAnalysisCommoditiesStockStorageUsage(DateTime.Now.AddYears(-1),DateTime.Now);
+                var allFoodHubCommoditiesStorageUsage = _unitOfWork.MyFundiDBContext.GetAllFoodHubDateAnalysisCommoditiesStockStorageUsage(DateTime.Now.AddYears(-1), DateTime.Now);
                 return await Task.FromResult(Ok(allFoodHubCommoditiesStorageUsage));
             }
             catch (Exception e)
@@ -149,7 +150,7 @@ namespace MyFundi.Web.Controllers
         {
             try
             {
-                var top5DryStorageCommoditisInDemand = _unitOfWork.MyFundiDBContext.GetTop5DryCommoditiesDateAnalysisInDemandRatingAccordingToStorageFacilities(DateTime.Now.AddYears(-1),DateTime.Now);
+                var top5DryStorageCommoditisInDemand = _unitOfWork.MyFundiDBContext.GetTop5DryCommoditiesDateAnalysisInDemandRatingAccordingToStorageFacilities(DateTime.Now.AddYears(-1), DateTime.Now);
                 return await Task.FromResult(Ok(top5DryStorageCommoditisInDemand));
             }
             catch (Exception e)
@@ -162,7 +163,7 @@ namespace MyFundi.Web.Controllers
         {
             try
             {
-                var top5RefreigeratedCommoditisInDemand = _unitOfWork.MyFundiDBContext.GetTop5RefreigeratedCommoditiesDateAnalysisInDemandRatingAccordingToStorageFacilitiess(DateTime.Now.AddYears(-1),DateTime.Now);
+                var top5RefreigeratedCommoditisInDemand = _unitOfWork.MyFundiDBContext.GetTop5RefreigeratedCommoditiesDateAnalysisInDemandRatingAccordingToStorageFacilitiess(DateTime.Now.AddYears(-1), DateTime.Now);
                 return await Task.FromResult(Ok(top5RefreigeratedCommoditisInDemand));
             }
             catch (Exception e)

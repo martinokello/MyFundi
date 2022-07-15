@@ -11,6 +11,7 @@ using MyFundi.ServiceEndPoint.GeneralSevices;
 using MyFundi.Services.EmailServices.Interfaces;
 using MyFundi.UnitOfWork.Concretes;
 using MyFundi.Web.IdentityServices;
+using MyFundi.Web.Infrastructure;
 using MyFundi.Web.ViewModels;
 using PaymentGateway;
 using System;
@@ -376,10 +377,49 @@ namespace MyFundi.Web.Controllers
 
             return await Task.FromResult(Ok(new { Message = "Fundi Profile Rated!" }));
         }
+        
+        [AuthorizeIdentity]
+        [HttpPost]
+        [Route("~/FundiProfile/JobsByCategoriesAndFundiUser/{fundiUsername}")]
+        public async Task<IActionResult> JobsByCategoriesAndFundiUser([FromBody] CategoriesViewModel categoriesViewModel, string fundiUsername)
+        {
+            float km = 5;
+            var categoryIds = _unitOfWork._workCategoryRepository.GetAll().Where(q => categoriesViewModel.Categories.Contains(q.WorkCategoryType)).Select(q => q.WorkCategoryId.ToString());
+
+            var reviewCateg = (from jb in _unitOfWork._jobRepository.GetAll().Include(l => l.ClientProfile).Include(l => l.ClientUser).Include(l => l.Location)
+                               from fu in _unitOfWork._userRepository.GetAll()
+                               join fp in _unitOfWork._fundiProfileRepository.GetAll()
+                               on fu.UserId equals fp.UserId
+                               join fwcat in _unitOfWork._fundiWorkCategoryRepository.GetAll()
+                               on fp.FundiProfileId equals fwcat.FundiProfileId
+                               where fu.Username == fundiUsername
+                               select new ClientJobDistanceViewModel
+                               {
+                                   Job = _mapper.Map<JobViewModel>(jb),
+                                   Client = _mapper.Map<ClientProfileViewModel>(jb.ClientProfile),
+                                   DistanceApart = CoordinateHelper.ArePointsNear(
+                                       new CoordinateViewModel { Latitude = jb.Location.Latitude, Longitude = jb.Location.Longitude },
+                                   new CoordinateViewModel
+                                   {
+                                       Latitude = _unitOfWork._locationRepository.GetAll().First(q => q.AddressId == fp.AddressId).Latitude,
+                                       Longitude = _unitOfWork._locationRepository.GetAll().First(q => q.AddressId == fp.AddressId).Longitude
+                                   }, km)
+                               }).ToList();
+
+            if (reviewCateg.Any())
+            {
+                return await Task.FromResult(Ok(reviewCateg.Where(q => q.Job.WorkCategoryIds.Split(new char[] { ',' }, StringSplitOptions.RemoveEmptyEntries).Intersect(categoryIds).Any()).OrderBy(s=> s.DistanceApart.DistanceApart)));
+
+            }
+            return await Task.FromResult(NotFound(new { Message = "No Reviews & Ratings for Fundi" }));
+        }
+
         [AuthorizeIdentity]
         [HttpPost]
         public async Task<IActionResult> PostAllFundiRatingsAndReviewsByCategories([FromBody] CategoriesViewModel categoriesViewModel)
         {
+            float km = 5;
+
             var reviewCateg = from fwcat in _unitOfWork._fundiWorkCategoryRepository.GetAll()
                               join fp in _unitOfWork._fundiProfileRepository.GetAll()
                               on fwcat.FundiProfileId equals fp.FundiProfileId
@@ -389,7 +429,7 @@ namespace MyFundi.Web.Controllers
                               on fp.FundiProfileId equals frR.FundiProfileId into catFp
                               from j in catFp.DefaultIfEmpty()
                               where categoriesViewModel.Categories.Contains(j.WorkCategoryType)
-                              && j.WorkCategoryType == fwcat.WorkCategory.WorkCategoryType
+                              && j.WorkCategoryType == fwcat.WorkCategory.WorkCategoryType && fp != null
                               select new FundiRatingAndReviewViewModel
                               {
                                   FundiRatingAndReviewId = j.FundiRatingAndReviewId,
@@ -402,7 +442,13 @@ namespace MyFundi.Web.Controllers
                                   DateUpdated = j.DateUpdated,
                                   WorkCategoryType = j.WorkCategoryType,
                                   RatedByUser = _mapper.Map<UserViewModel>(j.User),
-                                  RatingByUserId = j.UserId
+                                  RatingByUserId = j.UserId,
+                                  DistanceApart= CoordinateHelper.ArePointsNear(
+                                  new CoordinateViewModel
+                                  {
+                                      Latitude = _unitOfWork._locationRepository.GetAll().First(q => q.AddressId == fp.AddressId).Latitude,
+                                      Longitude = _unitOfWork._locationRepository.GetAll().First(q => q.AddressId == fp.AddressId).Longitude
+                                  }, categoriesViewModel.Coordinate, km)
                               };
             if (reviewCateg.Any())
             {

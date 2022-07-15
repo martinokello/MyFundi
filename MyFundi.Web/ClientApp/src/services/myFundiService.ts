@@ -42,7 +42,9 @@ export class MyFundiService {
   public saveOrupdateClientProfileUrl: string = this.baseServerUrl + "/ClientProfile/CreateOrUpdateClientProfile"; 
   public updateJobUrl: string = this.baseServerUrl + "/ClientProfile/UpdateJob";
   public createOrUpdateFundiJobUrl: string = this.baseServerUrl + "/ClientProfile/CreateOrUpdateFundiJob";
+
   
+  public getJobsByCategoriesAndFundiUserUrl: string = this.baseServerUrl + "/FundiProfile/JobsByCategoriesAndFundiUser";
   public postAllFundiRatingsAndReviewsByCategoriesUrl: string = this.baseServerUrl + "/FundiProfile/PostAllFundiRatingsAndReviewsByCategories";
   public updateFundiProfileUrl: string = this.baseServerUrl + "/FundiProfile/UpdateFundiProfile"; 
   public getFundiProfileUrl: string = this.baseServerUrl + "/FundiProfile/GetFundiProfile"; 
@@ -777,11 +779,30 @@ export class MyFundiService {
     return this.httpClient.get(requestOptions.url, requestOptions.headers).map((res: any) => {
       return res;
     });
-  }
-  GetFundiRatingsAndReviews(categories: string[]): Observable<any> {
+  } 
+  GetJobsByCategoriesAndFundiUser(fundiUsername:string, categories: string[]): Observable<any> {
     const headers = new HttpHeaders({ 'content-type': 'application/json' });
 
-    let body: string = JSON.stringify({ categories: categories});
+    let body: string = JSON.stringify({ fundiUsername: fundiUsername, categories: categories });
+
+    let requestUrl = this.getJobsByCategoriesAndFundiUserUrl + "/" + fundiUsername;
+    let requestOptions: any = {
+      url: requestUrl,
+      method: 'POST',
+      headers: headers,
+      body: body,
+      responseType: 'application/json'
+    };
+
+    return this.httpClient.post(requestOptions.url, body, { 'headers': requestOptions.headers }).map((res: any) => {
+
+      return res;
+    });
+  }
+  GetFundiRatingsAndReviews(categories: string[], jobLocationCoordinate: ICoordinate): Observable<any> {
+    const headers = new HttpHeaders({ 'content-type': 'application/json' });
+
+    let body: string = JSON.stringify({ categories: categories, coordinate: jobLocationCoordinate});
 
     let requestUrl = this.postAllFundiRatingsAndReviewsByCategoriesUrl;
     let requestOptions: any = {

@@ -50,6 +50,7 @@ import { ClientFundiSearchComponent } from './clientFundiSearch/clientFundiSearc
 import { FundiProfileByIdComponent } from './fundiProfile-by-id/fundiProfileById.component';
 import { ClientProfileComponent } from './client/client.component';
 import { AddressLocationGeoCodeService } from '../services/AddressLocationGeoCodeService';
+import { FundiJobSearchComponent } from './fundiJobSearch/fundiJobSearch.component';
 
 @NgModule({
   declarations: [
@@ -92,7 +93,8 @@ import { AddressLocationGeoCodeService } from '../services/AddressLocationGeoCod
     WorkCategoryCrudComponent,
     ClientFundiSearchComponent,
     FundiProfileByIdComponent,
-    ClientProfileComponent
+    ClientProfileComponent,
+    FundiJobSearchComponent
 
 
   ],
@@ -125,7 +127,8 @@ import { AddressLocationGeoCodeService } from '../services/AddressLocationGeoCod
       { path: 'Client', component: ClientRoleComponent, canActivate: [AuthClientGuard] },
       { path: 'clientsearch', component: ClientFundiSearchComponent, canActivate: [AuthGuard] },
       { path: 'fundiprofile-by-id', component: FundiProfileByIdComponent, canActivate: [AuthGuard] },
-      { path: 'client-create-job', component: ClientProfileComponent, canActivate: [AuthClientGuard] }
+      { path: 'client-create-job', component: ClientProfileComponent, canActivate: [AuthClientGuard] },
+      { path: 'fundi-search-job', component: FundiJobSearchComponent, canActivate: [AuthFundiGuard] }
       
     ])
   ],
