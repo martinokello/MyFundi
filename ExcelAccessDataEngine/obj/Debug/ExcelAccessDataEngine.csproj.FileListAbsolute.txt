@@ -89,3 +89,4 @@ D:\Development\MyFundi\ExcelAccessDataEngine\obj\Debug\ExcelAccessDataEngine.csp
 D:\Development\MyFundi\ExcelAccessDataEngine\obj\Debug\ExcelAccessDataEngine.csproj.CopyComplete
 D:\Development\MyFundi\ExcelAccessDataEngine\obj\Debug\ExcelAccessDataEngine.dll
 D:\Development\MyFundi\ExcelAccessDataEngine\obj\Debug\ExcelAccessDataEngine.pdb
+D:\Development\MyFundi\ExcelAccessDataEngine\obj\Debug\ExcelAccessDataEngine.csproj.AssemblyReference.cache

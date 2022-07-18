@@ -107,20 +107,21 @@ namespace MyFundi.Web.Controllers
 
             //return  File(BitmapToBytes(profileImage), "image/jpg");
         }
-
+        [HttpGet]
+        [Route("~/FundiProfile/GetFundiCVByProfileId/{fundiProfileId}")]
         public async Task<IActionResult> GetFundiCVByProfileId(int fundiProfileId)
         {
 
             string contentPath = this.Environment.ContentRootPath + "\\MyFundiProfile\\";
             var userId = _unitOfWork._fundiProfileRepository.GetById(fundiProfileId).UserId;
-            string fundiCVImagePath = contentPath + "ProfileCV_" + _unitOfWork._userRepository.GetByGuid(userId);
+            string fundiCVImagePath = contentPath + "ProfileCV_" + _unitOfWork._userRepository.GetByGuid(userId).Username.ToLower();
             DirectoryInfo dir = new DirectoryInfo(contentPath);
 
             if (dir.Exists)
             {
                 var profInfo = dir.GetFiles().FirstOrDefault(f => f.FullName.ToLower().Contains(fundiCVImagePath.ToLower()));
 
-                if (profInfo.Exists)
+                if (profInfo != null)
                 {
                     using (var stream = profInfo.OpenRead())
                     {
@@ -147,6 +148,8 @@ namespace MyFundi.Web.Controllers
 
             //return  File(BitmapToBytes(profileImage), "image/jpg");
         }
+
+        [HttpGet]
         public async Task<IActionResult> GetFundiCVByUsername(string username)
         {
 
@@ -159,7 +162,7 @@ namespace MyFundi.Web.Controllers
             {
                 var profInfo = dir.GetFiles().FirstOrDefault(f => f.FullName.ToLower().Contains(fundiCVImagePath.ToLower()));
 
-                if (profInfo.Exists)
+                if (profInfo != null)
                 {
                     using (var stream = profInfo.OpenRead())
                     {

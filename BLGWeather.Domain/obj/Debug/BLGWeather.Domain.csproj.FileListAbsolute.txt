@@ -53,3 +53,4 @@ D:\Development\MyFundi\BLGWeather.Domain\bin\Debug\BLGWeather.Domain.pdb
 D:\Development\MyFundi\BLGWeather.Domain\obj\Debug\BLGWeather.Domain.csproj.CoreCompileInputs.cache
 D:\Development\MyFundi\BLGWeather.Domain\obj\Debug\BLGWeather.Domain.dll
 D:\Development\MyFundi\BLGWeather.Domain\obj\Debug\BLGWeather.Domain.pdb
+D:\Development\MyFundi\BLGWeather.Domain\obj\Debug\BLGWeather.Domain.csproj.AssemblyReference.cache
