@@ -35,11 +35,13 @@ export class AddLocationComponent implements OnInit {
       let addObs: Observable<IAddress> = this.myFundiService.GetAddressById(this.location.addressId);
       addObs.map((add: IAddress) => {
         this.geoCoder.geocodeAddress(add, operation);
+        document.getElementById("locmap").style.display = "block";
 
       }).subscribe();
     }
     else {
       this.geoCoder.setCreateUpdateLocation(operation, this.location);
+      document.getElementById("locmap").style.display = "block";
     }
   }
 

@@ -91,11 +91,13 @@ export class LocationComponent implements OnInit, AfterContentInit {
       addObs.map((add: IAddress) => {
         this.geoCoder.location = this.location;
         this.geoCoder.geocodeAddress(add, operation);
+        document.getElementById("locmap").style.display = "block";
 
       }).subscribe();
     }
     else {
-      this.geoCoder.setCreateUpdateLocation(operation,this.location);
+      this.geoCoder.setCreateUpdateLocation(operation, this.location);
+      document.getElementById("locmap").style.display = "none";
     }
   }
 }
