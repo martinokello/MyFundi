@@ -107,14 +107,12 @@
             <label class="custom-control-label" for="hasCompleted">Has Completed</label>
           </div>
         </div>
+      </div>
+      <div class="row" style="margin: 2px 0px !important;">
         <div class="col-lg-12" style="margin: 2px 0px !important;">
-          <input type="button" class="btn-primary" value="Select Job" (click)="selectJob($event)" />
-        </div>
-        <div class="col-lg-12" style="margin: 2px 0px !important;">
-          <input type="button" class="btn-primary" value="Create Job" (click)="createJob($event)" />
-        </div>
-        <div class="col-lg-12" style="margin: 2px 0px !important;">
-          <input type="button" class="btn-primary" value="Update Job" (click)="updateJob($event)" />
+          <input type="button" class="btn-primary" value="Select Job" style="margin-top:10px;" (click)="selectJob($event)" />
+          <input type="button" class="btn-primary" value="Create Job" style="margin-top:10px;" (click)="createJob($event)" />
+          <input type="button" class="btn-primary" value="Update Job" style="margin-top:10px;" (click)="updateJob($event)" />
         </div>
       </div>
     </form>
