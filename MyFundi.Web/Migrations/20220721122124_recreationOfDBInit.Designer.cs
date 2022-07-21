@@ -10,8 +10,8 @@ using MyFundi.DataAccess;
 namespace MyFundi.Web.Migrations
 {
     [DbContext(typeof(MyFundiDBContext))]
-    [Migration("20220123184631_FK_FundiProfiles_Users_UserId")]
-    partial class FK_FundiProfiles_Users_UserId
+    [Migration("20220721122124_recreationOfDBInit")]
+    partial class recreationOfDBInit
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -88,6 +88,9 @@ namespace MyFundi.Web.Migrations
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
+                    b.Property<decimal>("AgreedCost")
+                        .HasColumnType("decimal(18,2)");
+
                     b.Property<Guid>("ClientUserId")
                         .HasColumnType("uniqueidentifier");
 
@@ -112,6 +115,9 @@ namespace MyFundi.Web.Migrations
                     b.Property<string>("NotesForNotice")
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<decimal>("NumberOfDaysToComplete")
+                        .HasColumnType("decimal(18,2)");
+
                     b.HasKey("ClientFundiContractId");
 
                     b.HasIndex("ClientUserId");
@@ -119,6 +125,40 @@ namespace MyFundi.Web.Migrations
                     b.HasIndex("FundiUserId");
 
                     b.ToTable("ClientFundiContracts");
+                });
+
+            modelBuilder.Entity("MyFundi.Domain.ClientProfile", b =>
+                {
+                    b.Property<int>("ClientProfileId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<int>("AddressId")
+                        .HasColumnType("int");
+
+                    b.Property<DateTime>("DateCreated")
+                        .HasColumnType("datetime2");
+
+                    b.Property<DateTime>("DateUpdated")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("ProfileImageUrl")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("ProfileSummary")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<Guid>("UserId")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.HasKey("ClientProfileId");
+
+                    b.HasIndex("AddressId");
+
+                    b.HasIndex("UserId");
+
+                    b.ToTable("ClientProfiles");
                 });
 
             modelBuilder.Entity("MyFundi.Domain.Company", b =>
@@ -273,9 +313,9 @@ namespace MyFundi.Web.Migrations
                     b.ToTable("FundiProfileCourses");
                 });
 
-            modelBuilder.Entity("MyFundi.Domain.FundiProfileFundiRating", b =>
+            modelBuilder.Entity("MyFundi.Domain.FundiRatingAndReview", b =>
                 {
-                    b.Property<int>("FundiProfileFundiRatingId")
+                    b.Property<int>("FundiRatingAndReviewId")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
@@ -286,46 +326,28 @@ namespace MyFundi.Web.Migrations
                     b.Property<DateTime>("DateUpdated")
                         .HasColumnType("datetime2");
 
-                    b.Property<int>("FundiProfileiId")
+                    b.Property<int>("FundiProfileId")
                         .HasColumnType("int");
-
-                    b.Property<int>("FundiRatingId")
-                        .HasColumnType("int");
-
-                    b.HasKey("FundiProfileFundiRatingId");
-
-                    b.HasIndex("FundiProfileiId");
-
-                    b.HasIndex("FundiRatingId");
-
-                    b.ToTable("FundiProfileFundiRatings");
-                });
-
-            modelBuilder.Entity("MyFundi.Domain.FundiRating", b =>
-                {
-                    b.Property<int>("FundiRatingId")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
-                    b.Property<DateTime>("DateCreated")
-                        .HasColumnType("datetime2");
-
-                    b.Property<DateTime>("DateUpdated")
-                        .HasColumnType("datetime2");
-
-                    b.Property<string>("FundiRatingDescription")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("FundiRatingSummary")
-                        .HasColumnType("nvarchar(max)");
 
                     b.Property<int>("Rating")
                         .HasColumnType("int");
 
-                    b.HasKey("FundiRatingId");
+                    b.Property<string>("Review")
+                        .HasColumnType("nvarchar(max)");
 
-                    b.ToTable("FundiRatings");
+                    b.Property<Guid>("UserId")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<string>("WorkCategoryType")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("FundiRatingAndReviewId");
+
+                    b.HasIndex("FundiProfileId");
+
+                    b.HasIndex("UserId");
+
+                    b.ToTable("FundiProfileAndReviewRatings");
                 });
 
             modelBuilder.Entity("MyFundi.Domain.FundiWorkCategory", b =>
@@ -342,6 +364,9 @@ namespace MyFundi.Web.Migrations
                         .HasColumnType("datetime2");
 
                     b.Property<int>("FundiProfileId")
+                        .HasColumnType("int");
+
+                    b.Property<int?>("JobId")
                         .HasColumnType("int");
 
                     b.Property<int>("WorkCategoryId")
@@ -426,6 +451,67 @@ namespace MyFundi.Web.Migrations
                     b.ToTable("Items");
                 });
 
+            modelBuilder.Entity("MyFundi.Domain.Job", b =>
+                {
+                    b.Property<int>("JobId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<int?>("AssignedFundiProfileId")
+                        .HasColumnType("int");
+
+                    b.Property<Guid?>("AssignedFundiUserId")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<int?>("ClientFundiContractId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("ClientProfileId")
+                        .HasColumnType("int");
+
+                    b.Property<Guid>("ClientUserId")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<DateTime>("DateCreated")
+                        .HasColumnType("datetime2");
+
+                    b.Property<DateTime>("DateUpdated")
+                        .HasColumnType("datetime2");
+
+                    b.Property<bool>("HasBeenAssignedFundi")
+                        .HasColumnType("bit");
+
+                    b.Property<bool>("HasCompleted")
+                        .HasColumnType("bit");
+
+                    b.Property<string>("JobDescription")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("JobName")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("LocationId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("NumberOfDaysToComplete")
+                        .HasColumnType("int");
+
+                    b.HasKey("JobId");
+
+                    b.HasIndex("AssignedFundiProfileId");
+
+                    b.HasIndex("AssignedFundiUserId");
+
+                    b.HasIndex("ClientProfileId");
+
+                    b.HasIndex("ClientUserId");
+
+                    b.HasIndex("LocationId");
+
+                    b.ToTable("Jobs");
+                });
+
             modelBuilder.Entity("MyFundi.Domain.Location", b =>
                 {
                     b.Property<int>("LocationId")
@@ -445,8 +531,17 @@ namespace MyFundi.Web.Migrations
                     b.Property<DateTime>("DateUpdated")
                         .HasColumnType("datetime2");
 
+                    b.Property<bool>("IsGeocoded")
+                        .HasColumnType("bit");
+
+                    b.Property<float?>("Latitude")
+                        .HasColumnType("real");
+
                     b.Property<string>("LocationName")
                         .HasColumnType("nvarchar(max)");
+
+                    b.Property<float?>("Longitude")
+                        .HasColumnType("real");
 
                     b.HasKey("LocationId");
 
@@ -471,27 +566,6 @@ namespace MyFundi.Web.Migrations
                         .HasFilter("[RoleName] IS NOT NULL");
 
                     b.ToTable("Roles");
-                });
-
-            modelBuilder.Entity("MyFundi.Domain.TransportLog", b =>
-                {
-                    b.Property<int>("TransportLogId")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
-                    b.Property<int>("InvoiceId")
-                        .HasColumnType("int");
-
-                    b.Property<string>("TransportLogName")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<int>("TransportScheduleId")
-                        .HasColumnType("int");
-
-                    b.HasKey("TransportLogId");
-
-                    b.ToTable("TransportLogs");
                 });
 
             modelBuilder.Entity("MyFundi.Domain.User", b =>
@@ -587,6 +661,7 @@ namespace MyFundi.Web.Migrations
                     b.Property<DateTime>("DateUpdated")
                         .HasColumnType("datetime2");
 
+
                     b.Property<string>("WorkCategoryDescription")
                         .HasColumnType("nvarchar(max)");
 
@@ -609,6 +684,21 @@ namespace MyFundi.Web.Migrations
                     b.HasOne("MyFundi.Domain.User", "FundiUser")
                         .WithMany()
                         .HasForeignKey("FundiUserId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+                });
+
+            modelBuilder.Entity("MyFundi.Domain.ClientProfile", b =>
+                {
+                    b.HasOne("MyFundi.Domain.Address", "Address")
+                        .WithMany()
+                        .HasForeignKey("AddressId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("MyFundi.Domain.User", "User")
+                        .WithMany()
+                        .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
                 });
@@ -667,17 +757,17 @@ namespace MyFundi.Web.Migrations
                         .IsRequired();
                 });
 
-            modelBuilder.Entity("MyFundi.Domain.FundiProfileFundiRating", b =>
+            modelBuilder.Entity("MyFundi.Domain.FundiRatingAndReview", b =>
                 {
                     b.HasOne("MyFundi.Domain.FundiProfile", "FundiProfile")
                         .WithMany()
-                        .HasForeignKey("FundiProfileiId")
+                        .HasForeignKey("FundiProfileId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("MyFundi.Domain.FundiRating", "FundiRating")
+                    b.HasOne("MyFundi.Domain.User", "User")
                         .WithMany()
-                        .HasForeignKey("FundiRatingId")
+                        .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
                 });
@@ -715,6 +805,35 @@ namespace MyFundi.Web.Migrations
                         .IsRequired();
                 });
 
+            modelBuilder.Entity("MyFundi.Domain.Job", b =>
+                {
+                    b.HasOne("MyFundi.Domain.FundiProfile", "AssignedFundiProfile")
+                        .WithMany()
+                        .HasForeignKey("AssignedFundiProfileId");
+
+                    b.HasOne("MyFundi.Domain.User", "AssignedFundiUser")
+                        .WithMany()
+                        .HasForeignKey("AssignedFundiUserId");
+
+                    b.HasOne("MyFundi.Domain.ClientProfile", "ClientProfile")
+                        .WithMany()
+                        .HasForeignKey("ClientProfileId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("MyFundi.Domain.User", "ClientUser")
+                        .WithMany()
+                        .HasForeignKey("ClientUserId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("MyFundi.Domain.Location", "Location")
+                        .WithMany()
+                        .HasForeignKey("LocationId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+                });
+
             modelBuilder.Entity("MyFundi.Domain.Location", b =>
                 {
                     b.HasOne("MyFundi.Domain.Address", "Address")
@@ -747,6 +866,7 @@ namespace MyFundi.Web.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
                 });
+
 #pragma warning restore 612, 618
         }
     }

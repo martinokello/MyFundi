@@ -364,6 +364,9 @@ namespace MyFundi.Web.Migrations
                     b.Property<int>("FundiProfileId")
                         .HasColumnType("int");
 
+                    b.Property<int?>("JobId")
+                        .HasColumnType("int");
+
                     b.Property<int>("WorkCategoryId")
                         .HasColumnType("int");
 

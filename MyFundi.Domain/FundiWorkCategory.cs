@@ -16,6 +16,8 @@ namespace MyFundi.Domain
         [ForeignKey("WorkCategory")]
         public int WorkCategoryId { get; set; }
         public WorkCategory WorkCategory { get; set; }
+        [ForeignKey("Job")]
+        public int? JobId { get; set; }
         public DateTime DateCreated { get; set; } = DateTime.Now;
         public DateTime DateUpdated { get; set; } = DateTime.Now;
     }

@@ -40,6 +40,7 @@ namespace MyFundi.Services.RepositoryServices.Concretes
                 var cert = GetById(toUpdate.FundiWorkCategoryId);
                 cert.FundiProfileId = toUpdate.FundiProfileId;
                 cert.WorkCategoryId = toUpdate.WorkCategoryId;
+                cert.JobId = toUpdate.JobId;
                 cert.DateUpdated = toUpdate.DateUpdated;
                 return true;
             }
