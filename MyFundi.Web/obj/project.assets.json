@@ -7303,28 +7303,25 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\mart4\\.nuget\\packages\\": {},
-    "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages": {},
+    "C:\\Users\\martinokello\\.nuget\\packages\\": {},
     "C:\\Program Files (x86)\\Microsoft\\Xamarin\\NuGet\\": {},
     "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "D:\\Development\\MyFundi\\MyFundi.Web\\MyFundi.Web.csproj",
+      "projectUniqueName": "C:\\Development\\HandyMan\\MyFundi.Web\\MyFundi.Web.csproj",
       "projectName": "MyFundi.Web",
-      "projectPath": "D:\\Development\\MyFundi\\MyFundi.Web\\MyFundi.Web.csproj",
-      "packagesPath": "C:\\Users\\mart4\\.nuget\\packages\\",
-      "outputPath": "D:\\Development\\MyFundi\\MyFundi.Web\\obj\\",
+      "projectPath": "C:\\Development\\HandyMan\\MyFundi.Web\\MyFundi.Web.csproj",
+      "packagesPath": "C:\\Users\\martinokello\\.nuget\\packages\\",
+      "outputPath": "C:\\Development\\HandyMan\\MyFundi.Web\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
-        "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages",
         "C:\\Program Files (x86)\\Microsoft\\Xamarin\\NuGet\\",
         "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
       ],
       "configFilePaths": [
-        "C:\\Users\\mart4\\AppData\\Roaming\\NuGet\\NuGet.Config",
-        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
+        "C:\\Users\\martinokello\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Xamarin.Offline.config"
       ],
@@ -7332,54 +7329,53 @@
         "netcoreapp3.1"
       ],
       "sources": {
-        "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
         "https://api.nuget.org/v3/index.json": {}
       },
       "frameworks": {
         "netcoreapp3.1": {
           "targetAlias": "netcoreapp3.1",
           "projectReferences": {
-            "D:\\Development\\MyFundi\\BLG.Business\\BLG.Business.csproj": {
-              "projectPath": "D:\\Development\\MyFundi\\BLG.Business\\BLG.Business.csproj"
+            "C:\\Development\\HandyMan\\BLG.Business\\BLG.Business.csproj": {
+              "projectPath": "C:\\Development\\HandyMan\\BLG.Business\\BLG.Business.csproj"
             },
-            "D:\\Development\\MyFundi\\ExcelAccessDataEngine\\ExcelAccessDataEngine.csproj": {
-              "projectPath": "D:\\Development\\MyFundi\\ExcelAccessDataEngine\\ExcelAccessDataEngine.csproj"
+            "C:\\Development\\HandyMan\\ExcelAccessDataEngine\\ExcelAccessDataEngine.csproj": {
+              "projectPath": "C:\\Development\\HandyMan\\ExcelAccessDataEngine\\ExcelAccessDataEngine.csproj"
             },
-            "D:\\Development\\MyFundi\\MyFundi.AppConfigurations\\MyFundi.AppConfigurations.csproj": {
-              "projectPath": "D:\\Development\\MyFundi\\MyFundi.AppConfigurations\\MyFundi.AppConfigurations.csproj"
+            "C:\\Development\\HandyMan\\MyFundi.AppConfigurations\\MyFundi.AppConfigurations.csproj": {
+              "projectPath": "C:\\Development\\HandyMan\\MyFundi.AppConfigurations\\MyFundi.AppConfigurations.csproj"
             },
-            "D:\\Development\\MyFundi\\MyFundi.DataAccess\\MyFundi.DataAccess.csproj": {
-              "projectPath": "D:\\Development\\MyFundi\\MyFundi.DataAccess\\MyFundi.DataAccess.csproj"
+            "C:\\Development\\HandyMan\\MyFundi.DataAccess\\MyFundi.DataAccess.csproj": {
+              "projectPath": "C:\\Development\\HandyMan\\MyFundi.DataAccess\\MyFundi.DataAccess.csproj"
             },
-            "D:\\Development\\MyFundi\\MyFundi.Domain\\MyFundi.Domain.csproj": {
-              "projectPath": "D:\\Development\\MyFundi\\MyFundi.Domain\\MyFundi.Domain.csproj"
+            "C:\\Development\\HandyMan\\MyFundi.Domain\\MyFundi.Domain.csproj": {
+              "projectPath": "C:\\Development\\HandyMan\\MyFundi.Domain\\MyFundi.Domain.csproj"
             },
-            "D:\\Development\\MyFundi\\MyFundi.Services\\MyFundi.Services.csproj": {
-              "projectPath": "D:\\Development\\MyFundi\\MyFundi.Services\\MyFundi.Services.csproj"
+            "C:\\Development\\HandyMan\\MyFundi.Services\\MyFundi.Services.csproj": {
+              "projectPath": "C:\\Development\\HandyMan\\MyFundi.Services\\MyFundi.Services.csproj"
             },
-            "D:\\Development\\MyFundi\\MyFundi.UnitOfWork\\MyFundi.UnitOfWork.csproj": {
-              "projectPath": "D:\\Development\\MyFundi\\MyFundi.UnitOfWork\\MyFundi.UnitOfWork.csproj"
+            "C:\\Development\\HandyMan\\MyFundi.UnitOfWork\\MyFundi.UnitOfWork.csproj": {
+              "projectPath": "C:\\Development\\HandyMan\\MyFundi.UnitOfWork\\MyFundi.UnitOfWork.csproj"
             },
-            "D:\\Development\\MyFundi\\PaymentCalculater\\PaymentCalculater.csproj": {
-              "projectPath": "D:\\Development\\MyFundi\\PaymentCalculater\\PaymentCalculater.csproj"
+            "C:\\Development\\HandyMan\\PaymentCalculater\\PaymentCalculater.csproj": {
+              "projectPath": "C:\\Development\\HandyMan\\PaymentCalculater\\PaymentCalculater.csproj"
             },
-            "D:\\Development\\MyFundi\\PaymentGateway\\PaymentsGateway.csproj": {
-              "projectPath": "D:\\Development\\MyFundi\\PaymentGateway\\PaymentsGateway.csproj"
+            "C:\\Development\\HandyMan\\PaymentGateway\\PaymentsGateway.csproj": {
+              "projectPath": "C:\\Development\\HandyMan\\PaymentGateway\\PaymentsGateway.csproj"
             },
-            "D:\\Development\\MyFundi\\PaypalFacility\\PaypalFacility.csproj": {
-              "projectPath": "D:\\Development\\MyFundi\\PaypalFacility\\PaypalFacility.csproj"
+            "C:\\Development\\HandyMan\\PaypalFacility\\PaypalFacility.csproj": {
+              "projectPath": "C:\\Development\\HandyMan\\PaypalFacility\\PaypalFacility.csproj"
             },
-            "D:\\Development\\MyFundi\\ServiceEndPoint\\ServiceEndPoint.csproj": {
-              "projectPath": "D:\\Development\\MyFundi\\ServiceEndPoint\\ServiceEndPoint.csproj"
+            "C:\\Development\\HandyMan\\ServiceEndPoint\\ServiceEndPoint.csproj": {
+              "projectPath": "C:\\Development\\HandyMan\\ServiceEndPoint\\ServiceEndPoint.csproj"
             },
-            "D:\\Development\\MyFundi\\SimbaToursEastAfrica.Caching\\SimbaToursEastAfrica.Caching.csproj": {
-              "projectPath": "D:\\Development\\MyFundi\\SimbaToursEastAfrica.Caching\\SimbaToursEastAfrica.Caching.csproj"
+            "C:\\Development\\HandyMan\\SimbaToursEastAfrica.Caching\\SimbaToursEastAfrica.Caching.csproj": {
+              "projectPath": "C:\\Development\\HandyMan\\SimbaToursEastAfrica.Caching\\SimbaToursEastAfrica.Caching.csproj"
             },
-            "D:\\Development\\MyFundi\\SimbaToursEastAfrica.SocialMedia\\SimbaToursEastAfrica.SocialMedia.csproj": {
-              "projectPath": "D:\\Development\\MyFundi\\SimbaToursEastAfrica.SocialMedia\\SimbaToursEastAfrica.SocialMedia.csproj"
+            "C:\\Development\\HandyMan\\SimbaToursEastAfrica.SocialMedia\\SimbaToursEastAfrica.SocialMedia.csproj": {
+              "projectPath": "C:\\Development\\HandyMan\\SimbaToursEastAfrica.SocialMedia\\SimbaToursEastAfrica.SocialMedia.csproj"
             },
-            "D:\\Development\\MyFundi\\Twitter\\Twitter.csproj": {
-              "projectPath": "D:\\Development\\MyFundi\\Twitter\\Twitter.csproj"
+            "C:\\Development\\HandyMan\\Twitter\\Twitter.csproj": {
+              "projectPath": "C:\\Development\\HandyMan\\Twitter\\Twitter.csproj"
             }
           }
         }
@@ -7453,7 +7449,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.107\\RuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.301\\RuntimeIdentifierGraph.json"
       }
     }
   },

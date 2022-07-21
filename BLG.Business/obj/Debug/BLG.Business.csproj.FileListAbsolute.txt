@@ -198,3 +198,13 @@ D:\Development\MyFundi\BLG.Business\obj\Debug\BLG.Business.csproj.CoreCompileInp
 D:\Development\MyFundi\BLG.Business\obj\Debug\BLG.Business.csproj.CopyComplete
 D:\Development\MyFundi\BLG.Business\obj\Debug\BLG.Business.dll
 D:\Development\MyFundi\BLG.Business\obj\Debug\BLG.Business.pdb
+C:\Development\HandyMan\BLG.Business\bin\Debug\BLG.Business.dll
+C:\Development\HandyMan\BLG.Business\bin\Debug\BLG.Business.pdb
+C:\Development\HandyMan\BLG.Business\bin\Debug\BLGWeather.Domain.dll
+C:\Development\HandyMan\BLG.Business\bin\Debug\Newtonsoft.Json.dll
+C:\Development\HandyMan\BLG.Business\bin\Debug\BLGWeather.Domain.pdb
+C:\Development\HandyMan\BLG.Business\obj\Debug\BLG.Business.csproj.AssemblyReference.cache
+C:\Development\HandyMan\BLG.Business\obj\Debug\BLG.Business.csproj.CoreCompileInputs.cache
+C:\Development\HandyMan\BLG.Business\obj\Debug\BLG.Business.csproj.CopyComplete
+C:\Development\HandyMan\BLG.Business\obj\Debug\BLG.Business.dll
+C:\Development\HandyMan\BLG.Business\obj\Debug\BLG.Business.pdb

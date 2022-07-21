@@ -48,7 +48,7 @@ namespace MyFundi.Services.RepositoryServices.Concretes
                 item.AssignedFundiProfileId = toUpdate.AssignedFundiProfileId;
                 item.AssignedFundiUserId = toUpdate.AssignedFundiUserId;
                 item.ClientFundiContractId = toUpdate.ClientFundiContractId;
-                item.WorkCategoryIds = toUpdate.WorkCategoryIds;
+                item.WorkCategories = toUpdate.WorkCategories;
                 item.HasBeenAssignedFundi = toUpdate.HasBeenAssignedFundi;
                 item.NumberOfDaysToComplete = toUpdate.NumberOfDaysToComplete;
                 item.DateUpdated = DateTime.Now;

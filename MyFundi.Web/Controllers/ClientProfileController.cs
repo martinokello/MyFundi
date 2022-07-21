@@ -202,8 +202,14 @@ namespace MyFundi.Web.Controllers
             {
                 var job = _mapper.Map<Job>(jobViewModel);
 
+                var workCategories = jobViewModel.WorkCategoryIds.Split(new char[] { ',' }, StringSplitOptions.RemoveEmptyEntries);
                 var result = _unitOfWork._jobRepository.GetById(job.JobId);
+                var workCats = GetWorkCategoriesForIds(workCategories);
 
+                if (workCats.Any())
+                {
+                    job.WorkCategories = workCats;
+                }
                 if (result == null)
                 {
                     _unitOfWork._jobRepository.Insert(job);
@@ -254,6 +260,7 @@ namespace MyFundi.Web.Controllers
             if (ModelState.IsValid)
             {
                 var job = _mapper.Map<Job>(jobViewModel);
+                var workCategories = jobViewModel.WorkCategoryIds.Split(new char[] { ',' }, StringSplitOptions.RemoveEmptyEntries);
 
                 var result = _unitOfWork._jobRepository.GetById(job.JobId);
 
@@ -263,6 +270,11 @@ namespace MyFundi.Web.Controllers
                 }
                 else
                 {
+                    var workCats = GetWorkCategoriesForIds(workCategories);
+                    if (workCats.Any())
+                    {
+                        job.WorkCategories = workCats;
+                    }
                     _unitOfWork._jobRepository.Update(job);
                     _unitOfWork.SaveChanges();
                     return await Task.FromResult(Ok(new { Message = "Succefully Updated Job" }));
@@ -288,6 +300,17 @@ namespace MyFundi.Web.Controllers
                 }
             }
             return await Task.FromResult(BadRequest(new { Message = "Fundi Profile not Deleted, therefore operation failed!" }));
+        }
+
+        public WorkCategory[] GetWorkCategoriesForIds(string[] workCategoryIds)
+        {
+            var listWorkCatIds = new List<int>();
+            foreach(var wkCatStr in workCategoryIds)
+            {
+                listWorkCatIds.Add(int.Parse(wkCatStr));
+            }
+            var workCategories =_unitOfWork._workCategoryRepository.GetAll().Where(q=> listWorkCatIds.Contains(q.WorkCategoryId));
+            return workCategories.ToArray();
         }
     }
 }

@@ -28,3 +28,12 @@ D:\Development\MyFundi\MyFundi.Domain\obj\Debug\netcoreapp3.1\MyFundi.Domain.csp
 D:\Development\MyFundi\MyFundi.Domain\obj\Debug\netcoreapp3.1\MyFundi.Domain.dll
 D:\Development\MyFundi\MyFundi.Domain\obj\Debug\netcoreapp3.1\MyFundi.Domain.pdb
 D:\Development\MyFundi\MyFundi.Domain\obj\Debug\netcoreapp3.1\MyFundi.Domain.csproj.AssemblyReference.cache
+C:\Development\HandyMan\MyFundi.Domain\bin\Debug\netcoreapp3.1\MyFundi.Domain.deps.json
+C:\Development\HandyMan\MyFundi.Domain\bin\Debug\netcoreapp3.1\MyFundi.Domain.dll
+C:\Development\HandyMan\MyFundi.Domain\bin\Debug\netcoreapp3.1\MyFundi.Domain.pdb
+C:\Development\HandyMan\MyFundi.Domain\obj\Debug\netcoreapp3.1\MyFundi.Domain.csproj.AssemblyReference.cache
+C:\Development\HandyMan\MyFundi.Domain\obj\Debug\netcoreapp3.1\MyFundi.Domain.AssemblyInfoInputs.cache
+C:\Development\HandyMan\MyFundi.Domain\obj\Debug\netcoreapp3.1\MyFundi.Domain.AssemblyInfo.cs
+C:\Development\HandyMan\MyFundi.Domain\obj\Debug\netcoreapp3.1\MyFundi.Domain.csproj.CoreCompileInputs.cache
+C:\Development\HandyMan\MyFundi.Domain\obj\Debug\netcoreapp3.1\MyFundi.Domain.dll
+C:\Development\HandyMan\MyFundi.Domain\obj\Debug\netcoreapp3.1\MyFundi.Domain.pdb
