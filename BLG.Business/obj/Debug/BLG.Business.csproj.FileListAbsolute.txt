@@ -207,3 +207,4 @@ C:\Development\HandyMan\BLG.Business\obj\Debug\BLG.Business.csproj.CoreCompileIn
 C:\Development\HandyMan\BLG.Business\obj\Debug\BLG.Business.csproj.CopyComplete
 C:\Development\HandyMan\BLG.Business\obj\Debug\BLG.Business.dll
 C:\Development\HandyMan\BLG.Business\obj\Debug\BLG.Business.pdb
+D:\Development\MyFundi\BLG.Business\bin\Debug\Newtonsoft.Json.dll

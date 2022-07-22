@@ -389,13 +389,13 @@ namespace MyFundi.Web.Controllers
             float km = 5;
             //var categoryIds = _unitOfWork._workCategoryRepository.GetAll().Where(q => categoriesViewModel.Categories.Contains(q.WorkCategoryType)).Select(q => q.WorkCategoryId.ToString());
 
-            var reviewCateg = (from jb in _unitOfWork._jobRepository.GetAll().Include(l=> l.WorkCategories).Include(l => l.ClientProfile).Include(l => l.ClientUser).Include(l => l.Location)
-                               join fwcat in _unitOfWork._fundiWorkCategoryRepository.GetAll().Include(q=> q.WorkCategory)
-                               on  jb.JobId equals fwcat.JobId
+            var reviewCateg = (from jb in _unitOfWork._jobRepository.GetAll().Include(l => l.WorkCategories).Include(l => l.ClientProfile).Include(l => l.ClientUser).Include(l => l.Location)
+                               join fwcat in _unitOfWork._fundiWorkCategoryRepository.GetAll().Include(q => q.WorkCategory)
+                               on jb.JobId equals fwcat.JobId
                                join fp in _unitOfWork._fundiProfileRepository.GetAll()
                                on fwcat.FundiProfileId equals fp.FundiProfileId
                                join fu in _unitOfWork._userRepository.GetAll()
-                               on  fp.UserId equals fu.UserId
+                               on fp.UserId equals fu.UserId
                                where fu.Username == fundiUsername && categoriesViewModel.Categories.Contains(fwcat.WorkCategory.WorkCategoryType)
                                select new ClientJobDistanceViewModel
                                {
@@ -403,15 +403,19 @@ namespace MyFundi.Web.Controllers
                                    {
                                        JobId = jb.JobId,
                                        JobName = jb.JobName,
+                                       JobDescription = jb.JobDescription,
                                        HasBeenAssignedFundi = jb.HasBeenAssignedFundi,
                                        ClientFundiContractId = jb.ClientFundiContractId,
                                        LocationId = jb.LocationId,
+                                       Location = _mapper.Map<LocationViewModel>(jb.Location),
+                                       ClientProfile = _mapper.Map<ClientProfileViewModel>(jb.ClientProfile),
+                                       ClientUser = _mapper.Map<UserViewModel>(jb.ClientUser),
                                        ClientUserId = jb.ClientUserId,
                                        NumberOfDaysToComplete = jb.NumberOfDaysToComplete,
                                        ClientProfileId = jb.ClientProfileId,
                                        AssignedFundiProfileId = jb.AssignedFundiProfileId,
                                        AssignedFundiUserId = jb.AssignedFundiUserId,
-                                       WorkCategoryIds = String.Join(",", jb.WorkCategories.Select(q => q.WorkCategoryId.ToString()).ToArray())
+                                       WorkCategoryIds = String.Join(",", _unitOfWork._workCategoryRepository.GetAll().Where(q => q.WorkCategoryId == fwcat.WorkCategoryId).Select(s => s.WorkCategoryId.ToString()))
                                    },
                                    Client = _mapper.Map<ClientProfileViewModel>(jb.ClientProfile),
                                    DistanceApart = CoordinateHelper.ArePointsNear(
