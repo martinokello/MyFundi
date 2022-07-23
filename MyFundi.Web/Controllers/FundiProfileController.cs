@@ -389,8 +389,6 @@ namespace MyFundi.Web.Controllers
             float km = 5;
 
             var reviewCateg = (from jb in _unitOfWork._jobRepository.GetAll().Include(l => l.ClientProfile).Include(l => l.ClientUser).Include(l => l.Location)
-                                   //join jbWcat in _unitOfWork._jobWorkCategoryRepository.GetAll()
-                               //from wcat in _unitOfWork._workCategoryRepository.GetAll()
                                join fwcat in _unitOfWork._fundiWorkCategoryRepository.GetAll()
                                on jb.JobId equals fwcat.JobId
                                join fp in _unitOfWork._fundiProfileRepository.GetAll()
@@ -434,7 +432,6 @@ namespace MyFundi.Web.Controllers
                                        ClientProfileId = jobRes.ClientProfileId,
                                        AssignedFundiProfileId = jobRes.AssignedFundiProfileId,
                                        AssignedFundiUserId = jobRes.AssignedFundiUserId,
-                                       //JobWorkCategories = _mapper.Map<JobWorkCategoryViewModel[]>(resGroup.Select(q => q.JobWorkCategoryId).ToArray())
                                        JobWorkCategoryIds = _unitOfWork._jobWorkCategoryRepository.GetAll().Where(q => q.JobId == jobRes.JobId).Select(s => (int)s.WorkCategoryId).ToArray()
                                    },
                                    Client = _mapper.Map<ClientProfileViewModel>(jobRes.ClientProfile),
