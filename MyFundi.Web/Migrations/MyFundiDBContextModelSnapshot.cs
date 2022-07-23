@@ -510,6 +510,34 @@ namespace MyFundi.Web.Migrations
                     b.ToTable("Jobs");
                 });
 
+            modelBuilder.Entity("MyFundi.Domain.JobWorkCategory", b =>
+                {
+                    b.Property<int>("JobWorkCategoryId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<DateTime>("DateCreated")
+                        .HasColumnType("datetime2");
+
+                    b.Property<DateTime>("DateUpdated")
+                        .HasColumnType("datetime2");
+
+                    b.Property<int?>("JobId")
+                        .HasColumnType("int");
+
+                    b.Property<int?>("WorkCategoryId")
+                        .HasColumnType("int");
+
+                    b.HasKey("JobWorkCategoryId");
+
+                    b.HasIndex("JobId");
+
+                    b.HasIndex("WorkCategoryId");
+
+                    b.ToTable("JobWorkCategories");
+                });
+
             modelBuilder.Entity("MyFundi.Domain.Location", b =>
                 {
                     b.Property<int>("LocationId")
@@ -834,6 +862,17 @@ namespace MyFundi.Web.Migrations
                         .HasForeignKey("LocationId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
+                });
+
+            modelBuilder.Entity("MyFundi.Domain.JobWorkCategory", b =>
+                {
+                    b.HasOne("MyFundi.Domain.Job", "Job")
+                        .WithMany()
+                        .HasForeignKey("JobId");
+
+                    b.HasOne("MyFundi.Domain.WorkCategory", "WorkCategory")
+                        .WithMany()
+                        .HasForeignKey("WorkCategoryId");
                 });
 
             modelBuilder.Entity("MyFundi.Domain.Location", b =>

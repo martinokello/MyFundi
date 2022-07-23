@@ -202,22 +202,41 @@ namespace MyFundi.Web.Controllers
             {
                 var job = _mapper.Map<Job>(jobViewModel);
 
-                var workCategories = jobViewModel.WorkCategoryIds.Split(new char[] { ',' }, StringSplitOptions.RemoveEmptyEntries);
-                var result = _unitOfWork._jobRepository.GetById(job.JobId);
-                var workCats = GetWorkCategoriesForIds(workCategories);
+                var workCats = GetWorkCategoriesForIds(jobViewModel.JobWorkCategoryIds);
 
-                if (workCats.Any())
-                {
-                    job.WorkCategories = workCats;
-                }
+                var result = _unitOfWork._jobRepository.GetById(job.JobId);
+
+
                 if (result == null)
                 {
                     _unitOfWork._jobRepository.Insert(job);
+                    _unitOfWork.SaveChanges();
+                    if (workCats.Any())
+                    {
+                        foreach (var wc in workCats)
+                        {
+                            _unitOfWork._jobWorkCategoryRepository.Insert(new JobWorkCategory { JobId = job.JobId, WorkCategoryId = wc.WorkCategoryId });
+                        }
+                    }
                     _unitOfWork.SaveChanges();
                     return await Task.FromResult(Ok(new { Message = "Succefully Inserted Job" }));
                 }
                 else
                 {
+                    if (workCats.Any())
+                    {
+                        var jbWokCats = _unitOfWork._jobWorkCategoryRepository.GetAll().Where(q => q.JobId == job.JobId);
+                        foreach (var cat in jbWokCats)
+                        {
+                            _unitOfWork._jobWorkCategoryRepository.Delete(cat);
+                        }
+                        _unitOfWork.SaveChanges();
+
+                        foreach (var wc in workCats)
+                        {
+                            _unitOfWork._jobWorkCategoryRepository.Insert(new JobWorkCategory { JobId = job.JobId, WorkCategoryId = wc.WorkCategoryId });
+                        }
+                    }
                     _unitOfWork._jobRepository.Update(job);
                     _unitOfWork.SaveChanges();
                     return await Task.FromResult(Ok(new { Message = "Succefully Updated Job" }));
@@ -260,20 +279,31 @@ namespace MyFundi.Web.Controllers
             if (ModelState.IsValid)
             {
                 var job = _mapper.Map<Job>(jobViewModel);
-                var workCategories = jobViewModel.WorkCategoryIds.Split(new char[] { ',' }, StringSplitOptions.RemoveEmptyEntries);
+                var workCategories = jobViewModel.JobWorkCategoryIds;
 
                 var result = _unitOfWork._jobRepository.GetById(job.JobId);
 
                 if (result == null)
                 {
-                    return await Task.FromResult(Ok(new { Message = "Failed to Update Job. Job does not Exist!GetClientProfile" }));
+                    return await Task.FromResult(Ok(new { Message = "Failed to Update Job. Job does not Exist!" }));
                 }
                 else
                 {
                     var workCats = GetWorkCategoriesForIds(workCategories);
+
                     if (workCats.Any())
                     {
-                        job.WorkCategories = workCats;
+                        var jbWokCats = _unitOfWork._jobWorkCategoryRepository.GetAll().Where(q => q.JobId == job.JobId);
+                        foreach(var cat in jbWokCats)
+                        {
+                            _unitOfWork._jobWorkCategoryRepository.Delete(cat);
+                        }
+                        foreach (var wc in workCats)
+                        {
+                            var jbWokCat2 = _unitOfWork._jobWorkCategoryRepository.GetAll().FirstOrDefault(q => q.JobId == job.JobId);
+                            jbWokCat2.JobId = job.JobId;
+                            jbWokCat2.WorkCategoryId = wc.WorkCategoryId;
+                        }
                     }
                     _unitOfWork._jobRepository.Update(job);
                     _unitOfWork.SaveChanges();
@@ -302,14 +332,9 @@ namespace MyFundi.Web.Controllers
             return await Task.FromResult(BadRequest(new { Message = "Fundi Profile not Deleted, therefore operation failed!" }));
         }
 
-        public WorkCategory[] GetWorkCategoriesForIds(string[] workCategoryIds)
+        public WorkCategory[] GetWorkCategoriesForIds(int[] workCategoryIds)
         {
-            var listWorkCatIds = new List<int>();
-            foreach(var wkCatStr in workCategoryIds)
-            {
-                listWorkCatIds.Add(int.Parse(wkCatStr));
-            }
-            var workCategories =_unitOfWork._workCategoryRepository.GetAll().Where(q=> listWorkCatIds.Contains(q.WorkCategoryId));
+            var workCategories =_unitOfWork._workCategoryRepository.GetAll().Where(q=> workCategoryIds.Contains(q.WorkCategoryId));
             return workCategories.ToArray();
         }
     }

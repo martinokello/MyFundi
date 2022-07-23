@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace MyFundi.Web.Migrations
 {
-    public partial class recreationOfDBInit : Migration
+    public partial class dbInit : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -474,18 +474,11 @@ namespace MyFundi.Web.Migrations
                     WorkCategoryType = table.Column<string>(nullable: true),
                     WorkCategoryDescription = table.Column<string>(nullable: true),
                     DateCreated = table.Column<DateTime>(nullable: false),
-                    DateUpdated = table.Column<DateTime>(nullable: false),
-                    JobId = table.Column<int>(nullable: true)
+                    DateUpdated = table.Column<DateTime>(nullable: false)
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_WorkCategories", x => x.WorkCategoryId);
-                    table.ForeignKey(
-                        name: "FK_WorkCategories_Jobs_JobId",
-                        column: x => x.JobId,
-                        principalTable: "Jobs",
-                        principalColumn: "JobId",
-                        onDelete: ReferentialAction.Restrict);
                 });
 
             migrationBuilder.CreateTable(
@@ -515,6 +508,34 @@ namespace MyFundi.Web.Migrations
                         principalTable: "WorkCategories",
                         principalColumn: "WorkCategoryId",
                         onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "JobWorkCategories",
+                columns: table => new
+                {
+                    JobWorkCategoryId = table.Column<int>(nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    JobId = table.Column<int>(nullable: true),
+                    WorkCategoryId = table.Column<int>(nullable: true),
+                    DateCreated = table.Column<DateTime>(nullable: false),
+                    DateUpdated = table.Column<DateTime>(nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_JobWorkCategories", x => x.JobWorkCategoryId);
+                    table.ForeignKey(
+                        name: "FK_JobWorkCategories_Jobs_JobId",
+                        column: x => x.JobId,
+                        principalTable: "Jobs",
+                        principalColumn: "JobId",
+                        onDelete: ReferentialAction.Restrict);
+                    table.ForeignKey(
+                        name: "FK_JobWorkCategories_WorkCategories_WorkCategoryId",
+                        column: x => x.WorkCategoryId,
+                        principalTable: "WorkCategories",
+                        principalColumn: "WorkCategoryId",
+                        onDelete: ReferentialAction.Restrict);
                 });
 
             migrationBuilder.CreateIndex(
@@ -628,6 +649,16 @@ namespace MyFundi.Web.Migrations
                 column: "LocationId");
 
             migrationBuilder.CreateIndex(
+                name: "IX_JobWorkCategories_JobId",
+                table: "JobWorkCategories",
+                column: "JobId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_JobWorkCategories_WorkCategoryId",
+                table: "JobWorkCategories",
+                column: "WorkCategoryId");
+
+            migrationBuilder.CreateIndex(
                 name: "IX_Locations_AddressId",
                 table: "Locations",
                 column: "AddressId");
@@ -662,10 +693,6 @@ namespace MyFundi.Web.Migrations
                 column: "Username",
                 unique: true);
 
-            migrationBuilder.CreateIndex(
-                name: "IX_WorkCategories_JobId",
-                table: "WorkCategories",
-                column: "JobId");
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)
@@ -689,6 +716,9 @@ namespace MyFundi.Web.Migrations
                 name: "Items");
 
             migrationBuilder.DropTable(
+                name: "JobWorkCategories");
+
+            migrationBuilder.DropTable(
                 name: "UserRoles");
 
             migrationBuilder.DropTable(
@@ -698,10 +728,10 @@ namespace MyFundi.Web.Migrations
                 name: "Courses");
 
             migrationBuilder.DropTable(
-                name: "WorkCategories");
+                name: "Invoices");
 
             migrationBuilder.DropTable(
-                name: "Invoices");
+                name: "WorkCategories");
 
             migrationBuilder.DropTable(
                 name: "Roles");

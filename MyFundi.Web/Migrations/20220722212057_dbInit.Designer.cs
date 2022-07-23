@@ -10,8 +10,8 @@ using MyFundi.DataAccess;
 namespace MyFundi.Web.Migrations
 {
     [DbContext(typeof(MyFundiDBContext))]
-    [Migration("20220721122124_recreationOfDBInit")]
-    partial class recreationOfDBInit
+    [Migration("20220722212057_dbInit")]
+    partial class dbInit
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -512,6 +512,34 @@ namespace MyFundi.Web.Migrations
                     b.ToTable("Jobs");
                 });
 
+            modelBuilder.Entity("MyFundi.Domain.JobWorkCategory", b =>
+                {
+                    b.Property<int>("JobWorkCategoryId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<DateTime>("DateCreated")
+                        .HasColumnType("datetime2");
+
+                    b.Property<DateTime>("DateUpdated")
+                        .HasColumnType("datetime2");
+
+                    b.Property<int?>("JobId")
+                        .HasColumnType("int");
+
+                    b.Property<int?>("WorkCategoryId")
+                        .HasColumnType("int");
+
+                    b.HasKey("JobWorkCategoryId");
+
+                    b.HasIndex("JobId");
+
+                    b.HasIndex("WorkCategoryId");
+
+                    b.ToTable("JobWorkCategories");
+                });
+
             modelBuilder.Entity("MyFundi.Domain.Location", b =>
                 {
                     b.Property<int>("LocationId")
@@ -661,6 +689,8 @@ namespace MyFundi.Web.Migrations
                     b.Property<DateTime>("DateUpdated")
                         .HasColumnType("datetime2");
 
+                    b.Property<int?>("JobId")
+                        .HasColumnType("int");
 
                     b.Property<string>("WorkCategoryDescription")
                         .HasColumnType("nvarchar(max)");
@@ -669,6 +699,8 @@ namespace MyFundi.Web.Migrations
                         .HasColumnType("nvarchar(max)");
 
                     b.HasKey("WorkCategoryId");
+
+                    b.HasIndex("JobId");
 
                     b.ToTable("WorkCategories");
                 });
@@ -834,6 +866,17 @@ namespace MyFundi.Web.Migrations
                         .IsRequired();
                 });
 
+            modelBuilder.Entity("MyFundi.Domain.JobWorkCategory", b =>
+                {
+                    b.HasOne("MyFundi.Domain.Job", "Job")
+                        .WithMany()
+                        .HasForeignKey("JobId");
+
+                    b.HasOne("MyFundi.Domain.WorkCategory", "WorkCategory")
+                        .WithMany()
+                        .HasForeignKey("WorkCategoryId");
+                });
+
             modelBuilder.Entity("MyFundi.Domain.Location", b =>
                 {
                     b.HasOne("MyFundi.Domain.Address", "Address")
@@ -867,6 +910,12 @@ namespace MyFundi.Web.Migrations
                         .IsRequired();
                 });
 
+            modelBuilder.Entity("MyFundi.Domain.WorkCategory", b =>
+                {
+                    b.HasOne("MyFundi.Domain.Job", null)
+                        .WithMany("WorkCategories")
+                        .HasForeignKey("JobId");
+                });
 #pragma warning restore 612, 618
         }
     }

@@ -257,9 +257,9 @@ export class ClientProfileComponent implements OnInit {
       clientFundiContractId: null,
       assignedFundiUserId: null,//this.fundiProfile.user.userId,
       assignedFundiProfileId: null,//this.fundiProfile.fundiProfileId
-      workCategoryIds: this.chosenWorkCategories.map((workCat: IWorkCategory) => {
-        return workCat.workCategoryId.toString();
-      }).join(",")
+      jobWorkCategoryIds: this.chosenWorkCategories.map((workCat: IWorkCategory) => {
+        return workCat.workCategoryId;
+      })
     };
 
     let obsj: Observable<any> = this.myFundiService.CreateFundiJob(job);

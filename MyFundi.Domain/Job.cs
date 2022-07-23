@@ -35,7 +35,7 @@ namespace MyFundi.Domain
         public bool HasCompleted { get; set; }
         public int? ClientFundiContractId { get; set; }
         public int NumberOfDaysToComplete { get; set; }
-        public ICollection<WorkCategory> WorkCategories { get; set; }
+        //public ICollection<WorkCategory> WorkCategories { get; set; }
         public DateTime DateCreated { get; set; } = DateTime.Now;
         public DateTime DateUpdated { get; set; } = DateTime.Now;
     }

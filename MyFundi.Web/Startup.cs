@@ -254,7 +254,9 @@ namespace MyFundi.Web
                 conf.CreateMap<ClientProfileViewModel, ClientProfile>();
                 conf.CreateMap<ClientProfileViewModel, ClientProfile>().ReverseMap();
                 conf.CreateMap<JobViewModel, Job>();
-                conf.CreateMap<JobViewModel, Job>().ReverseMap();
+                conf.CreateMap<JobViewModel, Job>().ReverseMap(); 
+                conf.CreateMap<JobWorkCategoryViewModel, JobWorkCategory>();
+                conf.CreateMap<JobWorkCategoryViewModel, JobWorkCategory>().ReverseMap();
             });
 
             var httpClient = new BGLHttpClient();
@@ -289,6 +291,7 @@ namespace MyFundi.Web
             services.AddScoped<AbstractRepository<WorkCategory>, WorkCategoryRepository>();
             services.AddScoped<AbstractRepository<ClientProfile>, ClientProfileRepository>();
             services.AddScoped<AbstractRepository<Job>, JobRepository>();
+            services.AddScoped<AbstractRepository<JobWorkCategory>, JobWorkCategoryRepository>();
             services.AddScoped<ServicesEndPoint, ServicesEndPoint>();
             services.AddScoped<IUserService, UserService>();
             services.AddScoped<IRoleService, RoleService>();
